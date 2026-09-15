@@ -1,439 +1,211 @@
-# DevOps Services — Digital Services Provider
+<div align="center">
 
-> Premium web development, UI/UX design, SEO, digital marketing, business automation, and digital performance solutions.
+# ⚡ DevOps Services
 
-🌐 **Live Website:** https://devopsservices-seven.vercel.app/
+### Modern Web Development • Digital Solutions • White-Label Partnerships
 
-📦 **Repository:** https://github.com/SobanHaroon/Devopsservices-
+**Building fast, modern and scalable digital experiences for businesses worldwide.**
 
----
+[![Website](https://img.shields.io/badge/Website-Live-00C7B7?style=for-the-badge\&logo=vercel\&logoColor=white)](https://devopsservices-seven.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-SobanHaroon-181717?style=for-the-badge\&logo=github)](https://github.com/SobanHaroon)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge\&logo=react\&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge\&logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
 
-## Overview
-
-DevOps Services is a premium digital services company focused on building modern, high-performance digital experiences for businesses.
-
-This repository contains the source code for the official DevOps Services company website.
-
-The website was designed as more than a traditional agency landing page. It combines a cinematic visual experience with interactive UI systems, multilingual content, smooth scrolling, animated interfaces, dynamic SEO metadata, project presentation, client communication workflows, and AI-powered capabilities.
-
-The project demonstrates our approach to combining:
-
-- Modern frontend engineering
-- Interactive UI/UX
-- Motion design
-- Performance-focused development
-- Digital marketing presentation
-- SEO
-- AI integration
-- Business-focused user experiences
+</div>
 
 ---
 
-## Live Website
+## 🌐 Live Website
 
-**DevOps Services**
-
-https://devopsservices-seven.vercel.app/
+### [Visit DevOps Services →](https://devopsservices-seven.vercel.app/)
 
 ---
 
-## Services Presented
+## 🚀 About DevOps Services
 
-The website presents DevOps Services as a digital solutions provider offering:
+**DevOps Services** is a digital solutions agency focused on helping businesses establish, improve, and scale their online presence.
 
-- Website Development
-- Website Management
-- UI/UX Design
-- SEO Solutions
-- Digital Marketing
-- Brand Identity
-- Business Automation
-- AI-powered digital solutions
+We combine modern web technologies, thoughtful UI/UX, animation, performance optimization, and business-focused development to create digital experiences built around real business goals.
+
+Our work includes everything from business websites and landing pages to e-commerce platforms, custom web applications, SEO, digital marketing, and ongoing website management.
+
+We are also open to **white-label development partnerships** with agencies and teams that need additional development capacity.
 
 ---
 
-# Key Features
+## 🤝 White-Label Partnerships
 
-## Cinematic Loading Experience
+DevOps Services works with agencies and digital teams as a development partner.
 
-The website includes a custom branded loading sequence with:
+We can work behind your brand while your agency maintains the direct relationship with the client.
 
-- Animated company identity
-- Loading progress indicator
-- Motion transitions
-- Responsive layout
-- Smooth exit animation
+### Partnership capabilities
 
-The loader is designed to establish the visual identity of the company before the main experience is displayed.
+* Frontend Development
+* Full-Stack Development
+* Landing Page Development
+* Business Websites
+* E-commerce Development
+* Website Redesign
+* Responsive Implementation
+* Animation & Interactive UI
+* Website Maintenance
+* Performance Optimization
+* SEO Implementation
+* Ongoing Development Support
 
----
-
-## Modern Hero Experience
-
-The hero section provides the primary introduction to DevOps Services and uses animated visual elements to establish the company's technical and premium positioning.
-
-The application includes animated typography, interactive visual elements, and motion-based transitions.
-
----
-
-## Smooth Scrolling
-
-The website uses Lenis to provide a smooth scrolling experience.
-
-This is combined with motion-based section transitions to create a more fluid navigation experience.
+White-label collaboration can be structured around individual projects or ongoing development requirements.
 
 ---
 
-## Custom Cursor
+## 💼 Services
 
-A custom cursor component provides an enhanced desktop interaction layer.
-
-The custom cursor is treated as a progressive enhancement rather than a replacement for standard pointer interaction.
-
----
-
-## Animated UI
-
-The website uses motion extensively throughout the experience.
-
-Implemented animation systems include:
-
-- Section entrance animations
-- Fade and blur transitions
-- Scale animations
-- Hover interactions
-- Animated UI elements
-- Scroll-based effects
-- Page loading transitions
-- Interactive component states
-
-Motion is primarily implemented using:
-
-- Motion
-- GSAP
+| Service                       | Description                                             |
+| ----------------------------- | ------------------------------------------------------- |
+| 💻 **Web Development**        | Modern responsive websites and web applications         |
+| ⚛️ **Frontend Development**   | React and TypeScript-based frontend experiences         |
+| 🧩 **Full-Stack Development** | Frontend, backend, database and API integration         |
+| 🛒 **E-commerce**             | Online stores, checkout systems and product experiences |
+| 🎨 **UI Development**         | Responsive implementation with modern interactions      |
+| 📱 **Responsive Design**      | Optimized experiences across mobile, tablet and desktop |
+| 🚀 **Performance**            | Website speed and frontend performance optimization     |
+| 🔎 **SEO**                    | Technical and on-page search optimization               |
+| 📈 **Digital Marketing**      | Digital campaigns and online growth support             |
+| 📱 **Social Media**           | Content and social account management                   |
+| 🧠 **AI Solutions**           | AI-assisted features and workflow integrations          |
+| 🔧 **Website Management**     | Maintenance, improvements and ongoing support           |
 
 ---
 
-## Scroll-Based Velocity Effects
+# ✨ Website Features
 
-The homepage includes animated scrolling content that communicates the company's technical capabilities.
+The DevOps Services website itself demonstrates several of our frontend and interactive-development capabilities.
 
-The system presents themes including:
+### 🎬 Interactive Experience
 
-- Digital architecture
-- Cloud DevOps
-- Full-stack solutions
-- SEO
-- Data-driven performance
-- Brand identity
-- AI automation
+* Smooth page scrolling
+* Scroll-based animations
+* Animated page sections
+* Custom cursor interactions
+* Abstract animated backgrounds
+* Responsive transitions
+* Interactive project presentations
 
----
+### 📂 Case Study System
 
-## Smooth Section Transitions
+The website includes:
 
-Major sections use viewport-based animation triggers.
+* Featured projects
+* Case study listings
+* Individual case study views
+* Project storytelling
+* Project visuals
+* Technology information
+* Detailed project presentations
 
-Sections transition into view using combinations of:
+### 💬 Business Content
 
-- Opacity
-- Vertical movement
-- Blur
-- Timing curves
+Dedicated sections are available for:
 
-This creates a more polished experience while keeping animations structured.
-
----
-
-## Theme Switching
-
-The website includes two visual modes:
-
-- Dark
-- Midnight
-
-The selected theme is persisted using browser local storage.
-
-Users can switch between the available visual modes without losing their preference when returning to the website.
+* Company introduction
+* Services
+* Case studies
+* Testimonials
+* Frequently asked questions
+* Contact and project inquiries
 
 ---
 
-## Multilingual Experience
+# 🛠️ Technology Stack
 
-The website includes a language context system for multilingual content.
+<div align="center">
 
-The current implementation includes translations for:
+### Core
 
-- English
-- French
-- German
-- Japanese
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript_5.8-007ACC?style=for-the-badge\&logo=typescript\&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=for-the-badge\&logo=vite\&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=node.js\&logoColor=white)
 
-This system is used across important sections of the website, including the contact experience.
+### Animation & Visuals
 
----
+![GSAP](https://img.shields.io/badge/GSAP-Animation-88CE02?style=for-the-badge)
+![Three.js](https://img.shields.io/badge/Three.js-3D-000000?style=for-the-badge\&logo=three.js)
+![Motion](https://img.shields.io/badge/Motion-Animations-FF008C?style=for-the-badge)
+![Lenis](https://img.shields.io/badge/Lenis-Smooth_Scroll-black?style=for-the-badge)
 
-## Interactive FAQ
+</div>
 
-The website includes an FAQ section designed to answer common questions regarding:
-
-- Services
-- Development
-- Project timelines
-- Business processes
-- Technical capabilities
-- Client engagement
-
----
-
-## Portfolio
-
-The portfolio section presents selected projects and demonstrates DevOps Services' development capabilities.
-
-Featured work includes real websites and digital projects.
-
-### Babey Dee Atta Chakki
-
-**Category:** E-Commerce
-
-A live e-commerce website developed for an organic grocery business.
-
-🌐 https://babaydeeattachakki.com/
-
-### Outsource One LLC
-
-**Category:** B2B / Corporate
-
-A website developed for a CDR data provider serving the call-center industry.
-
-🌐 https://outsourceonellc.netlify.app/
-
-### DevOps Services
-
-**Category:** Corporate / Digital Services
-
-The official DevOps Services company website.
-
-🌐 https://devopsservices-seven.vercel.app/
-
-### Muhammad Soban Portfolio
-
-**Category:** Personal Developer Portfolio
-
-A personal portfolio demonstrating frontend development and digital design capabilities.
-
-🌐 https://msoban.netlify.app/
-
----
-
-# Contact & Project Brief System
-
-The website contains a structured project inquiry system rather than a simple contact form.
-
-Visitors can provide information including:
-
-- Full name
-- Company
-- Email
-- Phone number
-- Country
-- Industry
-- Required service
-- Estimated budget
-- Project description
-
-Supported budget ranges include:
-
-- $500 – $1,000
-- $1,000 – $5,000
-- $5,000 – $10,000
-- More than $10,000
-
-The form includes client-side validation and user feedback states.
-
----
-
-## Interactive Notification Console
-
-The contact experience includes an interactive notification/telemetry interface.
-
-The UI provides:
-
-- Notification status
-- Connection state
-- Test push dispatch interaction
-- Live message feed presentation
-- Transmission states
-- Notification sound feedback
-- Project brief transmission feedback
-
-This creates a more technical representation of the company's communication workflow.
-
----
-
-# AI Integration
-
-The project includes Google's Gemini GenAI SDK.
-
-The repository defines a `GEMINI_API_KEY` environment variable for Gemini API functionality.
-
-The project metadata also identifies server-side Gemini API capability.
-
-AI functionality is therefore part of the application's technical architecture and can be extended for future business automation features.
-
----
-
-# SEO
-
-The project includes a dedicated SEO utility for dynamically updating metadata based on the section currently visible on the page.
-
-The implementation supports:
-
-- Document titles
-- Meta descriptions
-- Open Graph titles
-- Open Graph descriptions
-- Open Graph URLs
-- Twitter titles
-- Twitter descriptions
-
-The application uses `IntersectionObserver` to detect visible sections and update metadata accordingly.
-
-Configured sections include:
-
-- Hero
-- About
-- Services
-- FAQ
-- Portfolio
-- Testimonials
-- Contact
-
----
-
-# Responsive Design
-
-The website is designed to adapt across:
-
-- Desktop
-- Laptop
-- Tablet
-- Mobile devices
-
-Responsive behavior is implemented throughout the component architecture using responsive Tailwind CSS utilities and adaptive layouts.
-
-The interface includes responsive:
-
-- Navigation
-- Hero layouts
-- Typography
-- Service cards
-- Portfolio layouts
-- Contact forms
-- FAQ sections
-- Footer
-- Animated elements
-
-The goal is to preserve the visual identity and usability of the experience rather than simply shrinking the desktop layout.
-
----
-
-# Technology Stack
-
-## Frontend
-
-- React 19
-- TypeScript
-- Vite
-
-## Styling
-
-- Tailwind CSS 4
-- CSS
-
-## Animation & Motion
-
-- Motion
-- GSAP
-- Lenis
-
-## UI
-
-- Lucide React
-- Custom reusable UI components
-
-## AI
-
-- Google GenAI SDK
-
-## Backend / Server Capabilities
-
-- Express.js
-- Node.js ecosystem
-
-## Build Tooling
-
-- Vite
-- TypeScript
-- esbuild
-
-## Package Management
-
-- npm
-- Bun lockfile included
-
----
-
-# Project Architecture
-
-The project follows a component-based React architecture.
+### Main Technologies
 
 ```text
-Devopsservices-
+React 19
+├── TypeScript
+├── Vite
+├── Tailwind CSS
 │
-├── assets/
+├── Animation
+│   ├── GSAP
+│   ├── Motion
+│   ├── Lenis
+│   └── Three.js
+│
+├── UI
+│   ├── Lucide React
+│   ├── Custom CSS
+│   └── Responsive Components
+│
+└── Tooling
+    ├── Playwright
+    ├── TypeScript
+    ├── esbuild
+    └── npm
+```
+
+---
+
+# 📁 Project Architecture
+
+```text
+Devopsservices-/
+│
+├── public/
+├── scripts/
 │
 ├── src/
 │   │
 │   ├── assets/
-│   │   └── images/
 │   │
 │   ├── components/
-│   │   │
 │   │   ├── About.tsx
 │   │   ├── AbstractBackground.tsx
+│   │   ├── CaseStudiesList.tsx
+│   │   ├── CaseStudyDetail.tsx
 │   │   ├── Contact.tsx
 │   │   ├── CustomCursor.tsx
 │   │   ├── Faq.tsx
+│   │   ├── FeaturedCaseStudies.tsx
 │   │   ├── Footer.tsx
 │   │   ├── Header.tsx
 │   │   ├── Hero.tsx
-│   │   ├── Portfolio.tsx
 │   │   ├── Services.tsx
 │   │   ├── SmoothScroll.tsx
-│   │   ├── Testimonials.tsx
-│   │   ├── Toast.tsx
-│   │   │
-│   │   └── ui/
-│   │       ├── AmbientSoundscape.tsx
-│   │       ├── AnimateDigits.tsx
-│   │       ├── AnimatedCircularProgressBar.tsx
-│   │       ├── AnimatedServiceIcons.tsx
-│   │       ├── AnimatedThemeToggler.tsx
-│   │       ├── BlobCard.tsx
-│   │       ├── BorderBeam.tsx
-│   │       ├── DiaTextReveal.tsx
-│   │       ├── FluidBlobs.tsx
-│   │       ├── GlowEffect.tsx
-│   │       └── other reusable UI components
+│   │   └── Testimonials.tsx
 │   │
 │   ├── context/
-│   │   └── LanguageContext
+│   ├── data/
+│   ├── lib/
 │   │
-│   └── lib/
-│       └── seo.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── index.css
+│   ├── studio.css
+│   ├── types.ts
+│   └── vite-env.d.ts
 │
 ├── .env.example
+├── .gitignore
+├── design-qa.md
 ├── index.html
 ├── metadata.json
 ├── package.json
@@ -441,3 +213,351 @@ Devopsservices-
 ├── vite.config.ts
 └── README.md
 ```
+
+---
+
+# 🧩 Application Structure
+
+```text
+                         ┌──────────────┐
+                         │    Header    │
+                         └──────┬───────┘
+                                │
+                         ┌──────▼───────┐
+                         │     Hero     │
+                         └──────┬───────┘
+                                │
+                         ┌──────▼───────┐
+                         │    About     │
+                         └──────┬───────┘
+                                │
+                         ┌──────▼───────┐
+                         │   Services   │
+                         └──────┬───────┘
+                                │
+                    ┌───────────▼───────────┐
+                    │ Featured Case Studies │
+                    └───────────┬───────────┘
+                                │
+                       ┌────────▼────────┐
+                       │  Testimonials  │
+                       └────────┬────────┘
+                                │
+                         ┌──────▼───────┐
+                         │     FAQ      │
+                         └──────┬───────┘
+                                │
+                         ┌──────▼───────┐
+                         │   Contact    │
+                         └──────┬───────┘
+                                │
+                         ┌──────▼───────┐
+                         │    Footer    │
+                         └──────────────┘
+```
+
+---
+
+# 🎞️ Animation System
+
+The website combines several technologies rather than relying on a single animation library.
+
+### GSAP
+
+Used for advanced timeline and scroll-driven animations.
+
+### Motion
+
+Provides React-oriented UI transitions and component animation.
+
+### Lenis
+
+Creates controlled smooth scrolling throughout the website.
+
+### Three.js
+
+Provides the foundation for advanced 3D and visual experiences.
+
+Together, these technologies help create a premium agency-style browsing experience without sacrificing the component-based React architecture.
+
+---
+
+# 📱 Responsive Experience
+
+The website is designed for:
+
+```text
+📱 Mobile
+     ↓
+📲 Tablet
+     ↓
+💻 Laptop
+     ↓
+🖥️ Desktop
+```
+
+Layouts, typography, navigation, interactions and content adapt according to the available screen size.
+
+---
+
+# ⚙️ Local Development
+
+## Prerequisites
+
+Install:
+
+* Node.js 18+
+* npm
+* Git
+
+Check your versions:
+
+```bash
+node --version
+npm --version
+git --version
+```
+
+---
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/SobanHaroon/Devopsservices-.git
+```
+
+Navigate to the project:
+
+```bash
+cd Devopsservices-
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 3. Environment Configuration
+
+If required, create a local environment file using:
+
+```text
+.env.example
+```
+
+as your reference.
+
+For example:
+
+```bash
+cp .env.example .env
+```
+
+> ⚠️ Never commit real API keys, passwords, tokens or other credentials to GitHub.
+
+---
+
+## 4. Start Development Server
+
+```bash
+npm run dev
+```
+
+The Vite development server is configured to run on:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# 🏗️ Production
+
+## Build
+
+```bash
+npm run build
+```
+
+The production files are generated inside:
+
+```text
+dist/
+```
+
+## Preview
+
+```bash
+npm run preview
+```
+
+## Type Check
+
+```bash
+npm run lint
+```
+
+## Clean
+
+```bash
+npm run clean
+```
+
+---
+
+# 🎨 Design Philosophy
+
+The website follows a modern digital-agency design direction centered around:
+
+**Clarity → Interaction → Trust → Conversion**
+
+The interface prioritizes:
+
+* Strong visual hierarchy
+* Modern typography
+* Purposeful animation
+* Premium presentation
+* Clear calls to action
+* Project-focused storytelling
+* Responsive layouts
+* Smooth navigation
+* Visual consistency
+
+Animations are intended to support the content rather than distract from it.
+
+---
+
+# 📊 Case Studies
+
+Case studies are an important part of the website because they demonstrate practical development experience instead of simply listing technologies.
+
+Projects can showcase:
+
+```text
+Client / Project
+       ↓
+Business Requirement
+       ↓
+Design & Development
+       ↓
+Technology Stack
+       ↓
+Implementation
+       ↓
+Final Product
+```
+
+---
+
+# 🔐 Security
+
+When working with this project:
+
+* Never commit `.env` files.
+* Never expose private API credentials.
+* Store secrets using environment variables.
+* Restrict external API keys whenever possible.
+* Validate user-submitted data.
+* Keep dependencies updated.
+* Keep server-only secrets out of frontend bundles.
+
+---
+
+# 🚀 Deployment
+
+The application can be deployed to modern frontend hosting platforms such as Vercel.
+
+Before production deployment:
+
+* [ ] Run `npm run build`
+* [ ] Run TypeScript validation
+* [ ] Verify environment variables
+* [ ] Test mobile layouts
+* [ ] Test desktop layouts
+* [ ] Test contact functionality
+* [ ] Test case study navigation
+* [ ] Check animations
+* [ ] Check page performance
+* [ ] Check metadata and SEO
+* [ ] Verify production links
+
+---
+
+# 🗺️ Roadmap
+
+Potential future additions include:
+
+* [ ] CMS integration
+* [ ] Dynamic project management
+* [ ] Blog
+* [ ] Client dashboard
+* [ ] Client authentication
+* [ ] AI sales assistant
+* [ ] Automated quotation system
+* [ ] CRM integration
+* [ ] Appointment scheduling
+* [ ] Live chat
+* [ ] Advanced analytics
+* [ ] Lead-management dashboard
+* [ ] Multilingual support
+* [ ] Automated project inquiry workflow
+
+---
+
+# 🤝 Work With DevOps Services
+
+We are open to working with:
+
+* Startups
+* Small businesses
+* Growing companies
+* Digital agencies
+* Design studios
+* Marketing agencies
+* Software companies
+* International clients
+
+### White-Label Development
+
+Agencies looking for additional development capacity can collaborate with DevOps Services on a white-label basis.
+
+You maintain your client relationship.
+
+**We help build the product.**
+
+---
+
+# 👨‍💻 Developer
+
+## Muhammad Soban
+
+Full-Stack Web Developer & Founder of DevOps Services
+
+[![GitHub](https://img.shields.io/badge/GitHub-SobanHaroon-181717?style=for-the-badge\&logo=github)](https://github.com/SobanHaroon)
+[![Portfolio](https://img.shields.io/badge/Portfolio-View-0077B5?style=for-the-badge)](https://msoban.netlify.app/)
+[![DevOps Services](https://img.shields.io/badge/DevOps_Services-Website-00C7B7?style=for-the-badge)](https://devopsservices-seven.vercel.app/)
+
+---
+
+<div align="center">
+
+## Let's Build Something Great
+
+Have a website, application, agency project, or white-label development requirement?
+
+### [🌐 Visit DevOps Services](https://devopsservices-seven.vercel.app/)
+
+---
+
+**DevOps Services**
+
+*Building digital experiences that help businesses grow.*
+
+⭐ **If you like the project, consider starring the repository.**
+
+</div>
