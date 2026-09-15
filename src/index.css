@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Sans", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Base Body Styles */
+body {
+  background-color: #09090b;
+  color: #f4f4f5;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom noise overlay to give an elegant cinematic texture */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.018;
+  pointer-events: none;
+  z-index: 9999;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(20, 20, 25, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-heavy {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Highlight Sweep Underline Animation */
+.sweep-underline {
+  position: relative;
+}
+
+.sweep-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transform-origin: bottom right;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sweep-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Mask reveal clipping classes */
+.clip-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* For Lenis Smooth Scrolling */
+html.lenis {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HIGH-CONTRAST MIDNIGHT THEME OVERRIDES
+   ========================================================================== */
+.midnight-theme {
+  background-color: #010108 !important;
+  color: #ffffff !important;
+}
+
+/* Force body and outer wrapper backgrounds */
+.midnight-theme,
+.midnight-theme body,
+.midnight-theme .min-h-screen,
+.midnight-theme #root,
+.midnight-theme main {
+  background-color: #010108 !important;
+  color: #ffffff !important;
+}
+
+/* Override background grids and gradient cards */
+.midnight-theme .bg-\[\#09090b\] {
+  background-color: #010108 !important;
+}
+
+/* Make headers and footer background solid black for high contrast */
+.midnight-theme header,
+.midnight-theme #app-header,
+.midnight-theme .bg-zinc-950,
+.midnight-theme .bg-zinc-950\/70,
+.midnight-theme footer {
+  background-color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Enhance all cards/panels to solid jet-black or deep navy with highly visible borders */
+.midnight-theme .glass-panel,
+.midnight-theme .glass-panel-heavy,
+.midnight-theme .bg-zinc-900,
+.midnight-theme .bg-zinc-900\/60,
+.midnight-theme .bg-white\/\[0\.02\] {
+  background-color: #040412 !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Custom inputs, dropdowns, textareas in forms */
+.midnight-theme input,
+.midnight-theme textarea,
+.midnight-theme select {
+  background-color: #000000 !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.midnight-theme input:focus,
+.midnight-theme textarea:focus,
+.midnight-theme select:focus {
+  border-color: #00f3ff !important;
+  box-shadow: 0 0 8px rgba(0, 243, 255, 0.4) !important;
+}
+
+/* Make standard text higher contrast (zinc-400 to white/zinc-100) */
+.midnight-theme .text-zinc-400,
+.midnight-theme .text-zinc-500 {
+  color: #f4f4f5 !important;
+}
+
+.midnight-theme .text-zinc-300 {
+  color: #ffffff !important;
+}
+
+.midnight-theme .text-zinc-600 {
+  color: #d4d4d8 !important;
+}
+
+/* Adjust title colors to pure white */
+.midnight-theme h1,
+.midnight-theme h2,
+.midnight-theme h3,
+.midnight-theme h4,
+.midnight-theme h5,
+.midnight-theme h6 {
+  color: #ffffff !important;
+}
+
+/* Shift neon accents and interactive highlights to high-contrast cyan/electric blue */
+.midnight-theme .text-blue-400,
+.midnight-theme .text-blue-500,
+.midnight-theme .text-blue-600 {
+  color: #00f3ff !important;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.2) !important;
+}
+
+.midnight-theme .bg-blue-600,
+.midnight-theme .bg-blue-500 {
+  background-color: #00f3ff !important;
+  color: #000000 !important;
+  border-color: #00f3ff !important;
+}
+
+.midnight-theme .bg-blue-600:hover,
+.midnight-theme .bg-blue-500:hover,
+.midnight-theme .hover\:bg-blue-500:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Adjust outline buttons */
+.midnight-theme .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Bullet points and decorative dots */
+.midnight-theme .bg-blue-500\/10,
+.midnight-theme .bg-blue-500\/20 {
+  background-color: rgba(0, 243, 255, 0.15) !important;
+  border-color: rgba(0, 243, 255, 0.3) !important;
+}
+
+/* Telemetry lists and labels */
+.midnight-theme .bg-zinc-900\/80 {
+  background-color: #03030d !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Dynamic background animations and graphics (subtle grid adjustments) */
+.midnight-theme svg path {
+  stroke-width: 1.5px !important;
+}
+
+.midnight-theme .text-blue-500\/30 {
+  color: rgba(0, 243, 255, 0.2) !important;
+}
+
+.midnight-theme .text-blue-500\/10 {
+  color: rgba(0, 243, 255, 0.08) !important;
+}
+
+.midnight-theme .border-blue-500\/30 {
+  border-color: rgba(0, 243, 255, 0.4) !important;
+}
+
+.midnight-theme .bg-blue-500\/5 {
+  background-color: rgba(0, 243, 255, 0.05) !important;
+}
+
+.midnight-theme .shadow-blue-500\/20,
+.midnight-theme .shadow-blue-600\/20,
+.midnight-theme .shadow-lg {
+  box-shadow: 0 4px 20px rgba(0, 243, 255, 0.15) !important;
+}
+
+/* Adjust timeline & specific layout indicators */
+.midnight-theme .bg-zinc-800 {
+  background-color: #1c1c24 !important;
+}
+
+/* Preloader custom adjustment */
+.midnight-theme .bg-zinc-950 {
+  background-color: #010108 !important;
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam var(--duration) infinite linear;
+}
+
+@keyframes grid {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(60px);
+  }
+}
+
+.animate-grid {
+  animation: grid 15s linear infinite;
+}
+
+
