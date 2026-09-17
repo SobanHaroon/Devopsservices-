@@ -385,7 +385,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "Personal Portfolio / Developer Website",
     client: "Muhammad Soban",
     shortDescription: "A personal developer portfolio designed to showcase technical skills, projects, experience, and professional capabilities through a modern interactive interface.",
-    liveUrl: "https://msoban.netlify.app/",
+    liveUrl: "https://muhammadsoban.vercel.app/",
     ctaText: "Visit Live Website",
     featuredImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
     highlights: [
