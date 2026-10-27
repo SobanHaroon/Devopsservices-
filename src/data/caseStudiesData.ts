@@ -1,13 +1,15 @@
-import outsourceoneHero from '../assets/images/outsourceone_hero_1786554724935.jpg';
-import outsourceoneServices from '../assets/images/outsourceone_services_1786554742110.jpg';
-import outsourceoneWhyUs from '../assets/images/outsourceone_whyus_1786554758472.jpg';
-import outsourceoneOrderForm from '../assets/images/outsourceone_orderform_1786554776360.jpg';
+const outsourceoneHero = "/media/work/outsourceone_hero_1786554724935.webp";
+const outsourceoneServices =
+  "/media/work/outsourceone_services_1786554742110.webp";
+const outsourceoneWhyUs = "/media/work/outsourceone_whyus_1786554758472.webp";
+const outsourceoneOrderForm =
+  "/media/work/outsourceone_orderform_1786554776360.webp";
 
-import babaydeeHero from '../assets/User attachment 5.png';
-import babaydeeOrbit from '../assets/User attachment 3.png';
-import babaydeeChakki from '../assets/User attachment 4.png';
-import babaydeeCatalog from '../assets/User attachment 2.png';
-import babaydeeAbout from '../assets/User attachment.png';
+const babaydeeHero = "/media/work/user-attachment-5.webp";
+const babaydeeOrbit = "/media/work/user-attachment-3.webp";
+const babaydeeChakki = "/media/work/user-attachment-4.webp";
+const babaydeeCatalog = "/media/work/user-attachment-2.webp";
+const babaydeeAbout = "/media/work/user-attachment.webp";
 
 export interface KeyFeature {
   title: string;
@@ -60,12 +62,105 @@ export interface CaseStudy {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    id: "atelier-noir",
+    slug: "atelier-noir",
+    title: "Atelier Noir",
+    category: "E-Commerce Development",
+    client: "Atelier Noir",
+    shortDescription:
+      "An editorial fashion storefront with an interactive 3D jacket, a full collection, and a considered shopping journey.",
+    liveUrl: "https://atelier-noir-motion.vercel.app/",
+    ctaText: "Visit website",
+    featuredImage: "/media/work/atelier-noir.webp",
+    highlights: [
+      "3D product experience",
+      "Full collection",
+      "Responsive storefront",
+      "Search & cart",
+    ],
+    technologies: ["React", "Three.js", "GSAP", "Framer Motion", "Vercel"],
+    overview: {
+      whatItIs:
+        "A contemporary fashion storefront that brings editorial art direction and an interactive 3D product together.",
+      whoBuiltFor: "An original fashion-commerce project for Atelier Noir.",
+      businessPurpose:
+        "Help visitors discover the collection, explore products, and move from inspiration to a clear shopping flow.",
+      ourContribution:
+        "We designed and built the responsive storefront, 3D jacket experience, collection and product routes, search, cart, checkout interface, and contact page.",
+    },
+    challenge:
+      "Bring the atmosphere of a fashion editorial into an online store while keeping the catalog, navigation, and shopping controls easy to use on a phone.",
+    solution:
+      "A restrained layout pairs expressive typography and product imagery with lightweight motion. The 3D jacket has an image fallback, while dedicated collection, product, and cart views keep the shopping journey clear.",
+    keyFeatures: [
+      {
+        title: "Interactive 3D jacket",
+        description:
+          "A product-led hero built with Three.js and a static fallback for devices that cannot render WebGL.",
+        iconName: "Layers",
+      },
+      {
+        title: "Collection and search",
+        description:
+          "Dedicated catalog and product views with search and category navigation.",
+        iconName: "ShoppingBag",
+      },
+      {
+        title: "Cart and checkout",
+        description:
+          "A persistent cart and checkout flow backed by server endpoints. Live purchasing depends on configured store, inventory, and payment services.",
+        iconName: "ShoppingCart",
+      },
+      {
+        title: "Responsive experience",
+        description:
+          "Layouts and touch controls designed for mobile, tablet, and desktop browsing.",
+        iconName: "Smartphone",
+      },
+    ],
+    designApproach: {
+      responsive: "Fluid grids and touch-friendly controls.",
+      userExperience: "Clear shopping steps.",
+      visualHierarchy:
+        "Editorial product photography and deliberate type scale.",
+      navigation: "Dedicated catalog, product, contact, and cart routes.",
+      animations:
+        "GSAP, Framer Motion, and an original Three.js product presentation.",
+    },
+    galleryImages: [
+      {
+        url: "/media/work/atelier-noir.webp",
+        caption:
+          "Atelier Noir — editorial storefront and 3D jacket presentation.",
+      },
+      {
+        url: "/media/work/atelier-jacket.webp",
+        caption: "Product imagery used in the Atelier Noir collection.",
+      },
+    ],
+    results: [
+      "A complete responsive fashion storefront and project source.",
+      "An interactive product presentation with an image fallback.",
+      "Dedicated collection, search, product, cart, checkout, and contact views.",
+      "Commerce endpoints prepared for configured inventory and payment services.",
+    ],
+    seo: {
+      title: "Atelier Noir Case Study | DevOps Services",
+      metaDescription:
+        "An editorial fashion storefront with 3D product presentation, responsive shopping, search and cart.",
+      ogTitle: "Atelier Noir — DevOps Services",
+      ogDescription:
+        "Fashion, thoughtful interaction, and a complete shopping journey.",
+    },
+  },
+  {
     id: "babey-dee-atta-chakki",
     slug: "babey-dee-atta-chakki",
     title: "Babay Dee Atta Chakki",
     category: "E-Commerce Development",
     client: "Babay Dee Atta Chakki",
-    shortDescription: "A complete online grocery/e-commerce platform for Babay Dee Atta Chakki, allowing customers to browse products, add products to cart, place orders, and interact with the business online.",
+    shortDescription:
+      "Fresh essentials, brought online. A local grocery storefront with a product catalog, shopping cart, and delivery ordering.",
     liveUrl: "https://babaydeeattachakki.com/",
     ctaText: "Visit Live Website",
     featuredImage: babaydeeHero,
@@ -77,7 +172,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Order management",
       "Delivery functionality",
       "Responsive design",
-      "Business-focused UX"
+      "Business-focused UX",
     ],
     technologies: [
       "React",
@@ -85,194 +180,209 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Express API",
       "Tailwind CSS",
       "JavaScript",
-      "Responsive Web Architecture"
+      "Responsive Web Architecture",
     ],
     overview: {
-      whatItIs: "A complete online grocery and staple food e-commerce platform developed for Babay Dee Atta Chakki, bringing daily essentials directly to digital shoppers.",
-      whoBuiltFor: "Built specifically for Babay Dee Atta Chakki and its retail customer base seeking convenient, reliable online food staple ordering.",
-      businessPurpose: "Digitizing traditional grain mill (Atta Chakki) and grocery store ordering, enabling consumers to browse flour varieties, grains, and kitchen staples, manage carts, and place direct delivery orders online 24/7.",
-      ourContribution: "DevOps Services engineered the full-stack web application, crafted the e-commerce UI/UX, implemented responsive cart and checkout systems, and optimized cross-device performance."
+      whatItIs:
+        "A complete online grocery and staple food e-commerce platform developed for Babay Dee Atta Chakki, bringing daily essentials directly to digital shoppers.",
+      whoBuiltFor:
+        "Built specifically for Babay Dee Atta Chakki and its retail customer base seeking convenient, reliable online food staple ordering.",
+      businessPurpose:
+        "Digitizing traditional grain mill (Atta Chakki) and grocery store ordering, enabling consumers to browse flour varieties, grains, and kitchen staples, manage carts, and place direct delivery orders online 24/7.",
+      ourContribution:
+        "DevOps Services engineered the full-stack web application, crafted the e-commerce UI/UX, implemented responsive cart and checkout systems, and optimized cross-device performance.",
     },
-    challenge: "Traditional grain mill and staple grocery businesses historically rely on physical foot traffic and phone calls for order placement. Babay Dee Atta Chakki needed a seamless way to showcase their comprehensive product catalog online, manage customizable flour/grain quantities, and provide an effortless checkout experience for household customers on mobile and desktop without operational complexity.",
-    solution: "We designed and engineered a clean, high-performance e-commerce platform with intuitive product categorization, dynamic cart calculation, direct checkout order management, clear delivery details, and a responsive mobile interface that allows customers to complete orders in seconds.",
+    challenge:
+      "Traditional grain mill and staple grocery businesses historically rely on physical foot traffic and phone calls for order placement. Babay Dee Atta Chakki needed a seamless way to showcase their comprehensive product catalog online, manage customizable flour/grain quantities, and provide an effortless checkout experience for household customers on mobile and desktop without operational complexity.",
+    solution:
+      "We designed and engineered a clean, high-performance e-commerce platform with intuitive product categorization, dynamic cart calculation, direct checkout order management, clear delivery details, and a responsive mobile interface that allows customers to complete orders in seconds.",
     keyFeatures: [
       {
         title: "Dynamic Product Catalog",
-        description: "Clear product categorization for fresh flours, whole grains, pulses, and daily household staples with rich product details.",
-        iconName: "ShoppingBag"
+        description:
+          "Clear product categorization for fresh flours, whole grains, pulses, and daily household staples with rich product details.",
+        iconName: "ShoppingBag",
       },
       {
         title: "Interactive Shopping Cart",
-        description: "Real-time cart quantity controls, instant total price updates, and persistent session storage for seamless shopping.",
-        iconName: "ShoppingCart"
+        description:
+          "Real-time cart quantity controls, instant total price updates, and persistent session storage for seamless shopping.",
+        iconName: "ShoppingCart",
       },
       {
         title: "Streamlined Order Flow",
-        description: "Simplified checkout process designed to collect customer delivery details and order preferences without friction.",
-        iconName: "CheckCircle2"
+        description:
+          "Simplified checkout process designed to collect customer delivery details and order preferences without friction.",
+        iconName: "CheckCircle2",
       },
       {
         title: "Delivery & Service Info",
-        description: "Transparent delivery zone schedules, minimum order criteria, and direct customer contact options.",
-        iconName: "Truck"
+        description:
+          "Transparent delivery zone schedules, minimum order criteria, and direct customer contact options.",
+        iconName: "Truck",
       },
       {
         title: "Business Order Management",
-        description: "Structured order summaries enabling the business to process, organize, and fulfill incoming customer orders efficiently.",
-        iconName: "ClipboardList"
+        description:
+          "Structured order summaries enabling the business to process, organize, and fulfill incoming customer orders efficiently.",
+        iconName: "ClipboardList",
       },
       {
         title: "Mobile-First Accessibility",
-        description: "Fully responsive layout ensuring effortless browsing and purchasing on mobile phones, tablets, and desktop computers.",
-        iconName: "Smartphone"
-      }
+        description:
+          "Fully responsive layout ensuring effortless browsing and purchasing on mobile phones, tablets, and desktop computers.",
+        iconName: "Smartphone",
+      },
     ],
     designApproach: {
-      responsive: "Engineered with a mobile-first fluid grid that adjusts product cards, cart sliders, and checkout forms smoothly across screen widths.",
-      userExperience: "Focused on reducing steps to purchase for busy household shoppers, using high-visibility CTA buttons and transparent pricing.",
-      visualHierarchy: "Clean neutral background palettes with vibrant product accents, readable typography, and un-cluttered card layouts.",
-      navigation: "Sticky top bar with instant search, category quick-filters, and persistent cart counters for effortless item browsing.",
-      animations: "Subtle micro-interactions on button presses, smooth drawer transitions for cart management, and crisp hover states."
+      responsive:
+        "Engineered with a mobile-first fluid grid that adjusts product cards, cart sliders, and checkout forms smoothly across screen widths.",
+      userExperience:
+        "Focused on reducing steps to purchase for busy household shoppers, using high-visibility CTA buttons and transparent pricing.",
+      visualHierarchy:
+        "Clean neutral background palettes with vibrant product accents, readable typography, and un-cluttered card layouts.",
+      navigation:
+        "Sticky top bar with instant search, category quick-filters, and persistent cart counters for effortless item browsing.",
+      animations:
+        "Subtle micro-interactions on button presses, smooth drawer transitions for cart management, and crisp hover states.",
     },
     galleryImages: [
       {
         url: babaydeeHero,
-        caption: "Babay Dee Atta Chakki - Official E-Commerce Homepage & Natural Stone-Grounded Fresh Atta Hero"
+        caption:
+          "Babay Dee Atta Chakki - Official E-Commerce Homepage & Natural Stone-Grounded Fresh Atta Hero",
       },
       {
         url: babaydeeOrbit,
-        caption: "Babay Dee Atta Chakki - Freshly Sourced Products Interactive Orbit Showcase"
+        caption:
+          "Babay Dee Atta Chakki - Freshly Sourced Products Interactive Orbit Showcase",
       },
       {
         url: babaydeeChakki,
-        caption: "Babay Dee Atta Chakki - Experience Our Authentic Interactive 3D Stone Chakki & Web Audio Synth"
+        caption:
+          "Babay Dee Atta Chakki - Experience Our Authentic Interactive 3D Stone Chakki & Web Audio Synth",
       },
       {
         url: babaydeeCatalog,
-        caption: "Babay Dee Atta Chakki - Store Catalog with Chakki Atta, Makai Atta & Quick Add Options"
+        caption:
+          "Babay Dee Atta Chakki - Store Catalog with Chakki Atta, Makai Atta & Quick Add Options",
       },
       {
         url: babaydeeAbout,
-        caption: "Babay Dee Atta Chakki - Contact Page, Head Office Details & Digital Map Guidance"
-      }
+        caption:
+          "Babay Dee Atta Chakki - Contact Page, Head Office Details & Digital Map Guidance",
+      },
     ],
     results: [
       "Established an operational 24/7 digital storefront for Babay Dee Atta Chakki",
       "Expanded business reach to digital consumers outside local walk-in boundaries",
       "Streamlined order collection and product catalog presentation",
-      "Delivered a modern, mobile-friendly e-commerce purchasing experience"
+      "Delivered a modern, mobile-friendly e-commerce purchasing experience",
     ],
     seo: {
-      title: "Babay Dee Atta Chakki Case Study | E-Commerce Web Platform | DevOps Services",
-      metaDescription: "Explore how DevOps Services engineered a complete online grocery and e-commerce platform for Babay Dee Atta Chakki with product catalog, shopping cart, and seamless checkout flow.",
+      title:
+        "Babay Dee Atta Chakki Case Study | E-Commerce Web Platform | DevOps Services",
+      metaDescription:
+        "Explore how DevOps Services engineered a complete online grocery and e-commerce platform for Babay Dee Atta Chakki with product catalog, shopping cart, and seamless checkout flow.",
       ogTitle: "Babay Dee Atta Chakki E-Commerce Platform | Case Study",
-      ogDescription: "Full-stack e-commerce web platform engineered for Babay Dee Atta Chakki featuring real-time cart management and responsive mobile ordering."
-    }
+      ogDescription:
+        "Full-stack e-commerce web platform engineered for Babay Dee Atta Chakki featuring real-time cart management and responsive mobile ordering.",
+    },
   },
   {
     id: "devops-services",
     slug: "devops-services",
     title: "DevOps Services",
     category: "Corporate / Agency Website",
-    client: "DevOps Services Ltd",
-    shortDescription: "The official company website for DevOps Services, designed to present the company's web development and digital marketing services, capabilities, portfolio, and business offerings.",
+    client: "DevOps Services",
+    shortDescription:
+      "A Japanese-inspired digital studio: expressive typography, original 3D artwork, and a straightforward path from discovery to project brief.",
     liveUrl: "https://devopsservices-seven.vercel.app/",
-    ctaText: "Visit Live Website",
-    featuredImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    ctaText: "Visit website",
+    featuredImage: "/media/work/devops-services.webp",
     highlights: [
-      "Professional corporate design",
-      "Service presentation",
-      "Responsive UI",
-      "Conversion-focused sections",
-      "Modern animations",
-      "Agency branding"
+      "Original 3D scene",
+      "Multilingual interface",
+      "White-label partnerships",
+      "Responsive grids",
     ],
-    technologies: [
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "Motion",
-      "WebGL Shaders",
-      "Cloud Run Container Platform",
-      "Vite"
-    ],
+    technologies: ["React", "TypeScript", "Three.js", "GSAP", "Motion", "Vite"],
     overview: {
-      whatItIs: "The official corporate digital platform and interactive agency website for DevOps Services Ltd.",
-      whoBuiltFor: "Architected for DevOps Services Ltd to serve as its flagship international client facing platform.",
-      businessPurpose: "Presenting the agency's full-stack web development, 24/7 website management, UI/UX design systems, SEO solutions, digital marketing, brand identity, and business automation offerings.",
-      ourContribution: "Designed, engineered, and deployed the complete corporate platform, incorporating custom dark/midnight high-contrast themes, interactive diagnostic consoles, and live telemetry engines."
+      whatItIs:
+        "The website for DevOps Services, an independent digital studio based in Rawalpindi, Pakistan.",
+      whoBuiltFor:
+        "Business owners and agency partners looking for design, development, and digital support.",
+      businessPurpose:
+        "Show real work, explain services, and make it easy to discuss a project or white-label contract.",
+      ourContribution:
+        "Art direction, interface design, original 3D models, responsive development, multilingual content, and the inquiry workflow.",
     },
-    challenge: "Creating an agency web experience that demonstrates technical excellence, sub-100ms load speeds, and sophisticated UI craftsmanship while clearly communicating multi-disciplinary technical services, client work, and structured project brief inquiry pathways without clutter.",
-    solution: "We built a bespoke React application featuring dual high-contrast theme engines, kinetic typography, an interactive technology radar, real-time client feedback feeds, dynamic case study modals, and multilingual support across 4 global languages (English, French, German, Japanese).",
+    challenge:
+      "Combine anime-inspired Japanese art direction with a credible IT studio presence, without making navigation or contact more complicated.",
+    solution:
+      "A logo-led navy, cyan, ice, and gold visual system pairs with original 3D anime characters. Native scrolling, aligned grids, a personal founder profile, and direct forms keep the experience focused.",
     keyFeatures: [
       {
-        title: "Service Specification Matrix",
-        description: "Interactive service allocation cards with deep protocol specification drawers for technical transparency.",
-        iconName: "Layers"
+        title: "Original anime characters",
+        description:
+          "Three original 3D characters respond to scrolling and hover in the hero, services, and partnership sections.",
+        iconName: "Layers",
       },
       {
-        title: "Interactive Technology Radar",
-        description: "Live radar widget showcasing technical stack adoption across Adopt, Trial, Assess, and Hold rings.",
-        iconName: "Activity"
+        title: "White-label contracts",
+        description:
+          "Project-based, monthly, and weekly partnership inquiries with contract-based pricing.",
+        iconName: "Briefcase",
       },
       {
-        title: "Multilingual Engine",
-        description: "Instant seamless language switching supporting English, French, German, and Japanese localized copy.",
-        iconName: "Globe"
+        title: "Accessible motion",
+        description:
+          "A pause control, reduced-motion support, and a static fallback for the 3D artwork.",
+        iconName: "Activity",
       },
       {
-        title: "Live Partner Feedback Board",
-        description: "Real-time client review submission system with verified ratings and interactive testimonial feeds.",
-        iconName: "MessageSquare"
+        title: "Reliable navigation",
+        description:
+          "Direct case-study routes, browser history, and deliberate scroll restoration.",
+        iconName: "Globe",
       },
-      {
-        title: "Sub-100ms Performance SLA",
-        description: "Optimized bundle footprint delivering top-tier Core Web Vitals and instant page renders.",
-        iconName: "Zap"
-      },
-      {
-        title: "Interactive Project Exhibition",
-        description: "Dynamic case study showcase displaying production metrics, architecture summaries, and live links.",
-        iconName: "FolderOpen"
-      }
     ],
     designApproach: {
-      responsive: "Fluid multi-column grid layouts with breakpoint-aware padding, scaling font sizes, and touch-optimized controls.",
-      userExperience: "Designed around executive conversion funnels with clear CTA hierarchy, structured project briefs, and immediate contact options.",
-      visualHierarchy: "Sophisticated dark canvas aesthetics with vibrant cyan/blue telemetry accents, bold display headings, and crisp mono typography.",
-      navigation: "Fixed glassmorphism header with smooth Lenis scroll acceleration and responsive full-screen mobile drawer.",
-      animations: "GPU-accelerated Motion choreography, fluid background lighting orbs, velocity marquee rows, and smooth hover tilt effects."
+      responsive: "Fluid grids and touch-friendly controls.",
+      userExperience:
+        "Direct contact with the founder and simple service selection.",
+      visualHierarchy:
+        "Sora headings, Manrope body copy, and a logo-led color palette.",
+      navigation:
+        "Case-study routes with reliable Back/Forward and scroll restoration.",
+      animations:
+        "GSAP reveals, Motion for React scroll transforms, and three original Three.js characters.",
     },
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-        caption: "DevOps Services Corporate Hero & Telemetry Console"
+        url: "/media/work/devops-services.webp",
+        caption: "The Japanese-inspired DevOps Services homepage.",
       },
       {
-        url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-        caption: "Interactive Operations & Technology Radar Visualization"
+        url: "/media/characters/kael.webp",
+        caption:
+          "Kael Astra, reconstructed in 3D from the founder’s character design.",
       },
-      {
-        url: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-        caption: "Service Allocation Panels & Detailed Protocol Specifications"
-      },
-      {
-        url: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80",
-        caption: "Responsive Mobile Interface & Dark Theme Palette"
-      }
     ],
     results: [
-      "Established a high-impact corporate online identity for international client acquisition",
-      "Centralized service capabilities, technology stack details, and project portfolios",
-      "Achieved sub-100ms page load benchmarks and top-tier Core Web Vitals metrics",
-      "Drove client engagement through interactive telemetry, case studies, and multilingual access"
+      "A responsive design across the homepage and case studies.",
+      "A clear inquiry form with contract-based partnership options.",
+      "Original local 3D assets and self-hosted typography.",
+      "Reduced-motion support and dependable route recovery.",
     ],
     seo: {
-      title: "DevOps Services Corporate Agency Platform Case Study | DevOps Services",
-      metaDescription: "Learn how DevOps Services engineered its official corporate agency web platform featuring sub-100ms edge speed, interactive technology radar, and multilingual support.",
-      ogTitle: "DevOps Services Official Corporate Website | Case Study",
-      ogDescription: "Official corporate platform engineered with sub-100ms performance, interactive tech radar, and multilingual capabilities."
-    }
+      title: "DevOps Services Website Case Study",
+      metaDescription:
+        "A Japanese-inspired digital studio: expressive typography, original 3D artwork, and a straightforward path from discovery to project brief.",
+      ogTitle: "DevOps Services — Digital Studio",
+      ogDescription:
+        "A Japanese-inspired digital studio: expressive typography, original 3D artwork, and a straightforward path from discovery to project brief.",
+    },
   },
   {
     id: "outsource-one",
@@ -280,7 +390,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Outsource One LLC",
     category: "B2B / Corporate Website",
     client: "Outsource One LLC",
-    shortDescription: "A professional B2B website created for Outsource One LLC, a CDR data provider serving the call-center industry.",
+    shortDescription:
+      "A professional B2B website created for Outsource One LLC, a CDR data provider serving the call-center industry.",
     liveUrl: "https://outsourceonellc.netlify.app/",
     ctaText: "Visit Live Website",
     featuredImage: outsourceoneHero,
@@ -290,7 +401,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Service/product presentation",
       "Lead-generation focused UX",
       "Responsive design",
-      "Professional business interface"
+      "Professional business interface",
     ],
     technologies: [
       "React",
@@ -298,103 +409,127 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Tailwind CSS",
       "Motion",
       "Node.js API",
-      "Responsive Grid Framework"
+      "Responsive Grid Framework",
     ],
     overview: {
-      whatItIs: "A corporate B2B website designed and developed for Outsource One LLC, a Call Detail Record (CDR) data provider for call centers.",
-      whoBuiltFor: "Created for Outsource One LLC to engage call center executives, B2B data managers, and telecommunication partners.",
-      businessPurpose: "Showcasing specialized call center CDR data feeds, B2B telecommunication solutions, service reliability standards, and facilitating corporate inquiry capture.",
-      ourContribution: "DevOps Services developed the corporate web architecture, designed the B2B UI/UX visual layout, structured technical service offerings, and implemented responsive contact channels."
+      whatItIs:
+        "A corporate B2B website designed and developed for Outsource One LLC, a Call Detail Record (CDR) data provider for call centers.",
+      whoBuiltFor:
+        "Created for Outsource One LLC to engage call center executives, B2B data managers, and telecommunication partners.",
+      businessPurpose:
+        "Showcasing specialized call center CDR data feeds, B2B telecommunication solutions, service reliability standards, and facilitating corporate inquiry capture.",
+      ourContribution:
+        "DevOps Services developed the corporate web architecture, designed the B2B UI/UX visual layout, structured technical service offerings, and implemented responsive contact channels.",
     },
-    challenge: "Presenting complex, highly technical call center CDR data feeds and B2B telecommunication infrastructure services clearly to industry decision-makers while establishing corporate trust, compliance standards, and driving qualified lead inquiries.",
-    solution: "We designed a clean, authoritative corporate B2B web interface featuring clear service capability cards, data accuracy commitments, structured business contact forms, and mobile-friendly navigation optimized for executive decision-makers.",
+    challenge:
+      "Presenting complex, highly technical call center CDR data feeds and B2B telecommunication infrastructure services clearly to industry decision-makers while establishing corporate trust, compliance standards, and driving qualified lead inquiries.",
+    solution:
+      "We designed a clean, authoritative corporate B2B web interface featuring clear service capability cards, data accuracy commitments, structured business contact forms, and mobile-friendly navigation optimized for executive decision-makers.",
     keyFeatures: [
       {
         title: "B2B Service Catalog",
-        description: "Structured presentation of CDR data solutions, call center data feeds, and telecom analytics.",
-        iconName: "Server"
+        description:
+          "Structured presentation of CDR data solutions, call center data feeds, and telecom analytics.",
+        iconName: "Server",
       },
       {
         title: "Lead Generation UX",
-        description: "Prominent conversion channels and inquiry touchpoints designed for enterprise buyers.",
-        iconName: "Send"
+        description:
+          "Prominent conversion channels and inquiry touchpoints designed for enterprise buyers.",
+        iconName: "Send",
       },
       {
         title: "Corporate Trust Presentation",
-        description: "Clear communication of data security protocols, accuracy standards, and service reliability.",
-        iconName: "ShieldCheck"
+        description:
+          "Clear communication of data security protocols, accuracy standards, and service reliability.",
+        iconName: "ShieldCheck",
       },
       {
         title: "Call Center Integration Overview",
-        description: "Visual explanation of how Outsource One LLC data feeds integrate into existing call center systems.",
-        iconName: "Workflow"
+        description:
+          "Visual explanation of how Outsource One LLC data feeds integrate into existing call center systems.",
+        iconName: "Workflow",
       },
       {
         title: "Executive Content Hierarchy",
-        description: "Scannable headings, key takeaway callouts, and clean technical feature matrices.",
-        iconName: "FileText"
+        description:
+          "Scannable headings, key takeaway callouts, and clean technical feature matrices.",
+        iconName: "FileText",
       },
       {
         title: "Cross-Device Responsiveness",
-        description: "Flawless rendering on mobile, tablet, and desktop viewports for business users on the go.",
-        iconName: "Monitor"
-      }
+        description:
+          "Flawless rendering on mobile, tablet, and desktop viewports for business users on the go.",
+        iconName: "Monitor",
+      },
     ],
     designApproach: {
-      responsive: "Mobile-first responsive corporate layout with structured grid spacing and touch-friendly navigation elements.",
-      userExperience: "Designed to minimize friction for enterprise inquiries with prominent service highlights and direct contact options.",
-      visualHierarchy: "Trust-building navy and slate visual scheme paired with crisp typography and clear section dividers.",
-      navigation: "Intuitive top navigation bar with quick jump links to services, corporate overview, and lead form.",
-      animations: "Subtle fade-in scroll transitions and clean hover highlights that enhance corporate readability without distraction."
+      responsive:
+        "Mobile-first responsive corporate layout with structured grid spacing and touch-friendly navigation elements.",
+      userExperience:
+        "Designed to minimize friction for enterprise inquiries with prominent service highlights and direct contact options.",
+      visualHierarchy:
+        "Trust-building navy and slate visual scheme paired with crisp typography and clear section dividers.",
+      navigation:
+        "Intuitive top navigation bar with quick jump links to services, corporate overview, and lead form.",
+      animations:
+        "Subtle fade-in scroll transitions and clean hover highlights that enhance corporate readability without distraction.",
     },
     galleryImages: [
       {
         url: outsourceoneHero,
-        caption: "Outsource One LLC - Official Corporate Homepage & Hero Section"
+        caption:
+          "Outsource One LLC - Official Corporate Homepage & Hero Section",
       },
       {
         url: outsourceoneServices,
-        caption: "Outsource One LLC - Our Premium Services & B2B Solutions Grid"
+        caption:
+          "Outsource One LLC - Our Premium Services & B2B Solutions Grid",
       },
       {
         url: outsourceoneWhyUs,
-        caption: "Outsource One LLC - Why Choose Us Advantage Cards & Metrics"
+        caption: "Outsource One LLC - Why Choose Us Advantage Cards & Metrics",
       },
       {
         url: outsourceoneOrderForm,
-        caption: "Outsource One LLC - Place Your Order & Instant B2B Data Request Portal"
-      }
+        caption:
+          "Outsource One LLC - Place Your Order & Instant B2B Data Request Portal",
+      },
     ],
     results: [
       "Delivered a professional corporate web presence for Outsource One LLC",
       "Streamlined presentation of specialized call center CDR data services",
       "Established clear digital lead capture channels for B2B client acquisition",
-      "Enhanced brand credibility among call center industry decision-makers"
+      "Enhanced brand credibility among call center industry decision-makers",
     ],
     seo: {
-      title: "Outsource One LLC B2B Corporate Website Case Study | DevOps Services",
-      metaDescription: "Discover how DevOps Services created a professional corporate B2B website for Outsource One LLC, a call center CDR data provider.",
+      title:
+        "Outsource One LLC B2B Corporate Website Case Study | DevOps Services",
+      metaDescription:
+        "Discover how DevOps Services created a professional corporate B2B website for Outsource One LLC, a call center CDR data provider.",
       ogTitle: "Outsource One LLC B2B Website | Case Study",
-      ogDescription: "Professional B2B corporate web architecture created for Outsource One LLC to present call center CDR data solutions."
-    }
+      ogDescription:
+        "Professional B2B corporate web architecture created for Outsource One LLC to present call center CDR data solutions.",
+    },
   },
   {
     id: "msoban-portfolio",
     slug: "msoban-portfolio",
-    title: "Muhammad Soban Personal Portfolio",
+    title: "Muhammad Soban Portfolio",
     category: "Personal Portfolio / Developer Website",
     client: "Muhammad Soban",
-    shortDescription: "A personal developer portfolio designed to showcase technical skills, projects, experience, and professional capabilities through a modern interactive interface.",
+    shortDescription:
+      "A personal developer portfolio designed to showcase technical skills, projects, experience, and professional capabilities through a modern interactive interface.",
     liveUrl: "https://muhammadsoban.vercel.app/",
     ctaText: "Visit Live Website",
-    featuredImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+    featuredImage: "/media/work/portfolio-workspace-1.webp",
     highlights: [
       "Personal branding",
       "Project showcase",
       "Responsive design",
       "Interactive UI",
       "Modern animations",
-      "Developer-focused UX"
+      "Developer-focused UX",
     ],
     technologies: [
       "React",
@@ -402,86 +537,106 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Tailwind CSS",
       "Motion",
       "Vite",
-      "JavaScript ES6+"
+      "JavaScript ES6+",
     ],
     overview: {
-      whatItIs: "A personal developer portfolio and interactive project showcase web application built for software engineer Muhammad Soban.",
-      whoBuiltFor: "Designed for Muhammad Soban to present engineering capabilities to clients, recruiters, and technical collaborators.",
-      businessPurpose: "Highlighting software engineering proficiency, showcasing live web and API applications, presenting professional history, and enabling direct contact.",
-      ourContribution: "DevOps Services designed the interactive portfolio layout, engineered the frontend component hierarchy, integrated smooth animations, and optimized mobile performance."
+      whatItIs:
+        "A personal developer portfolio and interactive project showcase web application built for software engineer Muhammad Soban.",
+      whoBuiltFor:
+        "Designed for Muhammad Soban to present engineering capabilities to clients, recruiters, and technical collaborators.",
+      businessPurpose:
+        "Highlighting software engineering proficiency, showcasing live web and API applications, presenting professional history, and enabling direct contact.",
+      ourContribution:
+        "DevOps Services designed the interactive portfolio layout, engineered the frontend component hierarchy, integrated smooth animations, and optimized mobile performance.",
     },
-    challenge: "Creating an engaging personal developer website that effectively highlights technical skills, code repositories, and web applications in a sleek, modern visual aesthetic that stands out to tech employers and clients.",
-    solution: "We engineered a modern, dark-themed developer portfolio featuring dynamic skill badge matrices, interactive project showcase cards with direct project links, smooth section navigation, and a responsive mobile layout.",
+    challenge:
+      "Creating an engaging personal developer website that effectively highlights technical skills, code repositories, and web applications in a sleek, modern visual aesthetic that stands out to tech employers and clients.",
+    solution:
+      "We engineered a modern, dark-themed developer portfolio featuring dynamic skill badge matrices, interactive project showcase cards with direct project links, smooth section navigation, and a responsive mobile layout.",
     keyFeatures: [
       {
         title: "Developer Skill Matrix",
-        description: "Categorized skill badges highlighting proficiency in frontend engineering, APIs, and modern web tools.",
-        iconName: "Code"
+        description:
+          "Categorized skill badges highlighting proficiency in frontend engineering, APIs, and modern web tools.",
+        iconName: "Code",
       },
       {
         title: "Interactive Project Showcase",
-        description: "Visual project cards featuring project titles, technology tags, key summaries, and live demo links.",
-        iconName: "Layout"
+        description:
+          "Visual project cards featuring project titles, technology tags, key summaries, and live demo links.",
+        iconName: "Layout",
       },
       {
         title: "Developer Bio & Timeline",
-        description: "Clean presentation of professional experience, background, and software development background.",
-        iconName: "User"
+        description:
+          "Clean presentation of professional experience, background, and software development background.",
+        iconName: "User",
       },
       {
         title: "Direct Contact Integration",
-        description: "Accessible contact triggers and social developer profile links (GitHub, LinkedIn, Email).",
-        iconName: "Mail"
+        description:
+          "Accessible contact triggers and social developer profile links (GitHub, LinkedIn, Email).",
+        iconName: "Mail",
       },
       {
         title: "Sleek Dark Theme UI",
-        description: "Modern developer-focused dark canvas with high-contrast accent lighting and clean font pairings.",
-        iconName: "Moon"
+        description:
+          "Modern developer-focused dark canvas with high-contrast accent lighting and clean font pairings.",
+        iconName: "Moon",
       },
       {
         title: "Adaptive Mobile Layout",
-        description: "Smooth, responsive rendering tailored for mobile screens, tablets, and high-resolution monitors.",
-        iconName: "Tablet"
-      }
+        description:
+          "Smooth, responsive rendering tailored for mobile screens, tablets, and high-resolution monitors.",
+        iconName: "Tablet",
+      },
     ],
     designApproach: {
-      responsive: "Mobile-first responsive grid ensuring code blocks, skill badges, and project cards render legibly on all screens.",
-      userExperience: "Designed for rapid technical evaluation with clear project descriptions and instant external link triggers.",
-      visualHierarchy: "Code-inspired dark palette with crisp cyan/blue highlights, structured borders, and legible typography.",
-      navigation: "Compact navigation bar with quick jump links to skills, portfolio projects, about section, and contact.",
-      animations: "Smooth micro-interactions on hover, kinetic button effects, and seamless section entrance transitions."
+      responsive:
+        "Mobile-first responsive grid ensuring code blocks, skill badges, and project cards render legibly on all screens.",
+      userExperience:
+        "Designed for rapid technical evaluation with clear project descriptions and instant external link triggers.",
+      visualHierarchy:
+        "Code-inspired dark palette with crisp cyan/blue highlights, structured borders, and legible typography.",
+      navigation:
+        "Compact navigation bar with quick jump links to skills, portfolio projects, about section, and contact.",
+      animations:
+        "Smooth micro-interactions on hover, kinetic button effects, and seamless section entrance transitions.",
     },
     galleryImages: [
       {
-        url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-        caption: "Muhammad Soban Developer Portfolio Hero & Overview"
+        url: "/media/work/portfolio-workspace-1.webp",
+        caption:
+          "Programming workspace — illustrative photograph, not a website screenshot",
       },
       {
-        url: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80",
-        caption: "Technical Stack & Engineering Skill Matrix"
+        url: "/media/work/portfolio-workspace-2.webp",
+        caption: "Development setup — illustrative photograph",
       },
       {
-        url: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-        caption: "Interactive Project Showcase & Repository Highlights"
+        url: "/media/work/portfolio-workspace-3.webp",
+        caption: "Design workspace — illustrative photograph",
       },
       {
-        url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
-        caption: "Mobile Responsive Layout & Contact Channels"
-      }
+        url: "/media/work/portfolio-workspace-4.webp",
+        caption: "Code detail — illustrative photograph",
+      },
     ],
     results: [
       "Established an authentic personal developer brand for Muhammad Soban",
       "Effectively presented technical capabilities, stack mastery, and live projects",
       "Provided an accessible direct contact portal for professional opportunities",
-      "Delivered a fast, responsive, and visually appealing web presence"
+      "Delivered a fast, responsive, and visually appealing web presence",
     ],
     seo: {
       title: "Muhammad Soban Developer Portfolio Case Study | DevOps Services",
-      metaDescription: "See how DevOps Services engineered an interactive personal developer portfolio for Muhammad Soban highlighting technical skills and live projects.",
+      metaDescription:
+        "See how DevOps Services engineered an interactive personal developer portfolio for Muhammad Soban highlighting technical skills and live projects.",
       ogTitle: "Muhammad Soban Developer Portfolio | Case Study",
-      ogDescription: "Interactive personal developer portfolio created for Muhammad Soban with technical stack matrices and project showcases."
-    }
-  }
+      ogDescription:
+        "Interactive personal developer portfolio created for Muhammad Soban with technical stack matrices and project showcases.",
+    },
+  },
 ];
 
 export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
