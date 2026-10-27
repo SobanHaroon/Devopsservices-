@@ -2407,32 +2407,6 @@ h3 {
 .crew-intro .section-heading p {
   max-width: 52ch;
 }
-.character-greet {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 10px 14px;
-  min-height: 44px;
-  border: 0;
-  background: #27495a;
-  color: var(--paper);
-  font-size: 13px;
-  cursor: pointer;
-  z-index: 3;
-  transition:
-    background 0.18s,
-    transform 0.18s var(--ease);
-}
-.character-greet:active {
-  transform: scale(0.97);
-}
-.character-greet:disabled {
-  opacity: 0.45;
-  cursor: default;
-}
 .character-caption {
   max-width: calc(100% - 150px);
   font-size: 13px;
@@ -2674,9 +2648,6 @@ h3 {
   .crew-card:hover .crew-card-copy > svg {
     transform: translate(3px, -3px);
   }
-  .character-greet:hover {
-    background: #3e6375;
-  }
   .service-card,
   .contract-card,
   .case-features article {
@@ -2887,7 +2858,6 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   .crew-card,
   .crew-card-art img,
-  .character-greet,
   .team-close-art img {
     transition: none !important;
     transform: none !important;
@@ -2896,4 +2866,150 @@ h3 {
 }
 .motion-paused .crew-card-art img {
   transform: none !important;
+}
+
+/* Keep the homepage light; the character studio lives on /team. */
+.studio-home .hero-main {
+  display: block;
+  min-height: 0;
+  padding-block: 80px 96px;
+}
+.studio-home .hero-copy {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 64px;
+  align-items: end;
+  padding: 0;
+}
+.hero-summary p {
+  color: #bdd0da;
+  font-size: 19px;
+  line-height: 1.7;
+  max-width: 42ch;
+}
+.studio-home .services-layout {
+  display: block;
+}
+.studio-home .partner-section {
+  padding-top: 88px;
+}
+.studio-home .partner-intro-layout {
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-bottom: 48px;
+}
+.studio-home .partner-intro-layout p {
+  margin-top: 0;
+}
+.crew-card-art img,
+.team-board-grid .crew-card-art img {
+  padding: 0;
+  object-fit: cover;
+  object-position: 50% 35%;
+  height: calc(100% + 24px);
+  margin-top: -12px;
+}
+.crew-card-milo .crew-card-art img {
+  object-position: 50% 45%;
+}
+.team-title-tile {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  column-gap: 80px;
+  padding: 48px;
+  min-height: 340px;
+}
+.team-title-tile h1 {
+  grid-row: span 2;
+}
+.team-title-tile > p {
+  margin-top: 0;
+  align-self: end;
+}
+.team-title-tile .button {
+  justify-self: start;
+  align-self: start;
+  margin-top: 24px;
+}
+.team-board-grid .crew-card {
+  grid-column: span 4;
+}
+.team-board-grid .crew-card-art {
+  flex: initial;
+  height: 380px;
+  min-height: 0;
+}
+.team-model-panel .character-stage {
+  inset: 0;
+}
+@media (max-width: 980px) {
+  .studio-home .hero-main {
+    padding-block: 58px 64px;
+  }
+  .studio-home .hero-copy {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .hero-summary p {
+    max-width: 60ch;
+  }
+  .team-title-tile {
+    column-gap: 40px;
+  }
+  .team-board-grid .crew-card-art {
+    height: 290px;
+  }
+}
+@media (max-width: 700px) {
+  .studio-home .hero-main {
+    padding-block: 28px 44px;
+  }
+  .hero-summary p {
+    font-size: 17px;
+  }
+  .studio-home .partner-section {
+    padding-top: 64px;
+  }
+  .studio-home .partner-intro-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .crew-card {
+    display: flex;
+    align-items: stretch;
+  }
+  .crew-card-art,
+  .team-board-grid .crew-card-art {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .crew-card-art img {
+    position: absolute;
+  }
+  .crew-card-copy,
+  .team-board-grid .crew-card-copy {
+    padding: 24px;
+  }
+  .crew-card-copy > svg,
+  .team-board-grid .crew-card-copy > svg {
+    position: absolute;
+    top: 25px;
+    right: 24px;
+    margin-top: 0;
+  }
+  .team-title-tile {
+    display: flex;
+    gap: 0;
+    padding: 32px 24px;
+  }
+  .team-title-tile > p {
+    align-self: auto;
+    margin-top: 24px;
+  }
+  .team-board-grid .crew-card {
+    grid-column: span 12;
+  }
 }

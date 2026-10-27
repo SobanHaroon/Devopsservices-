@@ -40,9 +40,9 @@ export function TeamCard({
     >
       <div className="crew-card-art">
         <m.img
-          src={`/media/characters/${character}-source.webp`}
-          width="600"
-          height="800"
+          src={`/media/characters/${character}-team.webp`}
+          width="1200"
+          height={character === "milo" ? "1200" : "1600"}
           alt={`${CHARACTER_NAMES[character]} character portrait`}
           loading="lazy"
           style={{ y: reduced || paused ? 0 : y }}

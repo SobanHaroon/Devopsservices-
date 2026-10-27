@@ -20,15 +20,16 @@ try {
     deviceScaleFactor: 1,
   });
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
-  await page
-    .locator(".character-kael .character-webgl[data-loaded=true]")
-    .waitFor({ timeout: 30000 });
+  await page.goto(
+    "http://127.0.0.1:4173/" +
+      (process.argv.includes("--poster") ? "team#kael" : ""),
+    { waitUntil: "networkidle" },
+  );
   await page.evaluate(() => document.fonts.ready);
   if (process.argv.includes("--poster")) {
     await page.addStyleTag({
       content:
-        "body,.studio-hero,.services-section,.partner-section {background:transparent!important;} .character-art {height:900px!important;width:800px!important;position:relative!important;} .character-stage {inset:0!important;transform:none!important;} .character-orbit,.character-grid,.character-caption,.character-symbol,.character-poster,.character-greet {visibility:hidden!important;} .character-art, .character-stage, .character-webgl {background:transparent!important;}",
+        "body,body * {background:transparent!important;visibility:hidden!important;} .character-art {height:900px!important;width:800px!important;position:relative!important;} .character-stage {inset:0!important;transform:none!important;} .character-webgl,.character-webgl canvas {visibility:visible!important;}",
     });
     for (const name of ["kael", "kai", "milo"]) {
       const art = page.locator(`.character-${name}`);

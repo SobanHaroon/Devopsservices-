@@ -9,24 +9,18 @@ export default function CharacterScene({
   character,
   paused,
   progress,
-  greeting,
 }: {
   character: CharacterName;
   paused: boolean;
   progress: MotionValue<number>;
-  greeting: number;
 }) {
   const host = useRef<HTMLDivElement>(null),
     pause = useRef(paused),
-    hello = useRef(0),
     invalidate = useRef<() => void>(() => {});
   useEffect(() => {
     pause.current = paused;
     invalidate.current();
   }, [paused]);
-  useEffect(() => {
-    if (greeting) hello.current = performance.now() + 1800;
-  }, [greeting]);
   useEffect(() => {
     const el = host.current;
     if (!el) return;
@@ -70,7 +64,7 @@ export default function CharacterScene({
       clock = 0,
       model: THREE.Object3D | undefined;
     const reference = new THREE.TextureLoader().load(
-      `/media/characters/${character}-source.webp`,
+      `/media/characters/${character === "kai" ? "kai-clean" : character}-source.webp`,
       () => {
         if (!disposed) start();
       },
@@ -107,7 +101,7 @@ export default function CharacterScene({
       if (!pause.current) {
         const p = THREE.MathUtils.clamp(progress.get(), 0, 1),
           wave = Math.sin(p * Math.PI * 4),
-          active = hello.current > performance.now() ? 1 : pointer.hover * 0.5;
+          active = pointer.hover * 0.5;
         const range = character === "milo" ? 1.4 : 1.05;
         rig.rotation.y = THREE.MathUtils.lerp(
           rig.rotation.y,

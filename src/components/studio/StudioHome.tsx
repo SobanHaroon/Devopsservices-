@@ -8,7 +8,8 @@ import {
   Play,
   Plus,
 } from "lucide-react";
-import { m, useReducedMotion } from "motion/react";
+import { m } from "motion/react";
+import { useMotionPreference } from "../../lib/useMotionPreference";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../../context/LanguageContext";
@@ -18,8 +19,13 @@ import { CASE_STUDIES } from "../../data/caseStudiesData";
 import ProjectContact from "./ProjectContact";
 import WorkCard from "./WorkCard";
 import type { ContractBasis } from "../../lib/projectBrief";
-import CharacterArt from "./CharacterArt";
 import StudioTeam from "./StudioTeam";
+import {
+  BrandOrbit,
+  Foreground,
+  ScenePicture,
+  useScenicMotion,
+} from "./ScenicWorld";
 gsap.registerPlugin(ScrollTrigger);
 export default function StudioHome({
   onNavigate,
@@ -29,7 +35,7 @@ export default function StudioHome({
   const { language } = useLanguage(),
     c = REDESIGN_COPY[language],
     old = STUDIO_COPY[language];
-  const reduced = useReducedMotion(),
+  const reduced = useMotionPreference(),
     root = useRef<HTMLDivElement>(null),
     video = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(false),
@@ -37,6 +43,7 @@ export default function StudioHome({
     [basis, setBasis] = useState<ContractBasis>("project"),
     [playing, setPlaying] = useState(false);
   const off = !!reduced || paused;
+  useScenicMotion(root, off, language);
   useEffect(() => {
     if (off) return;
     const ctx = gsap.context(() => {
@@ -79,54 +86,64 @@ export default function StudioHome({
   return (
     <div
       ref={root}
-      className={"studio-home " + (off ? "motion-paused" : "")}
+      className={"studio-home cinematic-home " + (off ? "motion-paused" : "")}
       data-language={language}
     >
-      <section id="hero" className="studio-hero">
-        <div className="hero-main container">
-          <div className="hero-copy">
-            <m.h1
-              initial={{
-                opacity: 0,
-                transform: reduced ? "none" : "translateY(12px)",
-              }}
-              animate={{ opacity: 1, transform: "translateY(0px)" }}
-              transition={{ duration: 0.5 }}
-            >
-              {c.hero.map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </m.h1>
-            <p>{c.intro}</p>
-            <div className="hero-actions">
-              <a href="#contact" className="button button-accent">
-                {c.start}
-                <ArrowUpRight size={20} />
-              </a>
-              <a href="#case-studies" className="text-link">
-                {c.work}
-                <ArrowDown size={18} />
-              </a>
+      <section
+        id="hero"
+        className={`studio-hero city-journey scene ${off ? "is-rest" : "is-live"}`}
+        data-scene="city-journey"
+      >
+        <div className="scene-stage">
+          <div className="scene-art" aria-hidden="true">
+            <ScenePicture scene="city" priority />
+            <Foreground />
+          </div>
+          <div className="hero-main container">
+            <div className="hero-copy">
+              <m.h1
+                initial={{
+                  opacity: 0,
+                  transform: reduced ? "none" : "translateY(12px)",
+                }}
+                animate={{ opacity: 1, transform: "translateY(0px)" }}
+                transition={{ duration: 0.5 }}
+              >
+                {c.hero.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </m.h1>
+              <div className="hero-summary">
+                <p>{c.intro}</p>
+                <div className="hero-actions">
+                  <a href="#contact" className="button button-accent">
+                    {c.start}
+                    <ArrowUpRight size={20} />
+                  </a>
+                  <a href="#case-studies" className="text-link">
+                    {c.work}
+                    <ArrowDown size={18} />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <CharacterArt
-            character="kael"
-            paused={off}
-            caption="Kael Astra · Build. Create. Ship."
-            interactive
-          />
-        </div>
-        <div className="hero-bottom container">
-          <span>{c.note}</span>
-          <button
-            className="motion-control"
-            aria-pressed={off}
-            disabled={!!reduced}
-            onClick={() => setPaused((v) => !v)}
-          >
-            {off ? <Play size={15} /> : <Pause size={15} />}{" "}
-            {reduced ? old.noMotion : paused ? old.resume : old.motion}
-          </button>
+          <div className="journey-caption container" aria-hidden="true">
+            <p>{c.caption}</p>
+            <BrandOrbit />
+          </div>
+          <div className="hero-bottom container">
+            <span>{c.note}</span>
+            <button
+              className="motion-control"
+              aria-pressed={off}
+              disabled={!!reduced}
+              onClick={() => setPaused((v) => !v)}
+            >
+              {off ? <Play size={15} /> : <Pause size={15} />}{" "}
+              {reduced ? old.noMotion : paused ? old.resume : old.motion}
+            </button>
+          </div>
         </div>
       </section>
       <div className="capability-strip" aria-hidden="true">
@@ -137,49 +154,16 @@ export default function StudioHome({
           </span>
         ))}
       </div>
-      <section
-        id="case-studies"
-        className="work-section section-space container"
-      >
-        <div className="section-heading">
-          <div>
-            <h2 data-reveal>{c.workTitle}</h2>
-            <p data-reveal>{c.workIntro}</p>
-          </div>
-          <a
-            className="text-link"
-            href="/case-studies"
-            onClick={(e) => {
-              if (!e.metaKey && !e.ctrlKey) {
-                e.preventDefault();
-                onNavigate("/case-studies");
-              }
-            }}
-          >
-            {c.allWork}
-            <ArrowUpRight size={20} />
-          </a>
-        </div>
-        <div className="work-grid">
-          {featured.map((project) => (
-            <WorkCard
-              key={project.id}
-              project={project}
-              onNavigate={onNavigate}
-            />
-          ))}
-        </div>
-      </section>
       <section id="services" className="services-section section-space inverse">
-        <div className="container">
-          <div className="section-heading">
-            <h2 data-reveal>{c.servicesTitle}</h2>
-            <p data-reveal>{c.servicesIntro}</p>
+        <div className="container services-stage-layout">
+          <div className="service-world scenic-frame">
+            <ScenePicture scene="studio" />
+            <div className="service-world-copy">
+              <h2 data-reveal>{c.servicesTitle}</h2>
+              <p data-reveal>{c.servicesIntro}</p>
+            </div>
           </div>
           <div className="services-layout">
-            <div className="services-character">
-              <CharacterArt character="kai" paused={off} caption="" />
-            </div>
             <div className="services-grid">
               {c.serviceGroups.map((service) => {
                 const active = service.ids.every((id) => selected.includes(id));
@@ -224,23 +208,86 @@ export default function StudioHome({
           </div>
         </div>
       </section>
-      <section id="partnerships" className="partner-section section-space">
-        <div className="container">
-          <div className="partner-intro-layout">
-            <div>
-              <h2 data-reveal>{c.partnerTitle}</h2>
-              <p data-reveal>{c.partnerIntro}</p>
+      <section id="case-studies" className="work-section gallery-section">
+        <div
+          className={`gallery-journey scene ${off ? "is-rest" : "is-live"}`}
+          data-scene="project-gallery"
+        >
+          <div className="scene-stage">
+            <div className="scene-art" aria-hidden="true">
+              <ScenePicture scene="gallery" />
             </div>
-            <CharacterArt
-              character="milo"
-              paused={off}
-              caption={
-                language === "JP"
-                  ? "一緒に、次のステージへ。"
-                  : "Milo · Good work. Everything in order."
-              }
-            />
+            <div className="gallery-content container">
+              <div className="section-heading">
+                <div>
+                  <h2 data-reveal>{c.workTitle}</h2>
+                  <p data-reveal>{c.workIntro}</p>
+                </div>
+                <a
+                  className="text-link"
+                  href="/case-studies"
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey) {
+                      e.preventDefault();
+                      onNavigate("/case-studies");
+                    }
+                  }}
+                >
+                  {c.allWork}
+                  <ArrowUpRight size={20} />
+                </a>
+              </div>
+              <a
+                className="gallery-window"
+                href="/case-studies/atelier-noir"
+                aria-label={`${c.gallery}: Atelier Noir`}
+                onClick={(e) => {
+                  if (
+                    !e.metaKey &&
+                    !e.ctrlKey &&
+                    !e.shiftKey &&
+                    e.button === 0
+                  ) {
+                    e.preventDefault();
+                    onNavigate("/case-studies/atelier-noir");
+                  }
+                }}
+              >
+                <img
+                  src={featured[0].featuredImage}
+                  alt="Atelier Noir fashion website"
+                  width="1200"
+                  height="750"
+                  loading="lazy"
+                />
+                <span>
+                  Atelier Noir <ArrowUpRight size={22} />
+                </span>
+              </a>
+            </div>
           </div>
+        </div>
+        <div className="project-grid-wrap container">
+          <div className="work-grid">
+            {featured.map((project) => (
+              <WorkCard
+                key={project.id}
+                project={project}
+                onNavigate={onNavigate}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="partnerships" className="partner-section section-space">
+        <div className="partner-landscape scenic-frame">
+          <ScenePicture scene="harbor" />
+          <div className="container partner-landscape-copy">
+            <h2 data-reveal>{c.partnerTitle}</h2>
+            <p data-reveal>{c.partnerIntro}</p>
+          </div>
+        </div>
+        <div className="container">
           <div className="contract-grid">
             {c.plans.map((plan) => (
               <article className="contract-card" key={plan.basis} data-reveal>

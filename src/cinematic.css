@@ -1,0 +1,831 @@
+/* Scenery is decorative; all content and controls remain normal HTML. */
+.cinematic-home {
+  --scene-top: 80px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.studio-header {
+  height: 80px;
+}
+.mobile-nav {
+  top: 80px;
+}
+.scene {
+  position: relative;
+}
+.scene-stage {
+  position: relative;
+  isolation: isolate;
+}
+.scene-art {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--ink);
+}
+.scene-picture {
+  position: absolute;
+  inset: -2%;
+  display: block;
+  transform-origin: 55% 65%;
+  pointer-events: none;
+}
+.scene-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+.scene-foreground {
+  position: absolute;
+  width: 104%;
+  max-width: none;
+  height: 104%;
+  inset: -2%;
+  object-fit: cover;
+  object-position: 50% 100%;
+  transform-origin: 50% 100%;
+  pointer-events: none;
+}
+.scene.is-live > .scene-stage {
+  position: sticky;
+  top: var(--scene-top);
+  height: calc(100svh - var(--scene-top));
+  min-height: 560px;
+  overflow: clip;
+}
+.scene.is-live .scene-picture,
+.scene.is-live .scene-foreground,
+.scene.is-live .gallery-window {
+  will-change: transform;
+}
+.cinematic-home .city-journey {
+  padding: 0;
+  margin: 0;
+  background: var(--ink);
+}
+.city-journey.is-live {
+  height: 180svh;
+}
+.city-journey.is-rest > .scene-stage {
+  min-height: 780px;
+}
+.city-journey .scene-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 12, 22, 0.14);
+}
+.cinematic-home .hero-main {
+  padding-top: clamp(42px, 7svh, 90px);
+  padding-bottom: 0;
+}
+.cinematic-home .hero-copy {
+  display: block;
+  width: min(100%, 760px);
+  padding: 0;
+}
+.cinematic-home .hero-copy h1 {
+  font-size: clamp(64px, 7.4vw, 112px);
+  line-height: 1.02;
+  letter-spacing: -0.065em;
+  font-weight: 550;
+}
+.cinematic-home .hero-copy h1 span:last-child {
+  color: var(--paper);
+}
+.cinematic-home[data-language="JP"] .hero-copy h1 {
+  font-size: clamp(48px, 5.5vw, 80px);
+  letter-spacing: -0.045em;
+}
+.cinematic-home[data-language="DE"] .hero-copy h1 {
+  font-size: clamp(45px, 5.3vw, 78px);
+}
+.cinematic-home[data-language="FR"] .hero-copy h1 {
+  font-size: clamp(50px, 6.5vw, 94px);
+}
+.cinematic-home .hero-summary {
+  margin-top: 28px;
+}
+.cinematic-home .hero-summary p {
+  color: var(--paper);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 40ch;
+}
+.cinematic-home .hero-actions {
+  margin: 28px 0 0;
+  gap: 28px;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cinematic-home .hero-actions .button {
+  margin: 0;
+}
+.cinematic-home .hero-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-block: 16px;
+  background: rgba(4, 16, 26, 0.85);
+  color: var(--paper);
+  z-index: 3;
+}
+.journey-caption {
+  position: absolute;
+  bottom: 110px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  perspective: 800px;
+}
+.journey-caption p {
+  font-size: 24px;
+  max-width: 24ch;
+  padding: 12px 18px;
+  background: rgba(4, 16, 26, 0.85);
+  color: var(--paper);
+}
+.brand-orbit {
+  width: 180px;
+  height: 120px;
+  flex-shrink: 0;
+}
+.cinematic-home .capability-strip {
+  padding-block: 28px;
+  background: #102c3b;
+  color: var(--paper);
+}
+.cinematic-home .small-cross {
+  color: var(--gold);
+}
+.cinematic-home .services-section {
+  background: var(--ink);
+  padding-block: 110px;
+}
+.services-stage-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: start;
+  gap: clamp(30px, 5vw, 90px);
+}
+.scenic-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+.service-world {
+  position: sticky;
+  top: 104px;
+  min-height: 660px;
+  height: calc(100svh - 128px);
+  max-height: 900px;
+}
+.service-world .scene-picture {
+  z-index: -2;
+}
+.service-world .scene-picture img {
+  object-position: 65% 50%;
+}
+.service-world-copy {
+  padding: 38px;
+  background: rgba(4, 16, 26, 0.72);
+  position: relative;
+  z-index: 1;
+}
+.service-world-copy h2 {
+  font-size: clamp(38px, 4.1vw, 64px);
+  max-width: 12ch;
+}
+.service-world-copy p {
+  font-size: 17px;
+  line-height: 1.65;
+  margin-top: 24px;
+  max-width: 35ch;
+}
+.cinematic-home .services-grid {
+  display: block;
+}
+.cinematic-home .service-card {
+  background: transparent;
+  padding: 36px 0;
+  min-height: 0;
+  color: var(--paper);
+}
+.cinematic-home .service-card:first-child {
+  padding-top: 4px;
+}
+.cinematic-home .service-card h3 {
+  font-size: 29px;
+  max-width: calc(100% - 65px);
+}
+.cinematic-home .service-kanji {
+  position: absolute;
+  font-size: 48px;
+  color: var(--gold);
+  opacity: 0.85;
+  top: 26px;
+  right: 0;
+}
+.cinematic-home .service-card:first-child .service-kanji {
+  top: 0;
+}
+.cinematic-home .service-card > p {
+  font-size: 16px;
+  max-width: 40ch;
+  margin-top: 18px;
+  color: #d6e6ed;
+}
+.cinematic-home .service-card ul {
+  font-size: 16px;
+  margin-block: 18px;
+  color: #d6e6ed;
+}
+.cinematic-home .service-card .text-link {
+  color: var(--accent);
+}
+.cinematic-home .service-card button[aria-pressed="true"] {
+  color: var(--gold);
+}
+.cinematic-home .gallery-section {
+  padding: 0;
+  background: #e8f2f3;
+  color: var(--ink);
+}
+.gallery-journey {
+  background: var(--ink);
+  color: var(--paper);
+}
+.gallery-journey.is-live {
+  height: 170svh;
+}
+.gallery-journey.is-rest > .scene-stage {
+  min-height: 800px;
+}
+.gallery-journey .scene-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 16, 26, 0.48);
+}
+.gallery-content {
+  position: relative;
+  padding-block: 44px 40px;
+  height: 100%;
+  perspective: 1400px;
+}
+.gallery-content .section-heading {
+  align-items: center;
+  margin-bottom: 28px;
+}
+.gallery-content .section-heading h2 {
+  font-size: clamp(38px, 4.3vw, 66px);
+}
+.gallery-content .section-heading p {
+  color: var(--paper);
+  margin-top: 14px;
+  max-width: 52ch;
+}
+.gallery-window {
+  display: block;
+  position: relative;
+  width: min(73%, 1040px);
+  height: calc(100% - 210px);
+  min-height: 300px;
+  max-height: 560px;
+  margin-inline: auto;
+  overflow: clip;
+  background: #152226;
+  transform-origin: 50% 70%;
+}
+.gallery-window > img {
+  width: 100%;
+  height: 115%;
+  object-fit: cover;
+  object-position: top;
+}
+.gallery-window > span {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(4, 16, 26, 0.94);
+  color: var(--paper);
+  font-size: 18px;
+  padding: 15px 22px;
+}
+.project-grid-wrap {
+  padding-block: 72px 100px;
+}
+.cinematic-home .work-grid {
+  gap: 32px;
+}
+.cinematic-home .work-info h3 {
+  font-size: 30px;
+}
+.cinematic-home .work-info p {
+  color: #38505b;
+  font-size: 16px;
+}
+.cinematic-home .work-info > span {
+  color: #38505b;
+}
+.cinematic-home .work-image {
+  aspect-ratio: 1.5;
+}
+.cinematic-home .partner-section {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0 0 88px;
+}
+.partner-landscape {
+  height: 600px;
+  min-height: 520px;
+}
+.partner-landscape .scene-picture {
+  z-index: -2;
+}
+.partner-landscape .scene-picture img {
+  object-position: 50% 60%;
+}
+.partner-landscape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(4, 16, 26, 0.16);
+}
+.partner-landscape-copy {
+  padding-top: 72px;
+}
+.partner-landscape-copy h2 {
+  max-width: 12ch;
+  font-size: clamp(44px, 5vw, 76px);
+}
+.partner-landscape-copy p {
+  max-width: 42ch;
+  margin-top: 24px;
+  font-size: 17px;
+  line-height: 1.7;
+}
+.cinematic-home .contract-grid {
+  gap: 32px;
+  margin-top: 40px;
+}
+.cinematic-home .contract-card {
+  background: #112c3a;
+  color: var(--paper);
+  padding: 30px;
+}
+.cinematic-home .contract-card > p {
+  color: #d6e6ed;
+  font-size: 16px;
+}
+.cinematic-home .contract-price {
+  color: var(--gold);
+  font-size: clamp(22px, 2.2vw, 32px);
+}
+.cinematic-home .contract-card .text-link {
+  color: var(--accent);
+}
+.cinematic-home .contract-note {
+  color: #d6e6ed;
+  font-size: 14px;
+}
+.cinematic-home .crew-intro,
+.cinematic-home .about-section,
+.cinematic-home .faq-section {
+  color: var(--ink);
+  background: var(--paper);
+  max-width: none;
+  padding-inline: max(var(--gutter), calc((100vw - 1456px) / 2));
+}
+.cinematic-home .crew-intro {
+  padding-bottom: 64px;
+}
+.cinematic-home .crew-card-art {
+  aspect-ratio: 1 / 1;
+  height: auto;
+}
+.cinematic-home .crew-card-art img {
+  position: absolute;
+  inset: 0;
+}
+.cinematic-home .about-section {
+  padding-top: 64px;
+}
+.cinematic-home .contact-section {
+  background: #102b39;
+}
+.cinematic-home .contact-intro {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+.cinematic-home .contact-intro > p {
+  color: #d6e6ed;
+}
+.team-film {
+  margin: 32px 0 0;
+  width: min(100%, 420px);
+}
+.team-film-trigger {
+  border: 0;
+  padding: 0;
+  background: #08151e;
+  color: var(--paper);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 18px;
+}
+.team-film-trigger > img {
+  width: 82px;
+  height: 100px;
+  object-fit: cover;
+  object-position: 50% 35%;
+}
+.team-film-trigger > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  padding: 12px 18px 12px 0;
+}
+.team-film-trigger > span > span {
+  color: var(--accent);
+}
+.team-film video {
+  width: 100%;
+  max-height: 580px;
+  background: var(--ink);
+  object-fit: contain;
+}
+@media (hover: hover) and (pointer: fine) {
+  .gallery-window:hover > span {
+    background: #123c4b;
+  }
+  .team-film-trigger:hover {
+    background: #123c4b;
+  }
+}
+@media (min-width: 1800px) {
+  .cinematic-home .hero-copy {
+    width: 840px;
+  }
+  .cinematic-home .hero-copy h1 {
+    font-size: 124px;
+  }
+  .cinematic-home .hero-main {
+    padding-top: 10svh;
+  }
+}
+@media (max-width: 1100px) {
+  .services-stage-layout {
+    gap: 32px;
+  }
+  .service-world-copy {
+    padding: 26px;
+  }
+  .service-world-copy h2 {
+    font-size: 44px;
+  }
+  .cinematic-home .contract-grid {
+    gap: 16px;
+  }
+  .cinematic-home .contract-card {
+    padding: 25px;
+  }
+}
+@media (max-width: 980px) {
+  .services-stage-layout {
+    grid-template-columns: 1fr;
+  }
+  .service-world {
+    position: relative;
+    top: 0;
+    height: 580px;
+    min-height: 0;
+    max-height: none;
+  }
+  .service-world-copy {
+    width: 55%;
+    padding: 36px;
+  }
+  .cinematic-home .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .cinematic-home .service-card {
+    padding-block: 16px;
+  }
+  .cinematic-home .service-card:first-child {
+    padding-top: 16px;
+  }
+  .cinematic-home .service-card:first-child .service-kanji {
+    top: 16px;
+  }
+  .cinematic-home .service-card h3 {
+    font-size: 27px;
+  }
+  .cinematic-home .work-grid {
+    gap: 28px;
+  }
+  .cinematic-home .work-grid .work-card:first-child {
+    grid-column: auto;
+  }
+  .cinematic-home .work-grid .work-card:first-child .work-image {
+    aspect-ratio: 1.5;
+  }
+  .cinematic-home .work-grid .work-card:last-child {
+    grid-column: 1 / -1;
+  }
+  .cinematic-home .contact-intro {
+    position: static;
+  }
+  .gallery-window {
+    width: 90%;
+  }
+}
+@media (max-width: 700px) {
+  .cinematic-home {
+    --scene-top: 80px;
+  }
+  .city-journey.is-live {
+    height: 155svh;
+  }
+  .scene.is-live > .scene-stage {
+    min-height: 620px;
+  }
+  .city-journey.is-rest > .scene-stage {
+    min-height: 760px;
+  }
+  .city-journey .scene-picture img {
+    object-position: 50% 50%;
+  }
+  .city-journey .scene-foreground {
+    object-fit: cover;
+    object-position: 40% 100%;
+    opacity: 0.75;
+  }
+  .cinematic-home .hero-main {
+    padding-block: 36px 0;
+  }
+  .cinematic-home .hero-copy {
+    width: 100%;
+  }
+  .cinematic-home .hero-copy h1 {
+    font-size: clamp(48px, 12.8vw, 78px);
+    line-height: 1.04;
+  }
+  .cinematic-home .hero-summary {
+    margin-top: 22px;
+  }
+  .cinematic-home .hero-summary p {
+    font-size: 16px;
+    max-width: 37ch;
+    line-height: 1.6;
+  }
+  .cinematic-home .hero-actions {
+    margin-top: 22px;
+    gap: 16px;
+  }
+  .cinematic-home .hero-bottom {
+    margin: 0;
+    padding-block: 12px;
+    align-items: center;
+    font-size: 13px;
+  }
+  .cinematic-home .hero-bottom > span {
+    max-width: 18ch;
+  }
+  .cinematic-home .motion-control {
+    padding: 10px 0;
+    font-size: 13px;
+  }
+  .journey-caption {
+    bottom: 90px;
+    gap: 16px;
+  }
+  .journey-caption p {
+    font-size: 18px;
+    max-width: 24ch;
+    padding: 8px 12px;
+  }
+  .brand-orbit {
+    display: none;
+  }
+  .cinematic-home .capability-strip {
+    font-size: 14px;
+    padding-block: 24px;
+  }
+  .cinematic-home .services-section {
+    padding-block: 64px;
+  }
+  .services-stage-layout {
+    gap: 32px;
+  }
+  .service-world {
+    height: 560px;
+  }
+  .service-world-copy {
+    width: 100%;
+    padding: 26px;
+  }
+  .service-world-copy h2 {
+    font-size: 40px;
+    max-width: 12ch;
+  }
+  .service-world-copy p {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  .service-world .scene-picture img {
+    object-position: center;
+  }
+  .cinematic-home .services-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .cinematic-home .service-card {
+    padding-block: 0 14px;
+  }
+  .cinematic-home .service-card:first-child {
+    padding-top: 0;
+  }
+  .cinematic-home .service-card h3 {
+    font-size: 28px;
+  }
+  .cinematic-home .service-kanji,
+  .cinematic-home .service-card:first-child .service-kanji {
+    top: 0;
+  }
+  .gallery-journey.is-live {
+    height: 145svh;
+  }
+  .gallery-journey.is-live > .scene-stage {
+    min-height: 660px;
+  }
+  .gallery-journey.is-rest > .scene-stage {
+    min-height: 720px;
+  }
+  .gallery-content {
+    padding-block: 36px;
+  }
+  .gallery-content .section-heading {
+    margin-bottom: 24px;
+  }
+  .gallery-content .section-heading h2 {
+    font-size: 40px;
+  }
+  .gallery-content .section-heading p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .gallery-content .section-heading .text-link {
+    margin-top: 10px;
+  }
+  .gallery-window {
+    width: 100%;
+    height: 340px;
+    min-height: 0;
+    max-height: none;
+  }
+  .gallery-window > img {
+    object-position: 52% 0;
+  }
+  .gallery-window > span {
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+  .project-grid-wrap {
+    padding-block: 48px 64px;
+  }
+  .cinematic-home .work-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+  .cinematic-home .work-grid .work-card:last-child {
+    grid-column: auto;
+  }
+  .cinematic-home .work-info h3 {
+    font-size: 28px;
+  }
+  .cinematic-home .partner-section {
+    padding-bottom: 64px;
+  }
+  .partner-landscape {
+    height: 620px;
+    min-height: 0;
+  }
+  .partner-landscape .scene-picture img {
+    object-position: 57% 50%;
+  }
+  .partner-landscape-copy {
+    padding-top: 40px;
+  }
+  .partner-landscape-copy h2 {
+    font-size: 42px;
+  }
+  .partner-landscape-copy p {
+    font-size: 16px;
+    margin-top: 22px;
+  }
+  .cinematic-home .contract-grid {
+    margin-top: 20px;
+    gap: 16px;
+  }
+  .cinematic-home .contract-card {
+    padding: 28px;
+  }
+  .cinematic-home .contract-price {
+    font-size: 29px;
+  }
+  .cinematic-home .crew-intro {
+    padding-bottom: 32px;
+  }
+  .cinematic-home .crew-card-art {
+    aspect-ratio: 1 / 1;
+  }
+  .cinematic-home .about-section {
+    padding-top: 32px;
+  }
+  .team-film {
+    width: 100%;
+    padding: 0;
+  }
+  .team-film video {
+    max-height: 520px;
+  }
+  .cinematic-home[data-language="DE"] .hero-copy h1 {
+    font-size: clamp(35px, 8.7vw, 61px);
+  }
+  .cinematic-home[data-language="FR"] .hero-copy h1 {
+    font-size: clamp(40px, 10.4vw, 68px);
+  }
+  .cinematic-home[data-language="JP"] .hero-copy h1 {
+    font-size: clamp(33px, 9.1vw, 62px);
+  }
+}
+/* Short windows use the same composition in normal document flow. This also
+   covers landscape phones and large text without trapping controls offscreen. */
+@media (max-height: 700px) {
+  .city-journey.is-live,
+  .gallery-journey.is-live {
+    height: auto;
+  }
+  .scene.is-live > .scene-stage {
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: 780px;
+  }
+  .service-world {
+    position: relative;
+    top: 0;
+  }
+  .gallery-window {
+    height: 380px;
+  }
+  .cinematic-home .hero-main {
+    padding-top: 30px;
+  }
+  .journey-caption {
+    bottom: 100px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene.is-live {
+    height: auto;
+  }
+  .scene.is-live > .scene-stage {
+    position: relative;
+    height: auto;
+  }
+  .scene-picture,
+  .scene-foreground,
+  .gallery-window,
+  .brand-orbit {
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+.motion-paused .scene-picture,
+.motion-paused .scene-foreground,
+.motion-paused .gallery-window,
+.motion-paused .brand-orbit {
+  transform: none !important;
+  will-change: auto;
+}

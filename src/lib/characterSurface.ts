@@ -6,7 +6,7 @@ import type { CharacterName } from "../data/team";
 // to the rest mesh, so they follow skeletal movement instead of the camera.
 const references = {
   kael: { size: [1024, 1536], box: [210, 16, 854, 1498] },
-  kai: { size: [1254, 1254], box: [355, 15, 901, 1237] },
+  kai: { size: [768, 768], box: [189, 12, 571, 757] },
   milo: { size: [1024, 1536], box: [77, 17, 897, 1516] },
 };
 export function applyCharacterSurface(
@@ -35,6 +35,13 @@ export function applyCharacterSurface(
       weight[i] =
         THREE.MathUtils.smoothstep(position.getZ(i), -0.04, 0.04) *
         THREE.MathUtils.smoothstep(position.getY(i), 0.03, 0.16);
+      if (character === "kai") {
+        // Preserve the rebuilt coat's real UV texture; only soften the face.
+        weight[i] =
+          THREE.MathUtils.smoothstep(position.getZ(i), 0.04, 0.1) *
+          THREE.MathUtils.smoothstep(position.getY(i), 0.07, 0.13) *
+          (1 - THREE.MathUtils.smoothstep(position.getY(i), 0.3, 0.37));
+      }
     }
     geometry.setAttribute("referenceUv", new THREE.BufferAttribute(uv, 2));
     geometry.setAttribute(

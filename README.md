@@ -1,25 +1,72 @@
 # DevOps Services
 
-A responsive website for Muhammad Soban’s independent web studio. The design combines Japanese animation references with a practical technology studio: logo-led colors, reference-based interactive 3D anime characters, a dedicated team page, clear services, and real project case studies.
+**Thoughtful websites. Distinctive experiences. Reliable delivery.**
 
-[Live website](https://devopsservices-seven.vercel.app/) · [Meet our team](https://devopsservices-seven.vercel.app/team) · [Figma design board](https://www.figma.com/design/FxPK4yixUh7uNaumIQMnNw) · [Design notes](docs/design-notes.md)
+I built DevOps Services as the online home for my independent web studio. It brings my services, selected projects, creative identity and client inquiries into one place, with a visual direction inspired by Japanese illustration and modern technology.
 
-![DevOps Services homepage](docs/homepage.webp)
+I’m **Muhammad Soban**, a developer and designer based in Rawalpindi, Pakistan. I work directly with businesses and agencies on websites, frontend development, digital experiences and white-label partnerships.
 
-## What changed in version 4
+[Visit the website](https://devopsservices-seven.vercel.app/) · [Explore the work](https://devopsservices-seven.vercel.app/case-studies) · [Meet the team](https://devopsservices-seven.vercel.app/team) · [Start a project](https://devopsservices-seven.vercel.app/#contact)
 
-- Replaced the previous character models with **Kael Astra, Kai Ren and Milo**, reconstructed as real textured 3D meshes from the supplied character designs. Kael appears in the hero, Kai in services, and Milo in partnerships.
-- Added a homepage **Meet our team** introduction and a dedicated **`/team`** page with direct profile links: `/team#kael`, `/team#kai` and `/team#milo`. The CEO biography and external profile links now live in Kael’s section.
-- **Kael Astra (Muhammad Soban)** is the CEO and founder. **Kai Ren**, coder and sulking master, represents engineering. **Milo**, operations manager and resource handler, represents delivery and organization. The page explicitly identifies Kai and Milo as studio characters; client work is led and delivered by Soban.
-- Scroll progress changes each model’s body angle, head, shoulders and legs. Mouse movement adds gaze and posture changes. A keyboard- and touch-operable **Say hello** button adds a short greeting. Team portraits drift with scroll, and cards and controls have restrained hover/focus feedback.
-- Kept native scrolling, reduced-motion posters, motion pause controls, local assets, lazy loading and disposal on route changes. Source GLBs, optimization/rig preparation and asset provenance are included.
-- Extended browser coverage to team routes, profile anchors, refresh, Back/Forward, scroll poses, greetings, responsive layouts, and automated accessibility.
+![DevOps Services website](docs/homepage.webp)
 
-The logo-led navy/cyan/ice/gold palette, Sora/Manrope typography, Atelier Noir case study, repaired case-study navigation, responsive card grids and multilingual interface remain. White-label inquiries offer **Project based**, **Monthly** and **Weekly** engagements with **Contract based** pricing. Ordinary inquiries retain USD/PKR budgets and retryable delivery states.
+## The experience
 
-## Development
+The design follows the company logo’s navy, cyan, ice and gold palette. Four illustrated environments—the city, studio, gallery and harbor—connect the main sections through layered scenery and scroll-driven motion.
 
-Use Node.js 22 LTS or a compatible version >=20.19, and npm.
+The interface keeps the essentials clear: what I do, the work I’ve delivered, how a partnership can work and how to get in touch.
+
+- **Cinematic scrolling:** layered parallax, native sticky sections and a perspective reveal for the featured project.
+- **Responsive scenery:** dedicated portrait compositions for key scenes and appropriately sized images for different screen widths.
+- **Interactive team profiles:** three 3D characters with scroll and pointer responses, original illustrations and short profile films.
+- **Selected work:** individual case studies, category filters, direct project links and reliable Back/Forward navigation.
+- **White-label partnerships:** project-based, monthly and weekly engagements with pricing agreed around the scope.
+- **Project inquiries:** service selection, USD/PKR budgets for standard projects, contract options, submission feedback and retry handling.
+- **Four languages:** English, Japanese, French and German.
+- **Motion preferences:** pause controls, reduced-motion support and static character posters when WebGL is unavailable.
+
+The homepage uses lightweight layered imagery. The 3D renderer and character models load only on the team page. Profile films load after activation and pause when they leave the screen.
+
+## Services
+
+My work covers:
+
+- Website and e-commerce development
+- Frontend engineering and API integration
+- UI/UX design and brand identity
+- Website management and ongoing support
+- SEO, digital marketing and content
+- Business automation and NFC solutions
+- White-label development for agencies
+
+## The studio characters
+
+The characters bring personality to the website while keeping the business relationship straightforward.
+
+| Character      | Role                                                                                              |
+| -------------- | ------------------------------------------------------------------------------------------------- |
+| **Kael Astra** | My creative identity as Muhammad Soban, founder of DevOps Services.                               |
+| **Kai Ren**    | The studio’s coding character, representing engineering, problem-solving and attention to detail. |
+| **Milo**       | The operations character, representing preparation, resources and organized delivery.             |
+
+Kai and Milo are fictional studio characters. I lead and deliver client projects personally.
+
+## Technology
+
+| Area        | Tools                                             |
+| ----------- | ------------------------------------------------- |
+| Application | React 19 and TypeScript                           |
+| Build       | Vite                                              |
+| Styling     | CSS and Tailwind CSS                              |
+| Motion      | GSAP, ScrollTrigger and Motion                    |
+| 3D          | Three.js and optimized GLB assets                 |
+| Typography  | Self-hosted Sora, Manrope and Noto Sans JP        |
+| Testing     | Playwright, Chromium and axe accessibility checks |
+| Hosting     | Vercel                                            |
+
+## Local development
+
+Use **Node.js 24** and npm to match the deployment environment.
 
 ```bash
 git clone https://github.com/SobanHaroon/Devopsservices-.git
@@ -28,93 +75,98 @@ npm ci
 npm run dev
 ```
 
-The development server runs at `http://localhost:3000`. No environment variables are required for the current frontend.
+The development server runs at `http://localhost:3000`. The current frontend does not require environment variables.
 
-| Command                | Purpose                                                          |
-| ---------------------- | ---------------------------------------------------------------- |
-| `npm run lint`         | TypeScript validation                                            |
-| `npm run build`        | Production build in `dist/`                                      |
-| `npm run preview`      | Preview the production build                                     |
-| `npm test`             | Build and run Playwright regression and axe accessibility checks |
-| `npm run test:browser` | Run the checks against an existing build                         |
-| `npm run screenshots`  | Build and capture desktop/mobile screenshots                     |
-| `npm run model:build`  | Optimize and rig the three included source GLBs                  |
-| `npm run format`       | Format source, scripts, and documentation                        |
+To preview a production build:
 
-Before browser tests, install Chromium:
+```bash
+npm run build
+npm run preview
+```
+
+## Commands
+
+| Command                | Purpose                                                        |
+| ---------------------- | -------------------------------------------------------------- |
+| `npm run dev`          | Start the development server                                   |
+| `npm run lint`         | Validate TypeScript                                            |
+| `npm run build`        | Create the production build in `dist/`                         |
+| `npm run preview`      | Serve the production build locally                             |
+| `npm test`             | Build and run both browser test suites                         |
+| `npm run test:browser` | Check routes, forms, languages, models and accessibility       |
+| `npm run test:scenery` | Check scenic scrolling, resizing, motion preferences and films |
+| `npm run screenshots`  | Build and capture desktop and mobile screenshots               |
+| `npm run model:build`  | Prepare and optimize the character models                      |
+| `npm run format`       | Format source files and documentation                          |
+
+## Project structure
+
+```text
+src/
+  components/studio/   Homepage, team profiles, scenery and inquiry form
+  context/             Language state
+  data/                Services, translations, team profiles and case studies
+  lib/                 Shared utilities and motion preferences
+  App.tsx              Routes, metadata and scroll restoration
+  studio.css           Shared studio styles
+  cinematic.css        Scenic compositions and responsive behavior
+public/
+  media/               Scenery, portraits, films and project images
+  models/              Optimized runtime character models
+  fonts/               Font assets and licenses
+assets/
+  characters/          Character source assets
+  source-vectors/      Compressed SVG source files
+docs/                  Design, scenery and testing notes
+scripts/               Browser checks, captures and asset preparation
+```
+
+## Motion and performance
+
+Scrolling stays native. The cinematic sections follow scroll position without intercepting the mouse wheel or replacing browser scrolling. On short viewports, the scenes use normal document flow so their controls remain reachable.
+
+Images use responsive WebP sources. The opening scene loads immediately; later scenery and posters load as needed. Animation contexts, observers and 3D resources are cleaned up when a view is left.
+
+The motion controls and the device’s reduced-motion preference provide a quieter presentation without removing content. Changing that preference while the site is open updates the scenery immediately.
+
+## Testing
+
+Install Chromium before running the browser suites:
 
 ```bash
 npx playwright install chromium
 npm test
 ```
 
-For a managed browser installation, set `PLAYWRIGHT_CHROME` to its executable path. Test scripts start and close their own local static server. Results and screenshots are written to the gitignored `artifacts/` directory. All form submissions in the test suite are intercepted; tests do not send live inquiries.
+For an existing Chromium installation, set `PLAYWRIGHT_CHROME` to its executable path.
 
-## Architecture
+The checks cover navigation, direct routes, browser history, case-study filtering, mobile menus, inquiry validation and delivery states, four-language layouts, character interactions and accessibility. The scenery suite also checks reversible scroll progress, responsive image selection, resizing, landscape layouts and video playback behavior.
 
-| Area                                               | Location                                                                                |
-| -------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Route handling, error recovery, scroll restoration | `src/App.tsx`                                                                           |
-| Homepage and shared studio components              | `src/components/studio/`                                                                |
-| Project directory and case detail                  | `src/components/CaseStudiesList.tsx`, `src/components/CaseStudyDetail.tsx`              |
-| Project content                                    | `src/data/caseStudiesData.ts`                                                           |
-| Homepage and form translations                     | `src/data/redesignCopy.ts`, `src/data/studioCopy.ts`, `src/data/contactTranslations.ts` |
-| Inquiry payload and contract types                 | `src/lib/projectBrief.ts`                                                               |
-| Layout and design tokens                           | `src/studio.css`, `src/index.css`                                                       |
-| Team page, descriptions and translations           | `src/components/studio/TeamPage.tsx`, `src/data/team.ts`                                |
-| 3D renderer and surface detail                     | `src/components/studio/CharacterScene.tsx`, `src/lib/characterSurface.ts`               |
-| Model source and preparation                       | `assets/characters/original/`, `scripts/prepare-characters.py`                          |
-| Fonts, images, model, and studio video             | `public/`                                                                               |
-| Regression tests                                   | `scripts/check-redesign.mjs`                                                            |
+Responsive checks cover widths from **320px to 1920px**, including a landscape-phone viewport. Browser tests run in Chromium. Screenshots and test results are written to the ignored `artifacts/` directory. Form requests are intercepted during testing, so the tests do not send live inquiries.
 
-The stack is React 19, TypeScript, Vite, CSS/Tailwind, Motion, GSAP, and Three.js. Case pages, the team page and the 3D renderer are loaded separately. Vite builds the static site; there is no application server or CMS.
+## Contact form
 
-## Motion and performance
+The current form sends inquiries through the notification transport configured in `src/components/studio/ProjectContact.tsx`. It includes a submission timeout, duplicate-submit protection, error recovery and a success receipt.
 
-Each character initializes near the viewport. Its renderer caps pixel density at 1.5 (1.25 on phones) and targets roughly 30 frames per second. Animation loops stop when their scene is offscreen, the tab is hidden, or motion is paused. Reduced-motion users receive static posters without loading the 3D renderer. Each generated mesh has a lightweight seven-bone rig. Model, skeleton, texture and renderer resources are disposed when leaving either page. Fine-pointer hover never blocks touch scrolling.
+White-label inquiries include the selected contract basis and **Contract based** pricing. Standard project inquiries retain their service selection and budget.
 
-Images use local WebP files and explicit dimensions. Gallery images load lazily; the studio video only loads when requested. Sora, Manrope, and Noto Sans JP are self-hosted. Japanese font subsets contain only characters used in the source.
-
-After editing Japanese copy, regenerate the subsets:
-
-```bash
-python -m pip install 'fonttools[woff]'
-python scripts/subset-japanese.py
-```
-
-The Three.js chunk is intentionally lazy and may trigger Vite’s 500 kB chunk-size advisory. Runtime checks are described in [QA notes](docs/qa.md); they are local tests, not a field Core Web Vitals claim.
-
-### Preparing the character assets
-
-The original image-generated GLBs are checked in under `assets/characters/original/`. The shipped files are approximately 0.91 MB (Kael), 1.12 MB (Kai) and 1.37 MB (Milo), with embedded WebP textures and seven joints. These are stylized image reconstructions, with gentle pose animation rather than a full production animation rig. A mesh-attached reference projection preserves the front facial detail; sides and backs use the reconstructed textures.
-
-To rebuild the optimized GLBs, install Python 3, NumPy and FFmpeg, then run:
-
-```bash
-python -m pip install numpy
-npm run model:build
-npm run build
-node scripts/capture-redesign.mjs --poster
-```
-
-Convert the transparent PNGs in `artifacts/redesign/` to `public/media/characters/{kael,kai,milo}.webp` with FFmpeg, then rebuild. The generated portrait references and the supplied Kael studio artwork are in `public/media/characters/`. No third-party model service is contacted at runtime. See [character provenance](assets/characters/README.md).
-
-## Contact delivery
-
-The existing form posts its plain-text inquiry to `https://ntfy.sh/contact-devops`. It has a 15-second timeout, duplicate-submit protection, a success receipt, and retry/error states. White-label inquiries include the selected engagement basis and `Pricing: Contract based` instead of a fixed budget.
-
-This is a public notification topic, not a private CRM or durable submission database. Do not use it to collect sensitive information. Replace the transport in `ProjectContact.tsx` with an authenticated server endpoint if private lead storage or delivery guarantees are required.
+The current notification topic is public. A private production CRM or confidential lead workflow should use an authenticated server endpoint and durable storage.
 
 ## Deployment
 
-The existing Vercel project is **devopsservices** in **sobanharoons-projects**, connected to this repository. Push the tested release to its production branch (`main`) to trigger the existing Git deployment. Do not create a second Vercel project.
+This repository deploys to the existing **devopsservices** Vercel project.
 
-`vercel.json` specifies the Vite build, `dist` output, SPA fallback for direct team and case-study routes, cache headers for hashed build assets, and basic response headers. After deployment, confirm the READY state and check the homepage, `/team`, `/team#kai` and `/case-studies/atelier-noir` on the production URL. A tested `dist/` build can also be deployed directly to this same project, with per-deployment static build settings. A direct file deployment does not push source changes to GitHub.
+1. Install dependencies with `npm ci`.
+2. Run `npm run lint` and `npm test`.
+3. Push the reviewed release to `main`.
+4. Confirm the production deployment and check the homepage, team profiles and case-study routes.
 
-## Assets and references
+`vercel.json` defines the Vite build, `dist/` output, SPA route fallback, asset caching and response headers. Direct links such as `/team#kai` and `/case-studies/atelier-noir` must continue working after a refresh.
 
-The three character GLBs were generated from owner-supplied character designs through a clean reference-image stage and to3D reconstruction, then locally optimized and rigged. The raw meshes and preparation script are included; image generation itself is not deterministic. The company logo, previous founder avatar and character references are owner-supplied assets; the founder bio uses the supplied CV. The previous avatar is retained in `assets/characters/` for future use. Atelier Noir screenshots come from [SobanHaroon/Atelier-nior](https://github.com/SobanHaroon/Atelier-nior). Existing client screenshots and the studio video are retained from this repository. The personal portfolio’s inherited Unsplash images are explicitly labeled as illustrative photographs, not screenshots. Font license files accompany the assets in `public/fonts/` and the installed font packages.
+## Contact
 
-The design process used Taste, Emil Kowalski design engineering guidance, Lemo-Opuscar visual references, a Figma reference board, and the continuity principles in Onetake. No Onetake implementation code or model assets were copied. Primary motion references and design decisions are documented in [design notes](docs/design-notes.md) and the [team direction](docs/team-direction.md), including the requested GetLayers research and an Awwwards team-page reference.
+For a website, ongoing development support or a white-label partnership, [send me a project brief](https://devopsservices-seven.vercel.app/#contact).
 
-Built by [Muhammad Soban](https://github.com/SobanHaroon). For project and white-label inquiries, use the [website](https://devopsservices-seven.vercel.app/#contact).
+**Muhammad Soban** · Founder, DevOps Services
+
+[Portfolio](https://muhammadsoban.vercel.app/) · [GitHub](https://github.com/SobanHaroon)

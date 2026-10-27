@@ -22,6 +22,11 @@ try {
     viewport: { width: 1440, height: 1000 },
   });
   const page = await context.newPage();
+  const modelRequests = [];
+  page.on("request", (request) => {
+    if (/\/models\/|CharacterScene-/.test(request.url()))
+      modelRequests.push(request.url());
+  });
   page.on("pageerror", (e) => errors.push(e.message));
   let requestBody = "",
     requests = 0,
@@ -39,35 +44,26 @@ try {
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Built withcharacter.",
   );
-  await expect(
-    page.locator(".character-kael .character-webgl"),
-  ).toHaveAttribute("data-loaded", "true");
-  const kael = page.locator(".character-kael .character-webgl");
-  await expect(kael).toHaveAttribute("data-animating", "true");
-  await page.locator(".motion-control").click();
-  await expect(kael).toHaveAttribute("data-animating", "false");
-  await page.locator(".motion-control").click();
-  for (const name of ["kai", "milo"]) {
-    const art = page.locator(`.character-${name}`);
-    await art.scrollIntoViewIfNeeded();
-    await expect(art.locator(".character-webgl")).toHaveAttribute(
-      "data-loaded",
-      "true",
+  await expect(page.locator(".character-art, canvas")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Say hello/ })).toHaveCount(0);
+  for (const name of ["kael", "kai", "milo"]) {
+    await expect(page.locator(`#team .crew-card-${name} img`)).toHaveAttribute(
+      "src",
+      `/media/characters/${name}-team.webp`,
     );
-    await expect(art.locator(".character-webgl")).toHaveAttribute(
-      "data-animating",
-      "true",
-    );
-    await expect(kael).toHaveAttribute("data-animating", "false");
-    await art.hover();
   }
   await expect(page.locator("#team .crew-card")).toHaveCount(3);
   await expect(page.locator("#team h2")).toHaveText("Meet our team.");
   await expect(page.locator("#team")).toContainText("Kael Astra");
   await expect(page.locator("#team")).toContainText("Kai Ren");
   await expect(page.locator("#team")).toContainText("Milo");
+  assert.equal(
+    modelRequests.length,
+    0,
+    "Homepage must not load 3D models or the renderer",
+  );
   results.push(
-    "Three reference-based 3D characters, pause/offscreen lifecycle and linked team introduction",
+    "Homepage has no 3D canvases, original artwork in the three linked team cards, and no greeting controls",
   );
   await page.locator('#team a[href="/team#kai"]').click();
   await expect(page.locator("h1")).toHaveText("Meet our team.");
@@ -87,8 +83,13 @@ try {
     await art.scrollIntoViewIfNeeded();
     const scene = art.locator(".character-webgl");
     await expect(scene).toHaveAttribute("data-loaded", "true");
-    await art.getByRole("button").click();
+    await expect(art.getByRole("button")).toHaveCount(0);
+    await art.hover();
     await expect(scene).toHaveAttribute("data-interacting", "true");
+    await page.locator(".motion-control").dispatchEvent("click");
+    await expect(scene).toHaveAttribute("data-animating", "false");
+    await page.locator(".motion-control").dispatchEvent("click");
+    await expect(scene).toHaveAttribute("data-animating", "true");
     const beforePose = await scene.getAttribute("data-pose");
     await page.evaluate(() => scrollBy({ top: 100, behavior: "instant" }));
     await expect
@@ -104,7 +105,7 @@ try {
   await page.goForward();
   await expect(page.locator("h1")).toHaveText("Built withcharacter.");
   results.push(
-    "Team direct/hash routes, three profiles, scroll poses, touch/keyboard greeting, refresh and Back/Forward",
+    "Team direct/hash routes, three profiles, scroll/hover poses, pause controls, refresh and Back/Forward",
   );
   const card = page.getByRole("link", {
     name: "View case study: Atelier Noir",
@@ -313,7 +314,9 @@ try {
     viewport: { width: 390, height: 844 },
     reducedMotion: "reduce",
   });
-  await reduced.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await reduced.goto("http://127.0.0.1:4173/team", {
+    waitUntil: "networkidle",
+  });
   await expect(reduced.locator(".character-webgl")).toHaveCount(0);
   await expect(reduced.locator(".character-poster")).toHaveCount(3);
   assert.equal(
@@ -337,7 +340,9 @@ try {
       return original.call(this, type, ...args);
     };
   });
-  await noWebgl.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
+  await noWebgl.goto("http://127.0.0.1:4173/team#kael", {
+    waitUntil: "networkidle",
+  });
   await expect(
     noWebgl.locator(".character-kael .character-poster"),
   ).toBeVisible();

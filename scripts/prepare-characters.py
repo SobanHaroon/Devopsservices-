@@ -1,12 +1,12 @@
 """Optimize image-generated GLBs and add a gentle seven-bone character rig.
-Usage: python scripts/prepare-characters.py [directory containing NAME-original.glb]
+Usage: python scripts/prepare-characters.py [source directory] [character names...]
 The source assets are produced from the owner's supplied character references.
 """
 import json, struct, pathlib, subprocess, tempfile, sys, math
 import numpy as np
 source = pathlib.Path(sys.argv[1] if len(sys.argv)>1 else 'assets/characters/original')
 out = pathlib.Path('public/models'); out.mkdir(exist_ok=True)
-for name in ['kael','kai','milo']:
+for name in (sys.argv[2:] or ['kael','kai','milo']):
     raw=(source/f'{name}-original.glb').read_bytes()
     jslen=struct.unpack_from('<I',raw,12)[0]
     doc=json.loads(raw[20:20+jslen]); binary=raw[28+jslen:]

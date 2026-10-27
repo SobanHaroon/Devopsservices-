@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useRef } from "react";
 import {
   m,
   useInView,
@@ -6,13 +6,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { Hand } from "lucide-react";
-import {
-  CHARACTER_NAMES,
-  TEAM_COPY,
-  type CharacterName,
-} from "../../data/team";
-import { useLanguage } from "../../context/LanguageContext";
+import type { CharacterName } from "../../data/team";
 const CharacterScene = lazy(() => import("./CharacterScene"));
 const descriptions = {
   kael: "Kael Astra, a 3D anime character in a white hood, black blazer and white sneakers",
@@ -23,19 +17,14 @@ export default function CharacterArt({
   character,
   paused,
   caption,
-  interactive = true,
 }: {
   character: CharacterName;
   paused: boolean;
   caption: string;
-  interactive?: boolean;
 }) {
   const host = useRef<HTMLElement>(null),
     reduced = useReducedMotion();
-  const { language } = useLanguage(),
-    c = TEAM_COPY[language];
   const near = useInView(host, { margin: "200px", once: true });
-  const [greeting, setGreeting] = useState(0);
   const { scrollYProgress } = useScroll({
     target: host,
     offset: ["start end", "end start"],
@@ -66,22 +55,12 @@ export default function CharacterArt({
               character={character}
               paused={paused}
               progress={scrollYProgress}
-              greeting={greeting}
             />
           </Suspense>
         )}
       </m.div>
-      {caption && <figcaption className="character-caption">{caption}</figcaption>}
-      {interactive && !reduced && (
-        <button
-          className="character-greet"
-          aria-label={`${c.greet} — ${CHARACTER_NAMES[character]}`}
-          disabled={paused}
-          onClick={() => setGreeting((v) => v + 1)}
-        >
-          <Hand size={17} />
-          <span>{c.greet}</span>
-        </button>
+      {caption && (
+        <figcaption className="character-caption">{caption}</figcaption>
       )}
     </figure>
   );

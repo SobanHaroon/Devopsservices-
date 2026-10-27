@@ -87,7 +87,7 @@ export default function StudioHeader({
           >
             <span className="brand-emblem" aria-hidden="true">
               <img
-                src="/media/devops-logo.webp"
+                src="/media/devops-logo.svg"
                 alt=""
                 width="154"
                 height="84"
@@ -99,7 +99,12 @@ export default function StudioHeader({
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {links.map(([url, label]) => (
-              <a href={url} key={url} onClick={(e) => go(e, url)} aria-current={path === url ? "page" : undefined}>
+              <a
+                href={url}
+                key={url}
+                onClick={(e) => go(e, url)}
+                aria-current={path === url ? "page" : undefined}
+              >
                 {label}
               </a>
             ))}

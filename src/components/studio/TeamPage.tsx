@@ -7,7 +7,7 @@ import {
   Pause,
   Play,
 } from "lucide-react";
-import { useReducedMotion } from "motion/react";
+import { useMotionPreference } from "../../lib/useMotionPreference";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../../context/LanguageContext";
@@ -15,6 +15,7 @@ import { CHARACTER_IDS, CHARACTER_NAMES, TEAM_COPY } from "../../data/team";
 import { updateCaseStudyMetaTags } from "../../lib/seo";
 import CharacterArt from "./CharacterArt";
 import { TeamCard } from "./StudioTeam";
+import TeamFilm from "./TeamFilm";
 gsap.registerPlugin(ScrollTrigger);
 export default function TeamPage({
   onNavigate,
@@ -23,7 +24,7 @@ export default function TeamPage({
 }) {
   const { language } = useLanguage(),
     c = TEAM_COPY[language],
-    reduced = useReducedMotion();
+    reduced = useMotionPreference();
   const [paused, setPaused] = useState(false),
     off = !!reduced || paused,
     root = useRef<HTMLDivElement>(null);
@@ -117,12 +118,7 @@ export default function TeamPage({
               aria-labelledby={`${character}-title`}
             >
               <div className="team-model-panel">
-                <CharacterArt
-                  character={character}
-                  paused={off}
-                  caption=""
-                  interactive
-                />
+                <CharacterArt character={character} paused={off} caption="" />
               </div>
               <div className="team-profile-copy">
                 <h2 id={`${character}-title`} data-reveal>
@@ -184,6 +180,7 @@ export default function TeamPage({
                     </a>
                   </nav>
                 )}
+                <TeamFilm character={character} paused={off} />
               </div>
             </section>
           );

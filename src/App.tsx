@@ -16,6 +16,7 @@ import StudioHome from "./components/studio/StudioHome";
 import StudioFooter from "./components/studio/StudioFooter";
 import { updateCaseStudyMetaTags } from "./lib/seo";
 import "./studio.css";
+import "./cinematic.css";
 const CaseStudiesList = lazy(() => import("./components/CaseStudiesList"));
 const CaseStudyDetail = lazy(() => import("./components/CaseStudyDetail"));
 const TeamPage = lazy(() => import("./components/studio/TeamPage"));

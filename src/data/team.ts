@@ -24,7 +24,6 @@ type TeamCopy = {
   contact: string;
   contactTitle: string;
   contactText: string;
-  greet: string;
   portfolio: string;
   focus: string;
   pause: string;
@@ -45,7 +44,6 @@ export const TEAM_COPY: Record<LanguageType, TeamCopy> = {
     contactTitle: "Let’s build together.",
     contactText:
       "A new website, a tricky frontend, or a white-label partnership. Tell Soban what you have in mind.",
-    greet: "Say hello",
     portfolio: "Explore my portfolio",
     focus: "Focus",
     pause: "Pause motion",
@@ -105,7 +103,6 @@ export const TEAM_COPY: Record<LanguageType, TeamCopy> = {
     contactTitle: "一緒につくりましょう。",
     contactText:
       "新しいサイト、開発、ホワイトラベル提携。ご希望をソバンにお聞かせください。",
-    greet: "あいさつする",
     portfolio: "ポートフォリオを見る",
     focus: "担当分野",
     pause: "動きを止める",
@@ -157,7 +154,6 @@ export const TEAM_COPY: Record<LanguageType, TeamCopy> = {
     contactTitle: "Créons ensemble.",
     contactText:
       "Un site, un frontend exigeant ou un partenariat en marque blanche : parlez-en à Soban.",
-    greet: "Dire bonjour",
     portfolio: "Mon portfolio",
     focus: "Spécialités",
     pause: "Pause des animations",
@@ -217,7 +213,6 @@ export const TEAM_COPY: Record<LanguageType, TeamCopy> = {
     contactTitle: "Gemeinsam entwickeln.",
     contactText:
       "Eine Website, ein anspruchsvolles Frontend oder eine White-Label-Partnerschaft? Sprechen Sie mit Soban.",
-    greet: "Hallo sagen",
     portfolio: "Mein Portfolio",
     focus: "Schwerpunkte",
     pause: "Animation pausieren",

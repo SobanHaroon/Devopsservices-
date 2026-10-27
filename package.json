@@ -1,18 +1,19 @@
 {
   "name": "devops-services",
   "private": true,
-  "version": "4.0.0",
+  "version": "5.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000 --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit",
-    "test": "npm run build && node scripts/check-redesign.mjs",
+    "test": "npm run build && node scripts/check-redesign.mjs && node scripts/check-scenery.mjs",
     "test:browser": "node scripts/check-redesign.mjs",
     "screenshots": "npm run build && node scripts/capture-redesign.mjs",
     "model:build": "python scripts/prepare-characters.py",
-    "format": "prettier --write src scripts/*.mjs index.html vite.config.ts vercel.json package.json README.md docs/*.md"
+    "format": "prettier --write src scripts/*.mjs index.html vite.config.ts vercel.json package.json README.md docs/*.md",
+    "test:scenery": "node scripts/check-scenery.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",

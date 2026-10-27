@@ -10,7 +10,7 @@ The homepage introduces the cast and links to a dedicated team page. The page id
 
 ## Direction
 
-Taste draw: The well-kept board, seed 1792908015. On this page, Kael's creative identity and Kai and Milo's working personalities become a studio character board. The live element is each character's response to the visitor: scroll turns and settles the model; pointer movement changes its gaze and posture; touch has a simple greeting control.
+Taste draw: The well-kept board, seed 1792908015. On this page, Kael's creative identity and Kai and Milo's working personalities become a studio character board. The live element is each character's response to the visitor: scroll turns and settles the model; pointer movement changes its gaze and posture; touch scrolling remains native; there is no greeting button.
 
 The about blueprint changes from a geographical photo/facts mosaic to team color tiles because there is no location map or geographic data in this content. The list changes from a dated agenda to sticky image/profile chapters because there are three character biographies, not sessions or dates. Existing brand margins, fonts and palette are retained. Supplied reference artwork replaces stock photographs.
 
@@ -37,3 +37,7 @@ Kai Ren — Coder & sulking master. Quiet face. Very loud attention to detail. K
 Milo — Operations & resources. Somehow, already prepared. Milo represents the organization behind delivery: briefs, assets, tools, schedules and tidy handovers, with one more cable in the backpack just in case.
 
 Kael is Soban's creative identity. Kai and Milo are our studio characters; client work is led and delivered by Soban.
+
+## Version 4.1 refinement
+
+The owner requested the original supplied illustrations in the team cards, 3D confined to the team page, no greeting control, and a cleaner Kai model. The homepage hero becomes a two-column typography layout. Service and contract grids occupy the removed character columns. The team board gives its title a full row and the original artwork three equal columns, stacking on phones. This preserves the established board direction while accommodating the supplied scene illustrations.
