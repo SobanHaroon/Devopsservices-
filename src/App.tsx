@@ -15,10 +15,12 @@ import StudioHeader from "./components/studio/StudioHeader";
 import StudioHome from "./components/studio/StudioHome";
 import StudioFooter from "./components/studio/StudioFooter";
 import { updateCaseStudyMetaTags } from "./lib/seo";
+import { SmoothScroll } from "./components/studio/EditorialMotion";
 import "./studio.css";
 import "./cinematic.css";
 const CaseStudiesList = lazy(() => import("./components/CaseStudiesList"));
 const CaseStudyDetail = lazy(() => import("./components/CaseStudyDetail"));
+const MarketingPage = lazy(() => import("./components/MarketingPage"));
 const TeamPage = lazy(() => import("./components/studio/TeamPage"));
 type Route = { path: string; hash: string; key: string; restore: boolean };
 const readRoute = (restore = false): Route => ({
@@ -105,6 +107,7 @@ function RouteContent({
       />
     );
   if (route.path === "/") return <StudioHome onNavigate={onNavigate} />;
+  if (route.path === "/digital-marketing") return <MarketingPage onNavigate={onNavigate} />;
   if (route.path === "/team") return <TeamPage onNavigate={onNavigate} />;
   return (
     <div className="route-loading">
@@ -164,6 +167,7 @@ export default function App() {
           transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
         >
           <div className="studio-site">
+            <SmoothScroll route={route.path}/>
             <StudioHeader path={route.path} onNavigate={navigate} />
             <main id="main-content" tabIndex={-1}>
               <RouteBoundary key={route.path}>
