@@ -1,0 +1,35 @@
+[
+  {
+    "target": "public/media/marketing/family.mp4",
+    "bytes": 5815862,
+    "sha256": "2c8d4c15bdfe97dcf4b300a4f2b966aa7d5f1bc4d789be87e8b9a3bb9719a1c0",
+    "parts": [
+      "media-source/marketing/family.part-001",
+      "media-source/marketing/family.part-002",
+      "media-source/marketing/family.part-003"
+    ]
+  },
+  {
+    "target": "public/media/marketing/farm.mp4",
+    "bytes": 12383299,
+    "sha256": "023eeccc775e8e7e1269224b5bd3cb043738fbd23a1f262e655f9d39b1526580",
+    "parts": [
+      "media-source/marketing/farm.part-001",
+      "media-source/marketing/farm.part-002",
+      "media-source/marketing/farm.part-003",
+      "media-source/marketing/farm.part-004",
+      "media-source/marketing/farm.part-005",
+      "media-source/marketing/farm.part-006",
+      "media-source/marketing/farm.part-007"
+    ]
+  },
+  {
+    "target": "public/media/marketing/single-grain.mp4",
+    "bytes": 3911080,
+    "sha256": "6661d9082fde8023cf9f2ace768aa059a8f961f14f43f3b7a4d2bc67b6874aa9",
+    "parts": [
+      "media-source/marketing/single-grain.part-001",
+      "media-source/marketing/single-grain.part-002"
+    ]
+  }
+]

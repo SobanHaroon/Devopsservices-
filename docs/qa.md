@@ -42,7 +42,6 @@ npm run screenshots
 
 `artifacts/qa/results.json` records regression outcomes; accessibility reports and screenshots sit alongside it. Generated evidence is gitignored. `docs/homepage.webp` is a compact screenshot for the README.
 
-
 ## Version 5 cinematic release
 
 TypeScript and the production build pass. The browser regression suite passes with zero page errors and zero automated WCAG A/AA violations across the homepage, team page, case-study directory and Atelier Noir detail at desktop/mobile widths. Test inquiry submissions remain intercepted.
@@ -50,3 +49,16 @@ TypeScript and the production build pass. The browser regression suite passes wi
 The scenery suite passes at 320, 390, 768, 1440 and 1920px, including forward/reverse progress, stage placement, responsive image sources, pause/resume, live preference changes and an 844×390 landscape fallback. Character films load on activation, play muted and pause offscreen or through the motion control. The video and 3D model occupy separate columns on desktop.
 
 Visual review covered desktop, tablet and mobile scene captures. The layout inspector reports zero failures, with three documented design warnings in `scenery.md`. Chromium is the browser exercised; no physical-device or Safari/Firefox validation is claimed.
+
+## Version 6 editorial release and continuous playback — 31 October 2026
+
+The following results supersede the older motion and playback behavior described above. TypeScript and the production build pass. All three browser suites pass in headless Chromium 153 with software WebGL; their runs report zero page errors. Automated accessibility checks pass for the rules exercised. These are local browser results, not a physical-device or manual accessibility certification.
+
+- All ten digital marketing films start muted without a click, decode with valid dimensions, and loop through their actual end-to-start transition. Client/studio filters, direct routes, refresh and Back navigation pass.
+- The desert and campaign films keep playing together after scrolling offscreen and while the menu is open. Native controls, play overlays and the global motion buttons are absent. The retained profile films also autoplay; the Babay Dee case study uses the same shared player.
+- Storm retains 50,000 points, reversible scroll progress and pointer interaction. Once loaded, Storm and character scenes continue rendering offscreen and behind the menu. Text entrances and scrolling still respond to reduced-motion preferences. Unavailable WebGL preserves the static artwork and content.
+- Marketing layouts pass at 320, 390, 768, 1440 and 1920px in EN, FR, DE and JP. Homepage checks also include 1024px and an 844×390 landscape phone. German headline sizing was corrected at 320px.
+- Full route, history, profile, menu, inquiry-form and automated accessibility regressions pass. Test form requests are intercepted; no live inquiry is sent.
+- The three largest source films are reassembled from binary parts during prebuild and checked against their original byte sizes and SHA-256 hashes. All three hashes match; no video was re-encoded.
+
+Browsers and operating systems can still suspend background media. The shared player retries when a tab or video returns and after interaction if browser policy blocked autoplay. Media is disposed when a route or filter removes it.

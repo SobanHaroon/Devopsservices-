@@ -40,32 +40,20 @@ try {
       body: responseCode === 200 ? "{}" : '{"error":"mocked failure"}',
     });
   });
-  await page.goto("http://127.0.0.1:4173/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Built withcharacter.",
+  await page.goto("http://127.0.0.1:4173/", { waitUntil: "domcontentloaded" });
+  await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
+    "Built with character.",
   );
-  await expect(page.locator(".character-art, canvas")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: /Say hello/ })).toHaveCount(0);
-  for (const name of ["kael", "kai", "milo"]) {
-    await expect(page.locator(`#team .crew-card-${name} img`)).toHaveAttribute(
-      "src",
-      `/media/characters/${name}-team.webp`,
-    );
-  }
-  await expect(page.locator("#team .crew-card")).toHaveCount(3);
-  await expect(page.locator("#team h2")).toHaveText("Meet our team.");
-  await expect(page.locator("#team")).toContainText("Kael Astra");
-  await expect(page.locator("#team")).toContainText("Kai Ren");
-  await expect(page.locator("#team")).toContainText("Milo");
+  await expect(page.locator("#team, .crew-card")).toHaveCount(0);
   assert.equal(
     modelRequests.length,
     0,
-    "Homepage must not load 3D models or the renderer",
+    "Homepage must not fetch legacy character models",
   );
   results.push(
-    "Homepage has no 3D canvases, original artwork in the three linked team cards, and no greeting controls",
+    "Editorial homepage has no team section or legacy model downloads",
   );
-  await page.locator('#team a[href="/team#kai"]').click();
+  await page.goto("http://127.0.0.1:4173/team#kai");
   await expect(page.locator("h1")).toHaveText("Meet our team.");
   await expect(page.locator("#kai")).toBeInViewport();
   await expect(page.locator("link[rel=canonical]")).toHaveAttribute(
@@ -86,9 +74,7 @@ try {
     await expect(art.getByRole("button")).toHaveCount(0);
     await art.hover();
     await expect(scene).toHaveAttribute("data-interacting", "true");
-    await page.locator(".motion-control").dispatchEvent("click");
-    await expect(scene).toHaveAttribute("data-animating", "false");
-    await page.locator(".motion-control").dispatchEvent("click");
+    await expect(page.locator(".motion-control")).toHaveCount(0);
     await expect(scene).toHaveAttribute("data-animating", "true");
     const beforePose = await scene.getAttribute("data-pose");
     await page.evaluate(() => scrollBy({ top: 100, behavior: "instant" }));
@@ -99,13 +85,17 @@ try {
   await page.reload();
   await expect(page.locator("#kai")).toBeInViewport();
   await page.getByRole("link", { name: "Back to home", exact: true }).click();
-  await expect(page.locator("h1")).toHaveText("Built withcharacter.");
+  await expect(page.locator("h1")).toHaveAccessibleName(
+    "Built with character.",
+  );
   await page.goBack();
   await expect(page.locator("h1")).toHaveText("Meet our team.");
   await page.goForward();
-  await expect(page.locator("h1")).toHaveText("Built withcharacter.");
+  await expect(page.locator("h1")).toHaveAccessibleName(
+    "Built with character.",
+  );
   results.push(
-    "Team direct/hash routes, three profiles, scroll/hover poses, pause controls, refresh and Back/Forward",
+    "Team direct/hash routes, three profiles, scroll/hover poses, continuous motion, refresh and Back/Forward",
   );
   const card = page.getByRole("link", {
     name: "View case study: Atelier Noir",
@@ -123,12 +113,12 @@ try {
       "http://127.0.0.1:4173/case-studies/atelier-noir",
     );
     await page.goBack();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Built withcharacter.",
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
+      "Built with character.",
     );
     await expect
       .poll(() => page.evaluate(() => scrollY))
-      .toBeGreaterThan(beforeY - 100);
+      .toBeGreaterThan(beforeY - 200);
     await page.goForward();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Atelier Noir",
@@ -140,8 +130,8 @@ try {
       "The work, up close.",
     );
     await page.getByRole("link", { name: "Back to home", exact: true }).click();
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Built withcharacter.",
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
+      "Built with character.",
     );
     await expect(page.locator("link[rel=canonical]")).toHaveAttribute(
       "href",
@@ -223,6 +213,7 @@ try {
   results.push(
     "White-label selection, weekly contract payload, failure recovery, successful mocked delivery, reset and PKR budget",
   );
+  await page.emulateMedia({ reducedMotion: "reduce" });
   for (const width of [1440, 1024, 768, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("http://127.0.0.1:4173/");
@@ -251,7 +242,7 @@ try {
         lang + " overflow at " + width,
       );
       const lineOverflow = await page
-        .locator(".hero-copy h1")
+        .locator(".ed-hero-copy h1")
         .evaluate((el) => el.scrollWidth > el.clientWidth + 1);
       assert.equal(
         lineOverflow,
@@ -289,15 +280,15 @@ try {
     "320 / 390 / 768 / 1024 / 1440 responsive widths and EN / JP / FR / DE headline layouts",
   );
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.getByRole("button", { name: "Open navigation" }).click();
+  await page.getByRole("button", { name: /Open navigation/ }).click();
   await expect(
     page.getByRole("navigation", { name: "Mobile navigation" }),
   ).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(
-    page.getByRole("button", { name: "Open navigation" }),
+    page.getByRole("button", { name: /Open navigation/ }),
   ).toBeFocused();
-  await page.getByRole("button", { name: "Open navigation" }).click();
+  await page.getByRole("button", { name: /Open navigation/ }).click();
   await page
     .getByRole("navigation", { name: "Mobile navigation" })
     .getByRole("link", { name: "Work", exact: true })
@@ -315,9 +306,9 @@ try {
     reducedMotion: "reduce",
   });
   await reduced.goto("http://127.0.0.1:4173/team", {
-    waitUntil: "networkidle",
+    waitUntil: "domcontentloaded",
   });
-  await expect(reduced.locator(".character-webgl")).toHaveCount(0);
+  await expect(reduced.locator(".motion-control")).toHaveCount(0);
   await expect(reduced.locator(".character-poster")).toHaveCount(3);
   assert.equal(
     await reduced
@@ -325,9 +316,17 @@ try {
       .evaluate((el) => el.complete && el.naturalWidth > 0),
     true,
   );
-  await expect(
-    reduced.getByRole("button", { name: "Motion off" }),
-  ).toBeDisabled();
+  await expect
+    .poll(() =>
+      reduced
+        .locator(".team-film video")
+        .evaluateAll(
+          (items) =>
+            items.length === 3 &&
+            items.every((v) => !v.paused && v.currentTime > 0),
+        ),
+    )
+    .toBe(true);
   await reduced.screenshot({ path: "artifacts/qa/reduced-motion.png" });
   await reduced.close();
   const noWebgl = await browser.newPage({
@@ -336,12 +335,17 @@ try {
   await noWebgl.addInitScript(() => {
     const original = HTMLCanvasElement.prototype.getContext;
     HTMLCanvasElement.prototype.getContext = function (type, ...args) {
-      if (type === "webgl" || type === "webgl2") return null;
+      if (
+        type === "webgl" ||
+        type === "webgl2" ||
+        type === "experimental-webgl"
+      )
+        return null;
       return original.call(this, type, ...args);
     };
   });
   await noWebgl.goto("http://127.0.0.1:4173/team#kael", {
-    waitUntil: "networkidle",
+    waitUntil: "domcontentloaded",
   });
   await expect(
     noWebgl.locator(".character-kael .character-poster"),
@@ -355,7 +359,9 @@ try {
     true,
   );
   await noWebgl.close();
-  results.push("Reduced-motion and unavailable-WebGL fallbacks");
+  results.push(
+    "Reduced-motion interface preferences, ambient autoplay and unavailable-WebGL fallbacks",
+  );
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const route of [
@@ -363,9 +369,10 @@ try {
       "/team",
       "/case-studies",
       "/case-studies/atelier-noir",
+      "/digital-marketing",
     ]) {
       await page.goto("http://127.0.0.1:4173" + route, {
-        waitUntil: "networkidle",
+        waitUntil: "domcontentloaded",
       });
       for (
         let y = 0;
@@ -402,7 +409,7 @@ try {
     }
   }
   results.push(
-    "WCAG A/AA automated accessibility: home, team, directory and Atelier Noir at desktop/mobile widths",
+    "WCAG A/AA automated accessibility: home, legacy team, directory, Atelier Noir and digital marketing at desktop/mobile widths",
   );
   assert.deepEqual(errors, []);
   console.log(

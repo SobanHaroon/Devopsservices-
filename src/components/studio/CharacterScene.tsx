@@ -7,20 +7,12 @@ import { applyCharacterSurface } from "../../lib/characterSurface";
 export type { CharacterName } from "../../data/team";
 export default function CharacterScene({
   character,
-  paused,
   progress,
 }: {
   character: CharacterName;
-  paused: boolean;
   progress: MotionValue<number>;
 }) {
-  const host = useRef<HTMLDivElement>(null),
-    pause = useRef(paused),
-    invalidate = useRef<() => void>(() => {});
-  useEffect(() => {
-    pause.current = paused;
-    invalidate.current();
-  }, [paused]);
+  const host = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = host.current;
     if (!el) return;
@@ -57,7 +49,6 @@ export default function CharacterScene({
     const rig = new THREE.Group();
     scene.add(rig);
     let disposed = false,
-      visible = false,
       contextLost = false,
       frame = 0,
       last = 0,
@@ -98,7 +89,7 @@ export default function CharacterScene({
     };
     function render() {
       if (disposed || contextLost) return;
-      if (!pause.current) {
+      {
         const p = THREE.MathUtils.clamp(progress.get(), 0, 1),
           wave = Math.sin(p * Math.PI * 4),
           active = pointer.hover * 0.5;
@@ -166,14 +157,7 @@ export default function CharacterScene({
     }
     function loop(time: number) {
       frame = 0;
-      if (
-        disposed ||
-        !visible ||
-        document.hidden ||
-        pause.current ||
-        contextLost
-      )
-        return;
+      if (disposed || contextLost) return;
       if (time - last > 32) {
         clock += Math.min((time - last) / 1000, 0.05);
         last = time;
@@ -184,12 +168,10 @@ export default function CharacterScene({
     function start() {
       cancelAnimationFrame(frame);
       frame = 0;
-      el!.dataset.animating = String(
-        visible && !document.hidden && !pause.current && !contextLost,
-      );
-      if (visible && !document.hidden && !contextLost) {
+      el!.dataset.animating = String(!disposed && !contextLost);
+      if (!disposed && !contextLost) {
         render();
-        if (!pause.current) frame = requestAnimationFrame(loop);
+        frame = requestAnimationFrame(loop);
       }
     }
     const resize = () => {
@@ -257,14 +239,6 @@ export default function CharacterScene({
     );
     const ro = new ResizeObserver(resize);
     ro.observe(el);
-    const io = new IntersectionObserver(
-      (entries) => {
-        visible = entries[0].isIntersecting;
-        start();
-      },
-      { threshold: 0.01 },
-    );
-    io.observe(el);
     const move = (e: PointerEvent) => {
       if (
         e.pointerType !== "mouse" ||
@@ -295,14 +269,11 @@ export default function CharacterScene({
     document.addEventListener("visibilitychange", start);
     renderer.domElement.addEventListener("webglcontextlost", loss);
     renderer.domElement.addEventListener("webglcontextrestored", restore);
-    invalidate.current = start;
     resize();
     return () => {
       disposed = true;
-      invalidate.current = () => {};
       cancelAnimationFrame(frame);
       ro.disconnect();
-      io.disconnect();
       el.removeEventListener("pointermove", move);
       el.removeEventListener("pointerleave", leave);
       document.removeEventListener("visibilitychange", start);

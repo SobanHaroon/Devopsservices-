@@ -1,178 +1,229 @@
-import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
+import assert from "node:assert/strict";
 import { chromium, expect } from "@playwright/test";
 import { serve } from "./local-server.mjs";
-const server = await serve("dist", 4177);
+const server = await serve("dist", 4175);
 const browser = await chromium.launch({
   executablePath:
     process.env.PLAYWRIGHT_CHROME ||
     (existsSync("/tmp/codex-playwright-chromium/chromium")
       ? "/tmp/codex-playwright-chromium/chromium"
       : undefined),
+  headless: true,
   args: ["--no-sandbox", "--no-proxy-server", "--enable-unsafe-swiftshader"],
 });
-const failures = [],
-  results = [];
-await mkdir("artifacts/cinematic", { recursive: true });
+const errors = [],
+  passed = [];
+await mkdir("artifacts/qa", { recursive: true });
 try {
   const page = await browser.newPage({
-    viewport: { width: 1440, height: 900 },
+    viewport: { width: 1200, height: 800 },
   });
-  page.on("pageerror", (e) => failures.push(e.message));
-  const media = [];
-  page.on("request", (r) => {
-    if (/\.mp4|\.glb|CharacterScene-/.test(r.url())) media.push(r.url());
+  page.on("pageerror", (e) => errors.push(e.message));
+  const requests = [];
+  page.on("request", (r) => requests.push(r.url()));
+  await page.goto("http://127.0.0.1:4175/", { waitUntil: "domcontentloaded" });
+  const desert = page.locator(".desert-media video");
+  await expect
+    .poll(() => desert.evaluate((v) => !v.paused && v.currentTime > 0))
+    .toBe(true);
+  assert.equal(
+    requests.some((u) => /vendor\/storm|scenes\/storm/.test(u)),
+    false,
+    "Heavy Storm scene loads near its section",
+  );
+  await expect(
+    page.locator(".motion-control, .reel-play, video[controls]"),
+  ).toHaveCount(0);
+  await page.locator(".ed-menu-button").click();
+  await expect.poll(() => desert.evaluate((v) => !v.paused)).toBe(true);
+  await page.keyboard.press("Escape");
+  await desert.evaluate((v) => {
+    v.currentTime = v.duration - 0.25;
   });
-  for (const width of [320, 390, 768, 1440, 1920]) {
-    await page.setViewportSize({ width, height: 900 });
-    await page.goto("http://127.0.0.1:4177/", { waitUntil: "networkidle" });
+  await expect
+    .poll(() =>
+      desert.evaluate((v) => !v.paused && v.currentTime < v.duration - 1),
+    )
+    .toBe(true);
+  passed.push(
+    "Desert autoplays, loops and continues behind the menu without playback controls",
+  );
+  await page.mouse.wheel(0, 900);
+  await page.waitForTimeout(1000);
+  const jump = await page.evaluate(() => {
+    const y = document.querySelector("#case-studies").offsetTop + 300;
+    scrollTo({ top: y, behavior: "instant" });
+    return y;
+  });
+  await page.mouse.wheel(0, 2);
+  await page.waitForTimeout(1300);
+  assert.ok(
+    Math.abs((await page.evaluate(() => scrollY)) - jump) < 20,
+    "Wheel after native jump must not snap back",
+  );
+  passed.push("Lenis stays synchronized after native scroll jumps");
+  const chapter = page.locator(".storm-chapter");
+  await chapter.scrollIntoViewIfNeeded();
+  await expect(chapter).toHaveAttribute("data-ready", "true", {
+    timeout: 30000,
+  });
+  const frame = page.frameLocator(".storm-frame"),
+    body = frame.locator("body");
+  await expect(body).toHaveAttribute("data-points", "50000");
+  for (const progress of [0, 0.5, 1, 0.5, 0]) {
+    await chapter.evaluate(
+      (el, p) =>
+        scrollTo({
+          top: el.offsetTop + (el.offsetHeight - innerHeight) * p,
+          behavior: "instant",
+        }),
+      progress,
+    );
+    await expect
+      .poll(
+        async () =>
+          Math.abs(Number(await body.getAttribute("data-progress")) - progress),
+        { timeout: 30000 },
+      )
+      .toBeLessThan(0.035);
+  }
+  await page.mouse.move(650, 380);
+  await expect
+    .poll(async () => Number(await body.getAttribute("data-activity")), {
+      timeout: 15000,
+    })
+    .toBeGreaterThan(0.3);
+  await page.screenshot({ path: "artifacts/qa/storm-desktop.png" });
+  await page.locator(".ed-menu-button").click();
+  await expect(body).toHaveAttribute("data-running", "true");
+  await page.keyboard.press("Escape");
+  await expect(body).toHaveAttribute("data-running", "true");
+  await page
+    .locator("#services")
+    .evaluate((el) =>
+      scrollTo({ top: el.offsetTop + 120, behavior: "instant" }),
+    );
+  await expect(body).toHaveAttribute("data-running", "true");
+  passed.push(
+    "50,000-point Storm, reversible scroll progress and continuous rendering offscreen and behind the menu",
+  );
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".storm-frame")).toHaveCount(1);
+  await expect(page.locator(".editorial-home")).not.toHaveClass(/motion-ready/);
+  const films = page.locator("#digital-marketing .marketing-film video");
+  await expect
+    .poll(() =>
+      films.evaluateAll((items) =>
+        items.every((v) => !v.paused && v.currentTime > 0),
+      ),
+    )
+    .toBe(true);
+  await page.locator(".ed-menu-button").click();
+  assert.equal(
+    await films.evaluateAll((items) => items.every((v) => !v.paused)),
+    true,
+  );
+  await page.keyboard.press("Escape");
+  await page.locator("#faq").scrollIntoViewIfNeeded();
+  assert.equal(
+    await films.evaluateAll((items) => items.every((v) => !v.paused)),
+    true,
+  );
+  assert.equal(await desert.evaluate((v) => !v.paused), true);
+  passed.push(
+    "Homepage reels play simultaneously offscreen and behind the menu; reduced-motion still simplifies text entrances",
+  );
+  const rows = page.locator(".ed-faq-row");
+  await rows.nth(0).getByRole("button").click();
+  await rows.nth(1).getByRole("button").click();
+  await expect(rows.nth(0).getByRole("button")).toHaveAttribute(
+    "aria-expanded",
+    "true",
+  );
+  await expect(rows.nth(1).getByRole("button")).toHaveAttribute(
+    "aria-expanded",
+    "true",
+  );
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect
+    .poll(() =>
+      rows
+        .nth(0)
+        .locator(".ed-faq-panel")
+        .evaluate((el) =>
+          Math.abs(el.clientHeight - el.firstElementChild.scrollHeight),
+        ),
+    )
+    .toBeLessThan(2);
+  await rows.nth(0).getByRole("button").click();
+  await expect
+    .poll(() =>
+      rows
+        .nth(0)
+        .locator(".ed-faq-panel")
+        .evaluate((el) => el.clientHeight),
+    )
+    .toBeLessThan(2);
+  passed.push("Independent FAQ panels and content height updates after resize");
+  for (const [width, height] of [
+    [320, 700],
+    [390, 844],
+    [768, 1024],
+    [1024, 768],
+    [1440, 900],
+    [1920, 1080],
+    [844, 390],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.evaluate(() => scrollTo(0, 0));
     await page.evaluate(() => document.fonts.ready);
     assert.equal(
       await page.evaluate(
-        () => document.documentElement.scrollWidth > innerWidth,
+        () => document.documentElement.scrollWidth > innerWidth + 1,
       ),
       false,
-      `Overflow ${width}`,
-    );
-    const src = await page
-      .locator(".city-journey .scene-picture img")
-      .evaluate((el) => el.currentSrc);
-    assert.equal(
-      src.includes("-mobile.webp"),
-      width <= 700,
-      `Art direction at ${width}`,
-    );
-    for (const scene of [".city-journey", ".gallery-journey"]) {
-      const el = page.locator(scene);
-      for (const progress of [0, 0.5, 1, 0.5, 0]) {
-        const y = await el.evaluate(
-          (e, p) =>
-            e.getBoundingClientRect().top +
-            scrollY -
-            80 +
-            (e.clientHeight - innerHeight + 80) * p,
-          progress,
-        );
-        await page.evaluate(
-          (y) => scrollTo({ top: y, behavior: "instant" }),
-          y,
-        );
-        await expect
-          .poll(async () =>
-            Number((await el.getAttribute("data-progress")) || 0),
-          )
-          .toBeCloseTo(progress, 1);
-        await expect
-          .poll(() =>
-            el
-              .locator(".scene-stage")
-              .evaluate((e) => Math.round(e.getBoundingClientRect().top)),
-          )
-          .toBe(80);
-      }
-    }
-    results.push(
-      `${width}px: responsive source, native sticky stages and reversible scroll progress`,
+      `Overflow ${width}x${height}`,
     );
   }
-  assert.equal(
-    media.some(
-      (x) =>
-        x.endsWith(".glb") ||
-        x.includes("CharacterScene-") ||
-        x.includes("-moment.mp4"),
-    ),
-    false,
-    "No homepage character media download",
-  );
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("http://127.0.0.1:4177/", { waitUntil: "networkidle" });
-  await page.locator(".motion-control").dispatchEvent("click");
-  await expect(page.locator(".city-journey")).toHaveClass(/is-rest/);
-  await expect(page.locator(".scene-stage").first()).toHaveCSS(
-    "position",
-    "relative",
-  );
-  await expect(page.locator(".city-journey .scene-picture")).toHaveCSS(
-    "transform",
-    "none",
-  );
-  await page.locator(".motion-control").dispatchEvent("click");
-  await expect(page.locator(".city-journey")).toHaveClass(/is-live/);
-  await page.setViewportSize({ width: 844, height: 390 });
-  await expect(page.locator(".scene-stage").first()).toHaveCSS(
-    "position",
-    "relative",
-  );
-  await page.locator(".motion-control").scrollIntoViewIfNeeded();
-  await expect(page.locator(".motion-control")).toBeInViewport();
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator(".scene-stage").first()).toHaveCSS(
-    "position",
-    "sticky",
-  );
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator(".city-journey")).toHaveClass(/is-rest/);
-  await expect(page.locator(".motion-control")).toBeDisabled();
-  await expect(page.locator(".scene-stage").first()).toHaveCSS(
-    "position",
-    "relative",
-  );
-  await expect(page.locator(".scene-picture").first()).toHaveCSS(
-    "transform",
-    "none",
-  );
-  results.push(
-    "Pause/resume, live resizing, landscape-phone flow and reduced-motion fallback",
-  );
+  await page.screenshot({ path: "artifacts/qa/editorial-mobile.png" });
   await page.emulateMedia({ reducedMotion: "no-preference" });
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto("http://127.0.0.1:4177/team#kai", {
-    waitUntil: "networkidle",
+  await expect(page.locator(".editorial-home")).toHaveClass(/motion-ready/);
+  passed.push(
+    "Responsive widths, landscape-phone layout and live motion preference changes",
+  );
+  const fallback = await browser.newPage({
+    viewport: { width: 390, height: 844 },
   });
-  await expect(page.locator(".team-film video")).toHaveCount(0);
-  await page.locator("#kai .team-film-trigger").click();
-  const video = page.locator("#kai .team-film video");
-  await expect(video).toHaveAttribute(
-    "src",
-    "/media/characters/kai-moment.mp4",
-  );
-  await expect
-    .poll(() => video.evaluate((v) => v.readyState))
-    .toBeGreaterThan(1);
-  assert.equal(await video.evaluate((v) => v.muted), true);
-  await expect.poll(() => video.evaluate((v) => v.paused)).toBe(false);
-  const separated = await page.locator("#kai").evaluate((el) => {
-    const model = el.querySelector(".character-art").getBoundingClientRect();
-    const film = el.querySelector(".team-film").getBoundingClientRect();
-    return model.right <= film.left || model.bottom <= film.top;
+  await fallback.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return type === "webgl" ||
+        type === "webgl2" ||
+        type === "experimental-webgl"
+        ? null
+        : original.call(this, type, ...args);
+    };
   });
-  assert.equal(
-    separated,
-    true,
-    "Video and 3D character must occupy separate space",
+  await fallback.goto("http://127.0.0.1:4175/");
+  await fallback.locator(".storm-chapter").scrollIntoViewIfNeeded();
+  await expect(fallback.locator(".storm-chapter")).toHaveAttribute(
+    "data-fallback",
+    "true",
   );
-  await page.locator(".motion-control").dispatchEvent("click");
-  await expect.poll(() => video.evaluate((v) => v.paused)).toBe(true);
-  await video.evaluate((v) => v.play());
-  await page.evaluate(() =>
-    scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "instant",
-    }),
+  await expect(fallback.locator(".storm-copy a")).toBeVisible();
+  await fallback.close();
+  passed.push(
+    "Unavailable-WebGL fallback preserves content and contact action",
   );
-  await expect(video).not.toBeInViewport();
-  await expect.poll(() => video.evaluate((v) => v.paused)).toBe(true);
-  results.push(
-    "Character video loads only on request, plays muted, and stops when paused or offscreen",
-  );
-  assert.deepEqual(failures, []);
+  assert.deepEqual(errors, []);
   await writeFile(
-    "artifacts/cinematic/results.json",
-    JSON.stringify({ results, failures }, null, 2),
+    "artifacts/qa/scenery-results.json",
+    JSON.stringify({ passed, errors }, null, 2),
   );
-  console.log(JSON.stringify({ results, failures }, null, 2));
+  console.log(JSON.stringify({ passed, errors }, null, 2));
 } finally {
   await browser.close();
   server.close();

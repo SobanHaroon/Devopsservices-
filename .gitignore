@@ -1,5 +1,6 @@
 node_modules/
 build/
+!public/vendor/storm/build/
 dist/
 coverage/
 .DS_Store
@@ -11,3 +12,8 @@ coverage/
 artifacts/
 
 .taste-skill/
+
+# Reconstructed lossless film sources (see media-source/manifest.json).
+/public/media/marketing/family.mp4
+/public/media/marketing/farm.mp4
+/public/media/marketing/single-grain.mp4

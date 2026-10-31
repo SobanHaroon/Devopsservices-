@@ -160,7 +160,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "E-Commerce Development",
     client: "Babay Dee Atta Chakki",
     shortDescription:
-      "Fresh essentials, brought online. A local grocery storefront with a product catalog, shopping cart, and delivery ordering.",
+      "From the local chakki to the online store. E-commerce, campaign artwork, and brand films for an everyday essentials business.",
     liveUrl: "https://babaydeeattachakki.com/",
     ctaText: "Visit Live Website",
     featuredImage: babaydeeHero,
@@ -195,7 +195,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "Traditional grain mill and staple grocery businesses historically rely on physical foot traffic and phone calls for order placement. Babay Dee Atta Chakki needed a seamless way to showcase their comprehensive product catalog online, manage customizable flour/grain quantities, and provide an effortless checkout experience for household customers on mobile and desktop without operational complexity.",
     solution:
-      "We designed and engineered a clean, high-performance e-commerce platform with intuitive product categorization, dynamic cart calculation, direct checkout order management, clear delivery details, and a responsive mobile interface that allows customers to complete orders in seconds.",
+      "We designed and engineered a clean, high-performance e-commerce platform with intuitive product categorization, dynamic cart calculation, direct checkout order management, clear delivery details, and a responsive mobile interface for browsing products and placing delivery orders.",
     keyFeatures: [
       {
         title: "Dynamic Product Catalog",
@@ -337,7 +337,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       {
         title: "Accessible motion",
         description:
-          "A pause control, reduced-motion support, and a static fallback for the 3D artwork.",
+          "Continuous ambient films and 3D animation, with a static fallback when WebGL is unavailable.",
         iconName: "Activity",
       },
       {

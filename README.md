@@ -2,71 +2,44 @@
 
 **Thoughtful websites. Distinctive experiences. Reliable delivery.**
 
-I built DevOps Services as the online home for my independent web studio. It brings my services, selected projects, creative identity and client inquiries into one place, with a visual direction inspired by Japanese illustration and modern technology.
+I built DevOps Services as the home for my independent development and design studio. I’m **Muhammad Soban**, based in Rawalpindi, Pakistan. I work directly with businesses and agencies on websites, digital campaigns and ongoing development.
 
-I’m **Muhammad Soban**, a developer and designer based in Rawalpindi, Pakistan. I work directly with businesses and agencies on websites, frontend development, digital experiences and white-label partnerships.
+[Website](https://devopsservices-seven.vercel.app/) · [Case studies](https://devopsservices-seven.vercel.app/case-studies) · [Digital marketing](https://devopsservices-seven.vercel.app/digital-marketing) · [Start a project](https://devopsservices-seven.vercel.app/#contact)
 
-[Visit the website](https://devopsservices-seven.vercel.app/) · [Explore the work](https://devopsservices-seven.vercel.app/case-studies) · [Meet the team](https://devopsservices-seven.vercel.app/team) · [Start a project](https://devopsservices-seven.vercel.app/#contact)
+![DevOps Services homepage](docs/homepage.webp)
 
-![DevOps Services website](docs/homepage.webp)
+## Design and experience
 
-## The experience
+The site pairs an editorial layout with cinematic scenery. Playfair Display headlines, Satoshi body text, dashed rules and generous spacing give the content a clear rhythm. Navy, cyan and gold come from my logo; Storm retains its specified crimson, pink and gold palette.
 
-The design follows the company logo’s navy, cyan, ice and gold palette. Four illustrated environments—the city, studio, gallery and harbor—connect the main sections through layered scenery and scroll-driven motion.
+The homepage includes selected work, services, campaign films, my approach, partnership options and a project inquiry form. The previous team section is removed from the homepage and navigation. Its old route remains available so existing links keep working.
 
-The interface keeps the essentials clear: what I do, the work I’ve delivered, how a partnership can work and how to get in touch.
+- A responsive purple-desert film introduces the studio.
+- A 50,000-particle Storm scene responds to scrolling and pointer movement.
+- Staggered project plates lead into detailed case studies.
+- The digital marketing page presents ten distinct films with client and studio filters, campaign artwork and a storyboard.
+- Four interface languages are available: English, French, German and Japanese.
+- Films autoplay muted and loop continuously, with no play or pause buttons.
+- Device preferences simplify text transitions and scrolling; unavailable WebGL has a static fallback.
 
-- **Cinematic scrolling:** layered parallax, native sticky sections and a perspective reveal for the featured project.
-- **Responsive scenery:** dedicated portrait compositions for key scenes and appropriately sized images for different screen widths.
-- **Interactive team profiles:** three 3D characters with scroll and pointer responses, original illustrations and short profile films.
-- **Selected work:** individual case studies, category filters, direct project links and reliable Back/Forward navigation.
-- **White-label partnerships:** project-based, monthly and weekly engagements with pricing agreed around the scope.
-- **Project inquiries:** service selection, USD/PKR budgets for standard projects, contract options, submission feedback and retry handling.
-- **Four languages:** English, Japanese, French and German.
-- **Motion preferences:** pause controls, reduced-motion support and static character posters when WebGL is unavailable.
-
-The homepage uses lightweight layered imagery. The 3D renderer and character models load only on the team page. Profile films load after activation and pause when they leave the screen.
-
-## Services
-
-My work covers:
-
-- Website and e-commerce development
-- Frontend engineering and API integration
-- UI/UX design and brand identity
-- Website management and ongoing support
-- SEO, digital marketing and content
-- Business automation and NFC solutions
-- White-label development for agencies
-
-## The studio characters
-
-The characters bring personality to the website while keeping the business relationship straightforward.
-
-| Character      | Role                                                                                              |
-| -------------- | ------------------------------------------------------------------------------------------------- |
-| **Kael Astra** | My creative identity as Muhammad Soban, founder of DevOps Services.                               |
-| **Kai Ren**    | The studio’s coding character, representing engineering, problem-solving and attention to detail. |
-| **Milo**       | The operations character, representing preparation, resources and organized delivery.             |
-
-Kai and Milo are fictional studio characters. I lead and deliver client projects personally.
+The reel collection contains eight supplied launch and product reels alongside the two existing Babay Dee brand films. The Babay Dee launch reel appears once in the catalog.
 
 ## Technology
 
-| Area        | Tools                                             |
-| ----------- | ------------------------------------------------- |
-| Application | React 19 and TypeScript                           |
-| Build       | Vite                                              |
-| Styling     | CSS and Tailwind CSS                              |
-| Motion      | GSAP, ScrollTrigger and Motion                    |
-| 3D          | Three.js and optimized GLB assets                 |
-| Typography  | Self-hosted Sora, Manrope and Noto Sans JP        |
-| Testing     | Playwright, Chromium and axe accessibility checks |
-| Hosting     | Vercel                                            |
+| Area                     | Tools                                                              |
+| ------------------------ | ------------------------------------------------------------------ |
+| Application              | React 19, TypeScript and Vite                                      |
+| Typography               | Self-hosted Satoshi and Playfair Display; existing language fonts  |
+| Scrolling                | Lenis with native touch scrolling and browser history restoration  |
+| Motion                   | CSS transitions, IntersectionObserver and scroll-driven transforms |
+| Storm                    | Three.js r143, custom shaders and three postprocessing composers   |
+| Existing character route | Three.js with optimized GLB models                                 |
+| Testing                  | Playwright, Chromium and axe accessibility checks                  |
+| Hosting                  | Vercel                                                             |
 
 ## Local development
 
-Use **Node.js 24** and npm to match the deployment environment.
+I use Node.js 24 and npm to match the deployment environment.
 
 ```bash
 git clone https://github.com/SobanHaroon/Devopsservices-.git
@@ -75,97 +48,102 @@ npm ci
 npm run dev
 ```
 
-The development server runs at `http://localhost:3000`. The current frontend does not require environment variables.
-
-To preview a production build:
+The development server runs at `http://localhost:3000`. No environment variables are required for the current frontend.
 
 ```bash
+npm run lint
 npm run build
 npm run preview
 ```
 
 ## Commands
 
-| Command                | Purpose                                                        |
-| ---------------------- | -------------------------------------------------------------- |
-| `npm run dev`          | Start the development server                                   |
-| `npm run lint`         | Validate TypeScript                                            |
-| `npm run build`        | Create the production build in `dist/`                         |
-| `npm run preview`      | Serve the production build locally                             |
-| `npm test`             | Build and run both browser test suites                         |
-| `npm run test:browser` | Check routes, forms, languages, models and accessibility       |
-| `npm run test:scenery` | Check scenic scrolling, resizing, motion preferences and films |
-| `npm run screenshots`  | Build and capture desktop and mobile screenshots               |
-| `npm run model:build`  | Prepare and optimize the character models                      |
-| `npm run format`       | Format source files and documentation                          |
+| Command                  | Purpose                                                          |
+| ------------------------ | ---------------------------------------------------------------- |
+| `npm run dev`            | Start the development server                                     |
+| `npm run lint`           | Check TypeScript                                                 |
+| `npm run build`          | Create the production build in `dist/`                           |
+| `npm run preview`        | Preview the production build                                     |
+| `npm test`               | Build and run all three browser suites                           |
+| `npm run test:browser`   | Check routes, forms, languages and accessibility                 |
+| `npm run test:scenery`   | Check scroll scenes, motion preferences and interactive behavior |
+| `npm run test:marketing` | Check all ten films, filters and responsive layouts              |
+| `npm run screenshots`    | Capture desktop and mobile views                                 |
+| `npm run vendor:storm`   | Refresh the pinned r143 modules used by the embedded scene       |
+| `npm run format`         | Format source files and documentation                            |
 
 ## Project structure
 
 ```text
 src/
-  components/studio/   Homepage, team profiles, scenery and inquiry form
+  components/studio/   Homepage, scenery, navigation and inquiry form
+  components/          Case studies and digital marketing page
+  data/                Translations, services, case studies and reel catalog
   context/             Language state
-  data/                Services, translations, team profiles and case studies
-  lib/                 Shared utilities and motion preferences
-  App.tsx              Routes, metadata and scroll restoration
-  studio.css           Shared studio styles
-  cinematic.css        Scenic compositions and responsive behavior
+  lib/                 Shared utilities, metadata and motion preferences
+  App.tsx              Routes and scroll restoration
+  editorial.css        Editorial layout and responsive styles
 public/
-  media/               Scenery, portraits, films and project images
-  models/              Optimized runtime character models
-  fonts/               Font assets and licenses
-assets/
-  characters/          Character source assets
-  source-vectors/      Compressed SVG source files
-docs/                  Design, scenery and testing notes
-scripts/               Browser checks, captures and asset preparation
+  media/desert/        Responsive scenery film and poster
+  media/marketing/     Reels, posters, campaign artwork and storyboard
+  fonts/editorial/     Fonts and license notices
+  scenes/storm/        Standalone Storm HTML
+  vendor/storm/        Pinned Three.js r143 modules
+docs/                  Design and implementation notes
+scripts/               Browser checks and asset preparation
 ```
 
-## Motion and performance
+Existing project images, illustrations and model assets remain in their original folders. The three largest campaign films are stored as binary parts in `media-source/` to fit the publishing connection’s upload limit. `predev` and `prebuild` reassemble them byte for byte and verify their size and SHA-256 before writing the playable MP4 files. The delivered films retain their original quality and duration.
 
-Scrolling stays native. The cinematic sections follow scroll position without intercepting the mouse wheel or replacing browser scrolling. On short viewports, the scenes use normal document flow so their controls remain reachable.
+## Scenery and media
 
-Images use responsive WebP sources. The opening scene loads immediately; later scenery and posters load as needed. Animation contexts, observers and 3D resources are cleaned up when a view is left.
+The standalone scene at `/scenes/storm/index.html` uses the supplied Three.js r143 import map and runs without a build step. The embedded version uses the same shaders and constants with locally served modules. A device pixel ratio cap of two limits the embedded scene’s rendering cost.
 
-The motion controls and the device’s reduced-motion preference provide a quieter presentation without removing content. Changing that preference while the site is open updates the scenery immediately.
+The desert uses separate desktop and mobile video files. Reels preserve their original portrait or 4:5 composition. All mounted films autoplay muted, loop continuously and have no native or custom playback controls. The same shared player covers the homepage, digital marketing catalog, Babay Dee case study and retained character route. Scrolling, opening the menu and starting other films do not pause playback. Filters remove excluded films and newly displayed films start automatically.
+
+Storm and loaded character scenes keep animating after leaving the viewport and behind the menu. Heavy 3D assets still load as their sections approach. Navigating away disposes media and rendering resources. A browser or operating system may suspend media in background tabs or power-saving modes; the player retries on return and after interaction when autoplay was blocked.
+
+Reduced-motion preferences simplify text entrances, parallax and smooth scrolling. Ambient films and scenes continue looping. If WebGL is unavailable, the page retains its artwork, heading and contact action.
+
+See [the editorial implementation notes](docs/editorial.md) for the layout and content decisions.
 
 ## Testing
 
-Install Chromium before running the browser suites:
+Install Chromium before running the suites:
 
 ```bash
 npx playwright install chromium
 npm test
 ```
 
-For an existing Chromium installation, set `PLAYWRIGHT_CHROME` to its executable path.
+Set `PLAYWRIGHT_CHROME` to use an existing Chromium installation.
 
-The checks cover navigation, direct routes, browser history, case-study filtering, mobile menus, inquiry validation and delivery states, four-language layouts, character interactions and accessibility. The scenery suite also checks reversible scroll progress, responsive image selection, resizing, landscape layouts and video playback behavior.
+The checks cover direct routes, refresh, Back/Forward navigation, case-study filtering, menu focus, keyboard dismissal, contact form states, four-language layouts, reel playback, scroll progress, reduced motion and unavailable-WebGL behavior. Responsive checks span 320px to 1920px.
 
-Responsive checks cover widths from **320px to 1920px**, including a landscape-phone viewport. Browser tests run in Chromium. Screenshots and test results are written to the ignored `artifacts/` directory. Form requests are intercepted during testing, so the tests do not send live inquiries.
+Automated accessibility checks cover the homepage, project directory, a project detail, digital marketing and the retained character route at desktop and mobile widths. These checks use Chromium; they do not replace a manual review on physical devices.
 
-## Contact form
+Test artifacts are written to the ignored `artifacts/` folder. Form submissions are intercepted during testing, so the suites never send live inquiries.
 
-The current form sends inquiries through the notification transport configured in `src/components/studio/ProjectContact.tsx`. It includes a submission timeout, duplicate-submit protection, error recovery and a success receipt.
+## Project inquiries
 
-White-label inquiries include the selected contract basis and **Contract based** pricing. Standard project inquiries retain their service selection and budget.
+The form supports standard services with USD or PKR budgets and white-label engagements on a project, monthly or weekly basis. It includes validation, duplicate-submit protection, a timeout, error recovery and a success receipt.
 
-The current notification topic is public. A private production CRM or confidential lead workflow should use an authenticated server endpoint and durable storage.
+The notification transport is configured in `src/components/studio/ProjectContact.tsx`. Its current topic is public. A confidential lead workflow should use an authenticated server endpoint and durable storage.
 
 ## Deployment
 
-This repository deploys to the existing **devopsservices** Vercel project.
+The repository is connected to the existing **devopsservices** Vercel project.
 
 1. Install dependencies with `npm ci`.
 2. Run `npm run lint` and `npm test`.
-3. Push the reviewed release to `main`.
-4. Confirm the production deployment and check the homepage, team profiles and case-study routes.
+3. Push the checked release to `main`.
+4. Confirm the production deployment, direct routes and media playback.
 
-`vercel.json` defines the Vite build, `dist/` output, SPA route fallback, asset caching and response headers. Direct links such as `/team#kai` and `/case-studies/atelier-noir` must continue working after a refresh.
+`vercel.json` defines the build, SPA fallback, caching and response headers. Direct routes such as `/digital-marketing` and `/case-studies/atelier-noir` must work after refreshing.
 
 ## Contact
 
-For a website, ongoing development support or a white-label partnership, [send me a project brief](https://devopsservices-seven.vercel.app/#contact).
+For a website, digital campaign or development partnership, [send me a project brief](https://devopsservices-seven.vercel.app/#contact).
 
 **Muhammad Soban** · Founder, DevOps Services
 

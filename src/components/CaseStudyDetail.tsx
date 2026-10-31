@@ -5,6 +5,8 @@ import { updateCaseStudyMetaTags } from "../lib/seo";
 import { useLanguage } from "../context/LanguageContext";
 import { REDESIGN_COPY } from "../data/redesignCopy";
 import WorkCard from "./studio/WorkCard";
+import MarketingShowcase from "./studio/MarketingShowcase";
+import { useMotionPreference } from "../lib/useMotionPreference";
 interface Props {
   slug: string;
   onBackToCaseStudies: () => void;
@@ -20,7 +22,8 @@ export default function CaseStudyDetail({
 }: Props) {
   const project = getCaseStudyBySlug(slug),
     { language } = useLanguage(),
-    c = REDESIGN_COPY[language];
+    c = REDESIGN_COPY[language],
+    reduced = useMotionPreference();
   useEffect(() => {
     if (project)
       updateCaseStudyMetaTags(
@@ -86,6 +89,12 @@ export default function CaseStudyDetail({
           <ArrowUpRight size={19} />
         </a>
       </header>
+      <nav className="case-index" aria-label="Case study sections">
+        <a href="#brief">01 / The brief</a>
+        <a href="#approach">02 / Our approach</a>
+        <a href="#gallery">03 / A closer look</a>
+        <a href="#delivery">04 / What we delivered</a>
+      </nav>
       <img
         className="case-hero-image"
         src={project.featuredImage}
@@ -112,18 +121,19 @@ export default function CaseStudyDetail({
           <p>{project.technologies.join(" · ")}</p>
         </div>
       </div>
-      <section className="case-story">
+      <section id="brief" className="case-story">
         <h2>{c.overview}</h2>
         <div>
           <p>{project.overview.whatItIs}</p>
           <p>{project.overview.ourContribution}</p>
+          <p>{project.overview.businessPurpose}</p>
         </div>
       </section>
       <section className="case-story">
         <h2>{c.challenge}</h2>
         <p>{project.challenge}</p>
       </section>
-      <section className="case-story">
+      <section id="approach" className="case-story">
         <h2>{c.solution}</h2>
         <p>{project.solution}</p>
       </section>
@@ -138,7 +148,30 @@ export default function CaseStudyDetail({
           ))}
         </div>
       </section>
-      <section className="case-gallery">
+      <section className="case-features">
+        <h2>Design decisions</h2>
+        <div className="case-design-grid">
+          {Object.entries(project.designApproach).map(([key, text]) => (
+            <article key={key}>
+              <h3>
+                {
+                  (
+                    {
+                      responsive: "Across every screen",
+                      userExperience: "A clear next step",
+                      visualHierarchy: "A considered hierarchy",
+                      navigation: "Easy to explore",
+                      animations: "Motion with purpose",
+                    } as Record<string, string>
+                  )[key]
+                }
+              </h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section id="gallery" className="case-gallery">
         <h2>{c.gallery}</h2>
         <div>
           {project.galleryImages.map((image, i) => (
@@ -162,7 +195,7 @@ export default function CaseStudyDetail({
           ))}
         </div>
       </section>
-      <section className="case-story">
+      <section id="delivery" className="case-story">
         <h2>{c.results}</h2>
         <ul className="delivery-list">
           {project.results.map((result) => (
@@ -170,6 +203,9 @@ export default function CaseStudyDetail({
           ))}
         </ul>
       </section>
+      {project.id === "babey-dee-atta-chakki" && (
+        <MarketingShowcase compact onNavigate={() => {}} />
+      )}
       <section className="related-work">
         <h2>{c.next}</h2>
         <div className="work-grid related-grid">

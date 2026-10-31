@@ -15,11 +15,9 @@ const descriptions = {
 };
 export default function CharacterArt({
   character,
-  paused,
   caption,
 }: {
   character: CharacterName;
-  paused: boolean;
   caption: string;
 }) {
   const host = useRef<HTMLElement>(null),
@@ -36,7 +34,7 @@ export default function CharacterArt({
       <div className="character-grid" aria-hidden="true" />
       <m.div
         className="character-stage"
-        style={{ y: reduced || paused ? 0 : y }}
+        style={{ y: reduced ? 0 : y }}
         role="img"
         aria-label={descriptions[character]}
       >
@@ -49,13 +47,9 @@ export default function CharacterArt({
           loading={character === "kael" ? "eager" : "lazy"}
           fetchPriority={character === "kael" ? "high" : "auto"}
         />
-        {near && !reduced && (
+        {near && (
           <Suspense fallback={null}>
-            <CharacterScene
-              character={character}
-              paused={paused}
-              progress={scrollYProgress}
-            />
+            <CharacterScene character={character} progress={scrollYProgress} />
           </Suspense>
         )}
       </m.div>

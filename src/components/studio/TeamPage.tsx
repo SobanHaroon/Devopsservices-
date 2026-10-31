@@ -1,12 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  Github,
-  MapPin,
-  Pause,
-  Play,
-} from "lucide-react";
+import { useEffect, useRef } from "react";
+import { ArrowLeft, ArrowUpRight, Github, MapPin } from "lucide-react";
 import { useMotionPreference } from "../../lib/useMotionPreference";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,9 +18,7 @@ export default function TeamPage({
   const { language } = useLanguage(),
     c = TEAM_COPY[language],
     reduced = useMotionPreference();
-  const [paused, setPaused] = useState(false),
-    off = !!reduced || paused,
-    root = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
     updateCaseStudyMetaTags(
       `${c.title} | DevOps Services`,
@@ -36,7 +27,7 @@ export default function TeamPage({
       undefined,
       "/team",
     );
-    if (off) return;
+    if (reduced) return;
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) =>
         gsap.fromTo(
@@ -53,18 +44,14 @@ export default function TeamPage({
       );
     }, root);
     return () => ctx.revert();
-  }, [language, off, c]);
+  }, [language, reduced, c]);
   const go = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
     onNavigate(to);
   };
   return (
-    <div
-      ref={root}
-      className={`team-page ${off ? "motion-paused" : ""}`}
-      data-language={language}
-    >
+    <div ref={root} className="team-page" data-language={language}>
       <section className="team-board container">
         <div className="team-page-tools">
           <nav aria-label="Team page navigation">
@@ -73,15 +60,6 @@ export default function TeamPage({
               {c.back}
             </a>
           </nav>
-          <button
-            className="motion-control"
-            aria-pressed={off}
-            disabled={!!reduced}
-            onClick={() => setPaused((v) => !v)}
-          >
-            {off ? <Play size={15} /> : <Pause size={15} />}{" "}
-            {reduced ? c.off : paused ? c.resume : c.pause}
-          </button>
         </div>
         <div className="team-board-grid">
           <div className="team-title-tile">
@@ -100,7 +78,7 @@ export default function TeamPage({
             <TeamCard
               key={character}
               character={character}
-              paused={off}
+              paused={false}
               onNavigate={onNavigate}
             />
           ))}
@@ -118,7 +96,7 @@ export default function TeamPage({
               aria-labelledby={`${character}-title`}
             >
               <div className="team-model-panel">
-                <CharacterArt character={character} paused={off} caption="" />
+                <CharacterArt character={character} caption="" />
               </div>
               <div className="team-profile-copy">
                 <h2 id={`${character}-title`} data-reveal>
@@ -180,7 +158,7 @@ export default function TeamPage({
                     </a>
                   </nav>
                 )}
-                <TeamFilm character={character} paused={off} />
+                <TeamFilm character={character} />
               </div>
             </section>
           );
