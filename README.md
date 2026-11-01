@@ -1,172 +1,103 @@
 # DevOps Services
 
-**Thoughtful websites. Distinctive experiences. Reliable delivery.**
+**Websites, motion and digital marketing for brands ready to be seen.**
 
-I built DevOps Services as the online home for my independent web studio. It brings my services, selected projects, creative identity and client inquiries into one place, with a visual direction inspired by Japanese illustration and modern technology.
+DevOps Services is the independent digital practice of Muhammad Soban, based in Rawalpindi, Pakistan and working with businesses and agencies worldwide.
 
-I’m **Muhammad Soban**, a developer and designer based in Rawalpindi, Pakistan. I work directly with businesses and agencies on websites, frontend development, digital experiences and white-label partnerships.
+[Website](https://devopsservices-seven.vercel.app/) · [Selected work](https://devopsservices-seven.vercel.app/case-studies) · [Digital marketing](https://devopsservices-seven.vercel.app/digital-marketing) · [Start a project](https://devopsservices-seven.vercel.app/#contact)
 
-[Visit the website](https://devopsservices-seven.vercel.app/) · [Explore the work](https://devopsservices-seven.vercel.app/case-studies) · [Meet the team](https://devopsservices-seven.vercel.app/team) · [Start a project](https://devopsservices-seven.vercel.app/#contact)
-
-![DevOps Services website](docs/homepage.webp)
+![DevOps Services homepage](docs/homepage.webp)
 
 ## The experience
 
-The design follows the company logo’s navy, cyan, ice and gold palette. Four illustrated environments—the city, studio, gallery and harbor—connect the main sections through layered scenery and scroll-driven motion.
+An editorial visual system pairs Playfair Display and Satoshi with monochrome surfaces, dashed rules and asymmetric project spreads. Colour comes from the work itself, the interactive Storm and the moving desert landscape.
 
-The interface keeps the essentials clear: what I do, the work I’ve delivered, how a partnership can work and how to get in touch.
+- **Interactive Storm:** 50,000 additive particles, a crimson-to-gold radial palette, cursor repulsion, camera parallax and a scroll-driven dive.
+- **Selected work:** five individual website case studies with the brief, approach, features, gallery and delivered scope.
+- **Digital marketing:** eight films grouped into dedicated sections for Babay Dee Atta Chakki, Cielo Noir, DevOps Services and Muhammad Soban.
+- **Continuous media:** every displayed video autoplays muted, loops and plays inline without playback controls. Portrait and 4:5 reels keep their original proportions.
+- **Editorial motion:** smooth scrolling, heading entrances, on-scroll reveals and image parallax. Reduced-motion preferences simplify interface transitions; the explicitly continuous media remains playing.
+- **Project inquiries:** service selection, USD/PKR project budgets, contract-based white-label options and visible delivery/retry states.
+- **Responsive navigation:** keyboard-accessible full-screen menu, direct routes, campaign anchors and browser history.
 
-- **Cinematic scrolling:** layered parallax, native sticky sections and a perspective reveal for the featured project.
-- **Responsive scenery:** dedicated portrait compositions for key scenes and appropriately sized images for different screen widths.
-- **Interactive team profiles:** three 3D characters with scroll and pointer responses, original illustrations and short profile films.
-- **Selected work:** individual case studies, category filters, direct project links and reliable Back/Forward navigation.
-- **White-label partnerships:** project-based, monthly and weekly engagements with pricing agreed around the scope.
-- **Project inquiries:** service selection, USD/PKR budgets for standard projects, contract options, submission feedback and retry handling.
-- **Four languages:** English, Japanese, French and German.
-- **Motion preferences:** pause controls, reduced-motion support and static character posters when WebGL is unavailable.
+The studio is described as an independent practice. The previous fictional team presentation has been removed; existing `/team` links redirect to the studio introduction.
 
-The homepage uses lightweight layered imagery. The 3D renderer and character models load only on the team page. Profile films load after activation and pause when they leave the screen.
+## Run locally
 
-## Services
-
-My work covers:
-
-- Website and e-commerce development
-- Frontend engineering and API integration
-- UI/UX design and brand identity
-- Website management and ongoing support
-- SEO, digital marketing and content
-- Business automation and NFC solutions
-- White-label development for agencies
-
-## The studio characters
-
-The characters bring personality to the website while keeping the business relationship straightforward.
-
-| Character      | Role                                                                                              |
-| -------------- | ------------------------------------------------------------------------------------------------- |
-| **Kael Astra** | My creative identity as Muhammad Soban, founder of DevOps Services.                               |
-| **Kai Ren**    | The studio’s coding character, representing engineering, problem-solving and attention to detail. |
-| **Milo**       | The operations character, representing preparation, resources and organized delivery.             |
-
-Kai and Milo are fictional studio characters. I lead and deliver client projects personally.
-
-## Technology
-
-| Area        | Tools                                             |
-| ----------- | ------------------------------------------------- |
-| Application | React 19 and TypeScript                           |
-| Build       | Vite                                              |
-| Styling     | CSS and Tailwind CSS                              |
-| Motion      | GSAP, ScrollTrigger and Motion                    |
-| 3D          | Three.js and optimized GLB assets                 |
-| Typography  | Self-hosted Sora, Manrope and Noto Sans JP        |
-| Testing     | Playwright, Chromium and axe accessibility checks |
-| Hosting     | Vercel                                            |
-
-## Local development
-
-Use **Node.js 24** and npm to match the deployment environment.
+Use Node.js 24 and npm.
 
 ```bash
-git clone https://github.com/SobanHaroon/Devopsservices-.git
-cd Devopsservices-
 npm ci
 npm run dev
 ```
 
-The development server runs at `http://localhost:3000`. The current frontend does not require environment variables.
-
-To preview a production build:
+The Vite development server uses port 3000. In environments that only expose loopback interfaces, use `npx vite --host 127.0.0.1 --port 3000`.
 
 ```bash
-npm run build
-npm run preview
+npm run lint       # TypeScript validation
+npm run build      # Production files in dist/
+npm run preview    # Preview the production build
 ```
 
-## Commands
+## Browser checks
 
-| Command                | Purpose                                                        |
-| ---------------------- | -------------------------------------------------------------- |
-| `npm run dev`          | Start the development server                                   |
-| `npm run lint`         | Validate TypeScript                                            |
-| `npm run build`        | Create the production build in `dist/`                         |
-| `npm run preview`      | Serve the production build locally                             |
-| `npm test`             | Build and run both browser test suites                         |
-| `npm run test:browser` | Check routes, forms, languages, models and accessibility       |
-| `npm run test:scenery` | Check scenic scrolling, resizing, motion preferences and films |
-| `npm run screenshots`  | Build and capture desktop and mobile screenshots               |
-| `npm run model:build`  | Prepare and optimize the character models                      |
-| `npm run format`       | Format source files and documentation                          |
-
-## Project structure
-
-```text
-src/
-  components/studio/   Homepage, team profiles, scenery and inquiry form
-  context/             Language state
-  data/                Services, translations, team profiles and case studies
-  lib/                 Shared utilities and motion preferences
-  App.tsx              Routes, metadata and scroll restoration
-  studio.css           Shared studio styles
-  cinematic.css        Scenic compositions and responsive behavior
-public/
-  media/               Scenery, portraits, films and project images
-  models/              Optimized runtime character models
-  fonts/               Font assets and licenses
-assets/
-  characters/          Character source assets
-  source-vectors/      Compressed SVG source files
-docs/                  Design, scenery and testing notes
-scripts/               Browser checks, captures and asset preparation
-```
-
-## Motion and performance
-
-Scrolling stays native. The cinematic sections follow scroll position without intercepting the mouse wheel or replacing browser scrolling. On short viewports, the scenes use normal document flow so their controls remain reachable.
-
-Images use responsive WebP sources. The opening scene loads immediately; later scenery and posters load as needed. Animation contexts, observers and 3D resources are cleaned up when a view is left.
-
-The motion controls and the device’s reduced-motion preference provide a quieter presentation without removing content. Changing that preference while the site is open updates the scenery immediately.
-
-## Testing
-
-Install Chromium before running the browser suites:
+Install Chromium, or point `PLAYWRIGHT_CHROME` at an existing compatible browser:
 
 ```bash
 npx playwright install chromium
 npm test
 ```
 
-For an existing Chromium installation, set `PLAYWRIGHT_CHROME` to its executable path.
+The browser suite starts its own local static server and checks real navigation, campaign anchors, video decoding and looping, the Storm interactions, inquiry validation/retry states and responsive layouts. It saves screenshots and audit results under the ignored `artifacts/editorial/` directory. Form requests are intercepted; tests do not send live inquiries.
 
-The checks cover navigation, direct routes, browser history, case-study filtering, mobile menus, inquiry validation and delivery states, four-language layouts, character interactions and accessibility. The scenery suite also checks reversible scroll progress, responsive image selection, resizing, landscape layouts and video playback behavior.
+## Project structure
 
-Responsive checks cover widths from **320px to 1920px**, including a landscape-phone viewport. Browser tests run in Chromium. Screenshots and test results are written to the ignored `artifacts/` directory. Form requests are intercepted during testing, so the tests do not send live inquiries.
+```text
+src/
+  components/editorial/   Storm embed, looping media, motion and marketing page
+  components/studio/      Header, homepage, footer, inquiry form and work cards
+  components/             Case-study archive and detail views
+  data/                   Project, campaign and inquiry copy
+  context/                Inquiry language preference
+  lib/                    Project brief formatting and metadata
+  App.tsx                 Routing and browser-history handling
+  editorial.css           Responsive editorial design system
+public/
+  scenes/storm/index.html  Standalone procedural Storm
+  vendor/three-r143/       Pinned Three.js modules used by the embedded scene
+  media/reels/             Eight optimized reels, posters and source mapping
+  media/desert/            Desert film and poster
+  media/work/              Existing project imagery
+  fonts/                  Local Satoshi and Japanese font files
+scripts/
+  check-editorial.mjs      Browser verification and screenshot capture
+  local-server.mjs         Static test server
+```
 
-## Contact form
+## Storm scene
 
-The current form sends inquiries through the notification transport configured in `src/components/studio/ProjectContact.tsx`. It includes a submission timeout, duplicate-submit protection, error recovery and a success receipt.
+`public/scenes/storm/index.html` is a standalone HTML scene with inline shaders and application code. Opening it normally uses the specified Three.js r143 unpkg import map. The website embeds it with `?embedded=1&local=1`, using the same pinned modules served locally and receiving scroll/pointer input from its parent.
 
-White-label inquiries include the selected contract basis and **Contract based** pricing. Standard project inquiries retain their service selection and budget.
+The scene preserves the supplied constants, geometry, shaders and three-composer rendering order. A black one-pixel texture explicitly represents the unused halo. The embedded mode removes the standalone scroll host; the homepage supplies scroll progress instead. A lightweight animated fallback appears when WebGL cannot initialize.
 
-The current notification topic is public. A private production CRM or confidential lead workflow should use an authenticated server endpoint and durable storage.
+## Campaign media
+
+The supplied masters remain the source material. Web copies are H.264, 720 pixels wide, 30 fps, silent and optimized for progressive playback; durations and aspect ratios are preserved. The desert loop is 1920 pixels wide at 24 fps. `public/media/reels/manifest.json` maps the original filenames to their published paths.
+
+Browsers and operating systems can still restrict autoplay or suspend background tabs. The site requests muted playback on load and retries when media is ready, the page becomes visible or a visitor interacts. It does not intentionally pause offscreen reels or provide playback buttons.
+
+## Inquiry delivery
+
+The existing form posts to its configured notification transport in `ProjectContact.tsx`, with a timeout, duplicate-submit protection, error recovery and success receipt. White-label enquiries support project, monthly and weekly contracts; standard enquiries retain their service selection and project budget.
+
+The inquiry form is available in English, Japanese, French and German. The surrounding editorial site is in English. The existing notification topic is public; a confidential production lead workflow requires an authenticated server endpoint and durable storage.
 
 ## Deployment
 
-This repository deploys to the existing **devopsservices** Vercel project.
+The repository is connected to the existing **devopsservices** Vercel project. Vercel builds with `npm run build` and publishes `dist/`. `vercel.json` defines the SPA fallback, legacy team redirect and response headers.
 
-1. Install dependencies with `npm ci`.
-2. Run `npm run lint` and `npm test`.
-3. Push the reviewed release to `main`.
-4. Confirm the production deployment and check the homepage, team profiles and case-study routes.
-
-`vercel.json` defines the Vite build, `dist/` output, SPA route fallback, asset caching and response headers. Direct links such as `/team#kai` and `/case-studies/atelier-noir` must continue working after a refresh.
+Validate the release with TypeScript and browser checks, push it to the connected production branch, then confirm the Vercel deployment. Direct URLs for `/digital-marketing` and `/case-studies/:slug` must load on refresh.
 
 ## Contact
 
-For a website, ongoing development support or a white-label partnership, [send me a project brief](https://devopsservices-seven.vercel.app/#contact).
-
-**Muhammad Soban** · Founder, DevOps Services
-
-[Portfolio](https://muhammadsoban.vercel.app/) · [GitHub](https://github.com/SobanHaroon)
+[Send a project brief](https://devopsservices-seven.vercel.app/#contact) · [Instagram](https://www.instagram.com/devopsservicesltd/) · [Muhammad Soban](https://muhammadsoban.vercel.app/)

@@ -5,6 +5,8 @@ import { updateCaseStudyMetaTags } from "../lib/seo";
 import { useLanguage } from "../context/LanguageContext";
 import { REDESIGN_COPY } from "../data/redesignCopy";
 import WorkCard from "./studio/WorkCard";
+import { CAMPAIGNS } from "../data/marketing";
+import { LoopVideo } from "./editorial/Primitives";
 interface Props {
   slug: string;
   onBackToCaseStudies: () => void;
@@ -47,6 +49,17 @@ export default function CaseStudyDetail({
         "/case-studies",
       );
   }, [project]);
+  const campaign = CAMPAIGNS.find(
+    (p) =>
+      p.id ===
+      (
+        {
+          "babey-dee-atta-chakki": "babay-dee",
+          "devops-services": "devops",
+          "msoban-portfolio": "soban",
+        } as Record<string, string>
+      )[slug],
+  );
   const back = (
     <a
       className="text-link back-link"
@@ -138,6 +151,31 @@ export default function CaseStudyDetail({
           ))}
         </div>
       </section>
+      {campaign && (
+        <section className="case-reel-section">
+          <h2>The project in motion.</h2>
+          <div className={"campaign-reels count-" + campaign.reels.length}>
+            {campaign.reels.map((reel) => (
+              <figure key={reel.slug}>
+                <div className="reel-frame" style={{ aspectRatio: reel.ratio }}>
+                  <LoopVideo
+                    src={"/media/reels/" + reel.slug + ".mp4"}
+                    poster={"/media/reels/" + reel.slug + ".webp"}
+                    label={reel.title}
+                  />
+                </div>
+                <figcaption>
+                  <div>
+                    <h3>{reel.title}</h3>
+                    <p>{reel.format}</p>
+                  </div>
+                  <span>{reel.duration}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
       <section className="case-gallery">
         <h2>{c.gallery}</h2>
         <div>

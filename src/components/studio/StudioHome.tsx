@@ -1,369 +1,432 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Asterisk,
-  Check,
-  Pause,
-  Play,
-  Plus,
-} from "lucide-react";
-import { m } from "motion/react";
-import { useMotionPreference } from "../../lib/useMotionPreference";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLanguage } from "../../context/LanguageContext";
-import { STUDIO_COPY } from "../../data/studioCopy";
-import { REDESIGN_COPY } from "../../data/redesignCopy";
+import { useState } from "react";
 import { CASE_STUDIES } from "../../data/caseStudiesData";
-import ProjectContact from "./ProjectContact";
-import WorkCard from "./WorkCard";
-import type { ContractBasis } from "../../lib/projectBrief";
-import StudioTeam from "./StudioTeam";
+import { CAMPAIGNS } from "../../data/marketing";
 import {
-  BrandOrbit,
-  Foreground,
-  ScenePicture,
-  useScenicMotion,
-} from "./ScenicWorld";
-gsap.registerPlugin(ScrollTrigger);
-export default function StudioHome({
-  onNavigate,
-}: {
-  onNavigate: (path: string) => void;
-}) {
-  const { language } = useLanguage(),
-    c = REDESIGN_COPY[language],
-    old = STUDIO_COPY[language];
-  const reduced = useMotionPreference(),
-    root = useRef<HTMLDivElement>(null),
-    video = useRef<HTMLVideoElement>(null);
-  const [paused, setPaused] = useState(false),
-    [selected, setSelected] = useState<string[]>([]),
-    [basis, setBasis] = useState<ContractBasis>("project"),
-    [playing, setPlaying] = useState(false);
-  const off = !!reduced || paused;
-  useScenicMotion(root, off, language);
-  useEffect(() => {
-    if (off) return;
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) =>
-        gsap.fromTo(
-          el,
-          { y: 24, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.65,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 94%", once: true },
-          },
-        ),
-      );
-    }, root);
-    return () => ctx.revert();
-  }, [off, language]);
-  useEffect(() => {
-    if (off) {
-      video.current?.pause();
-      setPlaying(false);
-    }
-  }, [off]);
-  const featured = ["atelier-noir", "babey-dee-atta-chakki", "outsource-one"]
-    .map((id) => CASE_STUDIES.find((p) => p.id === id)!)
-    .filter(Boolean);
-  const chooseContract = (value: string) => {
-    setBasis(value as ContractBasis);
-    setSelected((items) =>
-      items.includes("white-label-partnership")
-        ? items
-        : [...items, "white-label-partnership"],
-    );
-    document
-      .getElementById("contact")
-      ?.scrollIntoView({ behavior: off ? "instant" : "smooth" });
-  };
+  Button,
+  Eyebrow,
+  Heading,
+  Link,
+  LoopVideo,
+  Words,
+  type Navigate,
+} from "../editorial/Primitives";
+import Storm from "../editorial/Storm";
+import ProjectContact from "./ProjectContact";
+import type { ContractBasis } from "../../lib/projectBrief";
+const services = [
+  [
+    "01",
+    "Websites & commerce",
+    "A clear path from first impression to checkout. Custom websites, online stores and interfaces that make your business easier to use.",
+    "Design · Development · E-commerce",
+  ],
+  [
+    "02",
+    "Digital marketing",
+    "Give people a reason to notice. Reels, product stories, launch campaigns and social assets with a recognisable point of view.",
+    "Reels · Campaigns · Brand content",
+  ],
+  [
+    "03",
+    "Ongoing development",
+    "Keep moving after launch. Website care, SEO, integrations and white-label development for agencies that need a dependable partner.",
+    "Management · SEO · Agency partnerships",
+  ],
+];
+const steps = [
+  [
+    "01",
+    "Understand",
+    "We start with your business, your audience and the problem worth solving. Together, we agree on a clear scope and direction.",
+  ],
+  [
+    "02",
+    "Shape",
+    "Structure, visual direction and early prototypes make the idea tangible. You see how it works before the full build begins.",
+  ],
+  [
+    "03",
+    "Make",
+    "Design becomes a working website or a finished campaign. We build, refine and check the details across screens.",
+  ],
+  [
+    "04",
+    "Launch & grow",
+    "We publish the work, hand it over clearly and agree on the support, content or improvements that come next.",
+  ],
+];
+const faqs = [
+  [
+    "What can we build together?",
+    "Websites, online stores, campaign landing pages, launch films and social content. You can start with one deliverable or connect the website and marketing work in one scope.",
+  ],
+  [
+    "Can you work with my agency?",
+    "Yes. White-label partnerships can be project based, weekly or monthly. We agree on deliverables, communication and pricing before work starts.",
+  ],
+  [
+    "Do you work internationally?",
+    "Yes. DevOps Services is based in Rawalpindi, Pakistan and works remotely with businesses and agencies worldwide.",
+  ],
+  [
+    "What happens after launch?",
+    "Ongoing website management, content production, SEO and development can be arranged separately. Your handover includes the information you need to run the finished work.",
+  ],
+];
+export default function StudioHome({ onNavigate }: { onNavigate: Navigate }) {
+  const [selected, setSelected] = useState<string[]>([]);
+  const [basis, setBasis] = useState<ContractBasis>("project");
+  const projects = [
+    "babey-dee-atta-chakki",
+    "atelier-noir",
+    "outsource-one",
+    "msoban-portfolio",
+    "devops-services",
+  ].map((id) => CASE_STUDIES.find((p) => p.id === id)!);
   return (
-    <div
-      ref={root}
-      className={"studio-home cinematic-home " + (off ? "motion-paused" : "")}
-      data-language={language}
-    >
-      <section
-        id="hero"
-        className={`studio-hero city-journey scene ${off ? "is-rest" : "is-live"}`}
-        data-scene="city-journey"
-      >
-        <div className="scene-stage">
-          <div className="scene-art" aria-hidden="true">
-            <ScenePicture scene="city" priority />
-            <Foreground />
+    <>
+      <section className="hero container" id="top">
+        <div className="hero-copy">
+          <Eyebrow>Web design & creative development</Eyebrow>
+          <h1>
+            <span className="line">
+              <span>Distinct by</span>
+            </span>
+            <span className="line">
+              <span>
+                <em>design.</em>
+              </span>
+            </span>
+          </h1>
+          <Words
+            className="hero-lead"
+            text="Websites, motion and digital marketing for brands ready to be seen."
+            delay={500}
+          />
+          <div className="hero-actions">
+            <Button to="/case-studies" onNavigate={onNavigate}>
+              Explore our work
+            </Button>
+            <Link to="/#contact" onNavigate={onNavigate} className="text-link">
+              Start a project <span>↗</span>
+            </Link>
           </div>
-          <div className="hero-main container">
-            <div className="hero-copy">
-              <m.h1
-                initial={{
-                  opacity: 0,
-                  transform: reduced ? "none" : "translateY(12px)",
-                }}
-                animate={{ opacity: 1, transform: "translateY(0px)" }}
-                transition={{ duration: 0.5 }}
-              >
-                {c.hero.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
-              </m.h1>
-              <div className="hero-summary">
-                <p>{c.intro}</p>
-                <div className="hero-actions">
-                  <a href="#contact" className="button button-accent">
-                    {c.start}
-                    <ArrowUpRight size={20} />
-                  </a>
-                  <a href="#case-studies" className="text-link">
-                    {c.work}
-                    <ArrowDown size={18} />
-                  </a>
-                </div>
-              </div>
+          <dl className="hero-facts">
+            <div>
+              <dt>The studio</dt>
+              <dd>Independent & hands-on</dd>
             </div>
+            <div>
+              <dt>Based in</dt>
+              <dd>Pakistan · Worldwide</dd>
+            </div>
+            <div>
+              <dt>The approach</dt>
+              <dd>Ideas into experiences</dd>
+            </div>
+          </dl>
+        </div>
+        <div className="hero-art">
+          <Storm />
+        </div>
+        <div className="hero-bottom">
+          <span>Design that feels different. Development that works.</span>
+          <a
+            href="#work"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("/#work");
+            }}
+          >
+            Scroll to discover ↓
+          </a>
+        </div>
+      </section>
+      <section className="statement section-space">
+        <div className="container statement-grid">
+          <Eyebrow>The way we see it</Eyebrow>
+          <div>
+            <p data-reveal>
+              Your brand deserves more than a place on the internet. It deserves
+              a world people want to <em>step into.</em>
+            </p>
+            <span className="signature">— DevOps Services</span>
           </div>
-          <div className="journey-caption container" aria-hidden="true">
-            <p>{c.caption}</p>
-            <BrandOrbit />
-          </div>
-          <div className="hero-bottom container">
-            <span>{c.note}</span>
-            <button
-              className="motion-control"
-              aria-pressed={off}
-              disabled={!!reduced}
-              onClick={() => setPaused((v) => !v)}
+        </div>
+      </section>
+      <section className="selected-work section-space container" id="work">
+        <div className="section-top">
+          <Heading label="Selected work">
+            Made with
+            <br />
+            <em>intent.</em>
+          </Heading>
+          <p>
+            From everyday essentials to expressive fashion. A selection of
+            websites with a purpose of their own.
+          </p>
+        </div>
+        <div className="editorial-work-grid">
+          {projects.map((p, i) => (
+            <article
+              className={"project-plate project-" + p.id}
+              key={p.id}
+              data-reveal
             >
-              {off ? <Play size={15} /> : <Pause size={15} />}{" "}
-              {reduced ? old.noMotion : paused ? old.resume : old.motion}
-            </button>
-          </div>
-        </div>
-      </section>
-      <div className="capability-strip" aria-hidden="true">
-        {c.capabilities.map((item) => (
-          <span key={item}>
-            {item}
-            <Asterisk className="small-cross" size={24} />
-          </span>
-        ))}
-      </div>
-      <section id="services" className="services-section section-space inverse">
-        <div className="container services-stage-layout">
-          <div className="service-world scenic-frame">
-            <ScenePicture scene="studio" />
-            <div className="service-world-copy">
-              <h2 data-reveal>{c.servicesTitle}</h2>
-              <p data-reveal>{c.servicesIntro}</p>
-            </div>
-          </div>
-          <div className="services-layout">
-            <div className="services-grid">
-              {c.serviceGroups.map((service) => {
-                const active = service.ids.every((id) => selected.includes(id));
-                return (
-                  <article
-                    className="service-card"
-                    key={service.title}
-                    data-reveal
-                  >
-                    <span
-                      className="service-kanji"
-                      aria-hidden="true"
-                      lang="ja"
-                    >
-                      {service.mark}
-                    </span>
-                    <h3>{service.title}</h3>
-                    <p>{service.text}</p>
-                    <ul>
-                      {service.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                    <button
-                      className="text-link"
-                      aria-pressed={active}
-                      onClick={() =>
-                        setSelected((items) =>
-                          active
-                            ? items.filter((id) => !service.ids.includes(id))
-                            : [...new Set([...items, ...service.ids])],
-                        )
-                      }
-                    >
-                      {active ? c.added : c.add}
-                      {active ? <Check size={18} /> : <Plus size={18} />}
-                    </button>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="case-studies" className="work-section gallery-section">
-        <div
-          className={`gallery-journey scene ${off ? "is-rest" : "is-live"}`}
-          data-scene="project-gallery"
-        >
-          <div className="scene-stage">
-            <div className="scene-art" aria-hidden="true">
-              <ScenePicture scene="gallery" />
-            </div>
-            <div className="gallery-content container">
-              <div className="section-heading">
-                <div>
-                  <h2 data-reveal>{c.workTitle}</h2>
-                  <p data-reveal>{c.workIntro}</p>
-                </div>
-                <a
-                  className="text-link"
-                  href="/case-studies"
-                  onClick={(e) => {
-                    if (!e.metaKey && !e.ctrlKey) {
-                      e.preventDefault();
-                      onNavigate("/case-studies");
-                    }
-                  }}
-                >
-                  {c.allWork}
-                  <ArrowUpRight size={20} />
-                </a>
-              </div>
-              <a
-                className="gallery-window"
-                href="/case-studies/atelier-noir"
-                aria-label={`${c.gallery}: Atelier Noir`}
-                onClick={(e) => {
-                  if (
-                    !e.metaKey &&
-                    !e.ctrlKey &&
-                    !e.shiftKey &&
-                    e.button === 0
-                  ) {
-                    e.preventDefault();
-                    onNavigate("/case-studies/atelier-noir");
-                  }
-                }}
-              >
-                <img
-                  src={featured[0].featuredImage}
-                  alt="Atelier Noir fashion website"
-                  width="1200"
-                  height="750"
-                  loading="lazy"
-                />
-                <span>
-                  Atelier Noir <ArrowUpRight size={22} />
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="project-grid-wrap container">
-          <div className="work-grid">
-            {featured.map((project) => (
-              <WorkCard
-                key={project.id}
-                project={project}
+              <Link
+                to={"/case-studies/" + p.slug}
                 onNavigate={onNavigate}
-              />
-            ))}
-          </div>
+                className="project-image"
+                aria-label={"View " + p.title + " case study"}
+              >
+                <div data-parallax>
+                  <img
+                    src={p.featuredImage}
+                    alt={
+                      p.id === "msoban-portfolio"
+                        ? "Muhammad Soban portfolio workspace illustration"
+                        : p.title + " website"
+                    }
+                    loading="lazy"
+                    width="1200"
+                    height="800"
+                  />
+                </div>
+                <span className="project-arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </Link>
+              <div className="project-caption">
+                <div>
+                  <span className="project-index">
+                    0{i + 1} /{" "}
+                    {p.category
+                      .replace(" Development", "")
+                      .replace(" / Developer Website", "")}
+                  </span>
+                  <h3>
+                    <Link
+                      to={"/case-studies/" + p.slug}
+                      onNavigate={onNavigate}
+                    >
+                      {p.title}
+                    </Link>
+                  </h3>
+                </div>
+                <span>2026</span>
+              </div>
+              <p className="project-description">{p.shortDescription}</p>
+            </article>
+          ))}
+        </div>
+        <div className="end-link">
+          <Button to="/case-studies" onNavigate={onNavigate} ghost>
+            All case studies
+          </Button>
         </div>
       </section>
-      <section id="partnerships" className="partner-section section-space">
-        <div className="partner-landscape scenic-frame">
-          <ScenePicture scene="harbor" />
-          <div className="container partner-landscape-copy">
-            <h2 data-reveal>{c.partnerTitle}</h2>
-            <p data-reveal>{c.partnerIntro}</p>
-          </div>
+      <section className="desert-section">
+        <LoopVideo
+          src="/media/desert/purple-desert.mp4"
+          poster="/media/desert/purple-desert.webp"
+          label="Purple desert, a continuous moving landscape"
+        />
+        <div className="desert-scrim" />
+        <div className="container desert-copy">
+          <Eyebrow>A different perspective</Eyebrow>
+          <h2 data-reveal>
+            A little less
+            <br />
+            <em>ordinary.</em>
+          </h2>
+          <p>
+            A distinctive idea is only the beginning.
+            <br />
+            We turn it into something people can experience.
+          </p>
+          <Button to="/#contact" onNavigate={onNavigate}>
+            Bring us your idea
+          </Button>
         </div>
+        <div className="desert-caption">
+          <span>IMAGINATION → REALITY</span>
+          <span>DevOps Services / Creative development</span>
+        </div>
+      </section>
+      <section className="services-section section-space" id="services">
         <div className="container">
-          <div className="contract-grid">
-            {c.plans.map((plan) => (
-              <article className="contract-card" key={plan.basis} data-reveal>
-                <h3>{plan.name}</h3>
-                <p>{plan.text}</p>
-                <div className="contract-price">{c.price}</div>
-                <button
-                  className="text-link"
-                  onClick={() => chooseContract(plan.basis)}
-                >
-                  {c.choose}
-                  <ArrowUpRight size={20} />
-                </button>
+          <Heading label="What we do">
+            From idea
+            <br />
+            <em>to launch.</em>
+          </Heading>
+          <div className="service-list">
+            {services.map(([number, title, body, tags]) => (
+              <article key={title} data-reveal>
+                <span className="service-number">{number}</span>
+                <h3>{title}</h3>
+                <div>
+                  <p>{body}</p>
+                  <span className="service-tags">{tags}</span>
+                </div>
+                {number === "02" ? (
+                  <Link
+                    to="/digital-marketing"
+                    onNavigate={onNavigate}
+                    className="service-arrow"
+                    aria-label="Explore digital marketing"
+                  >
+                    ↗
+                  </Link>
+                ) : (
+                  <Link
+                    to="/#contact"
+                    onNavigate={onNavigate}
+                    className="service-arrow"
+                    aria-label={"Enquire about " + title}
+                  >
+                    ↗
+                  </Link>
+                )}
               </article>
             ))}
           </div>
-          <p className="contract-note">{c.priceNote}</p>
         </div>
       </section>
-      <StudioTeam onNavigate={onNavigate} paused={off} />
-      <section id="about" className="about-section container section-space">
-        <div className="about-copy">
-          <h2 data-reveal>{c.aboutTitle}</h2>
-          <p data-reveal>{c.aboutText}</p>
-          <ol className="process-list">
-            {c.process.map((step) => (
-              <li key={step} data-reveal>
-                <span>{step}</span>
-                <ArrowUpRight size={18} />
+      <section className="growth-preview section-space">
+        <div className="container">
+          <div className="section-top">
+            <Heading label="Beyond the website">
+              A brand that
+              <br />
+              <em>keeps moving.</em>
+            </Heading>
+            <div>
+              <p>
+                Product stories, launch films and content made to carry your
+                brand into the feed.
+              </p>
+              <Link
+                to="/digital-marketing"
+                onNavigate={onNavigate}
+                className="text-link"
+              >
+                Explore digital marketing ↗
+              </Link>
+            </div>
+          </div>
+          <div className="preview-reels">
+            {[
+              CAMPAIGNS[0].reels[1],
+              CAMPAIGNS[1].reels[1],
+              CAMPAIGNS[2].reels[0],
+            ].map((reel, i) => (
+              <figure key={reel.slug} data-reveal>
+                <LoopVideo
+                  src={"/media/reels/" + reel.slug + ".mp4"}
+                  poster={"/media/reels/" + reel.slug + ".webp"}
+                  label={reel.title}
+                />
+                <figcaption>
+                  <span>0{i + 1}</span>
+                  <div>
+                    <h3>{CAMPAIGNS[i].name}</h3>
+                    <p>{reel.format}</p>
+                  </div>
+                  <Link
+                    to={"/digital-marketing#" + CAMPAIGNS[i].id}
+                    onNavigate={onNavigate}
+                    aria-label={"Explore " + CAMPAIGNS[i].name + " campaign"}
+                  >
+                    ↗
+                  </Link>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="about-section section-space container" id="about">
+        <div className="about-grid">
+          <Heading label="The studio">
+            Independent.
+            <br />
+            <em>By design.</em>
+          </Heading>
+          <div>
+            <p>
+              DevOps Services is the independent practice of Muhammad Soban, a
+              developer and designer based in Rawalpindi, Pakistan.
+            </p>
+            <p>
+              I work directly with businesses and agencies on websites, digital
+              experiences and brand content. From the first conversation to the
+              final handover, you work with the person making it.
+            </p>
+            <p>
+              The aim is straightforward: make the business clear, make the
+              experience memorable, and make the details work.
+            </p>
+            <span className="signature">— Muhammad Soban</span>
+          </div>
+        </div>
+        <dl className="studio-facts">
+          <div>
+            <dt>Based in</dt>
+            <dd>Rawalpindi, Pakistan</dd>
+          </div>
+          <div>
+            <dt>Working with</dt>
+            <dd>Businesses & agencies</dd>
+          </div>
+          <div>
+            <dt>Practice</dt>
+            <dd>Web, motion & marketing</dd>
+          </div>
+          <div>
+            <dt>Reach</dt>
+            <dd>Worldwide</dd>
+          </div>
+        </dl>
+      </section>
+      <section className="process-section section-space" id="process">
+        <div className="container process-grid">
+          <div className="sticky-heading">
+            <Heading label="How we work">
+              A clear
+              <br />
+              <em>process.</em>
+            </Heading>
+          </div>
+          <ol>
+            {steps.map(([number, title, body]) => (
+              <li key={number} data-reveal>
+                <span className="step-number">{number}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                </div>
               </li>
             ))}
           </ol>
         </div>
-        <div className="studio-film" data-reveal>
-          <video
-            ref={video}
-            src="/media/studio-process.mp4"
-            poster="/media/studio-poster.jpg"
-            muted
-            loop
-            playsInline
-            preload="none"
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-          />
-          <div className="film-caption">
-            <span>{old.videoLabel}</span>
-            <button
-              className="icon-button"
-              aria-label={playing ? old.pauseVideo : old.play}
-              onClick={async () => {
-                if (!video.current) return;
-                if (playing) video.current.pause();
-                else
-                  try {
-                    await video.current.play();
-                  } catch {
-                    setPlaying(false);
-                  }
-              }}
-            >
-              {playing ? <Pause size={22} /> : <Play size={22} />}
-            </button>
-          </div>
-        </div>
       </section>
-      <section id="faq" className="faq-section container section-space">
-        <h2 data-reveal>{c.faqTitle}</h2>
+      <section className="faq-section section-space container">
+        <Heading label="A few answers">
+          Before we
+          <br />
+          <em>begin.</em>
+        </Heading>
         <div className="faq-list">
-          {c.faq.map(([q, a]) => (
-            <details key={q} data-reveal>
+          {faqs.map(([q, a], i) => (
+            <details key={q}>
               <summary>
-                {q}
-                <Plus size={20} />
+                <h3>{q}</h3>
+                <span aria-hidden="true">+</span>
               </summary>
-              <p>{a}</p>
+              <div className="faq-answer" id={"answer-" + i}>
+                <p>{a}</p>
+              </div>
             </details>
           ))}
         </div>
@@ -374,6 +437,6 @@ export default function StudioHome({
         basis={basis}
         setBasis={setBasis}
       />
-    </div>
+    </>
   );
 }

@@ -296,17 +296,24 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "Corporate / Agency Website",
     client: "DevOps Services",
     shortDescription:
-      "A Japanese-inspired digital studio: expressive typography, original 3D artwork, and a straightforward path from discovery to project brief.",
+      "An independent digital studio, presented through editorial typography, interactive light and project-led storytelling.",
     liveUrl: "https://devopsservices-seven.vercel.app/",
     ctaText: "Visit website",
     featuredImage: "/media/work/devops-services.webp",
     highlights: [
-      "Original 3D scene",
-      "Multilingual interface",
+      "Interactive Storm scene",
+      "Project-led case studies",
       "White-label partnerships",
       "Responsive grids",
     ],
-    technologies: ["React", "TypeScript", "Three.js", "GSAP", "Motion", "Vite"],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Three.js",
+      "Lenis",
+      "Motion",
+      "Vite",
+    ],
     overview: {
       whatItIs:
         "The website for DevOps Services, an independent digital studio based in Rawalpindi, Pakistan.",
@@ -315,17 +322,17 @@ export const CASE_STUDIES: CaseStudy[] = [
       businessPurpose:
         "Show real work, explain services, and make it easy to discuss a project or white-label contract.",
       ourContribution:
-        "Art direction, interface design, original 3D models, responsive development, multilingual content, and the inquiry workflow.",
+        "Art direction, responsive development, the Storm scene, a dedicated campaign library and a project inquiry workflow.",
     },
     challenge:
-      "Combine anime-inspired Japanese art direction with a credible IT studio presence, without making navigation or contact more complicated.",
+      "Bring websites, motion work and marketing services into one coherent studio presence while making each project easy to explore.",
     solution:
-      "A logo-led navy, cyan, ice, and gold visual system pairs with original 3D anime characters. Native scrolling, aligned grids, a personal founder profile, and direct forms keep the experience focused.",
+      "A monochrome editorial layout combines Playfair Display and Satoshi, asymmetric project spreads, a procedural Storm and a desert film. Dedicated campaign sections showcase eight launch and product reels.",
     keyFeatures: [
       {
-        title: "Original anime characters",
+        title: "Interactive light",
         description:
-          "Three original 3D characters respond to scrolling and hover in the hero, services, and partnership sections.",
+          "A 50,000-point Three.js scene responds to cursor movement and scroll, using a crimson, pink and gold palette.",
         iconName: "Layers",
       },
       {
@@ -335,9 +342,9 @@ export const CASE_STUDIES: CaseStudy[] = [
         iconName: "Briefcase",
       },
       {
-        title: "Accessible motion",
+        title: "Campaign library",
         description:
-          "A pause control, reduced-motion support, and a static fallback for the 3D artwork.",
+          "Eight muted, continuously looping reels in dedicated sections for four brands, with full-frame portrait and 4:5 presentation.",
         iconName: "Activity",
       },
       {
@@ -352,36 +359,35 @@ export const CASE_STUDIES: CaseStudy[] = [
       userExperience:
         "Direct contact with the founder and simple service selection.",
       visualHierarchy:
-        "Sora headings, Manrope body copy, and a logo-led color palette.",
+        "Playfair Display, Satoshi, monochrome surfaces and dashed editorial rules.",
       navigation:
         "Case-study routes with reliable Back/Forward and scroll restoration.",
       animations:
-        "GSAP reveals, Motion for React scroll transforms, and three original Three.js characters.",
+        "Lenis scrolling, image parallax, line reveals, a procedural Storm and continuous video loops.",
     },
     galleryImages: [
       {
         url: "/media/work/devops-services.webp",
-        caption: "The Japanese-inspired DevOps Services homepage.",
+        caption: "The editorial DevOps Services homepage.",
       },
       {
-        url: "/media/characters/kael.webp",
-        caption:
-          "Kael Astra, reconstructed in 3D from the founder’s character design.",
+        url: "/media/reels/devops-launch.webp",
+        caption: "The DevOps Services launch film.",
       },
     ],
     results: [
       "A responsive design across the homepage and case studies.",
       "A clear inquiry form with contract-based partnership options.",
-      "Original local 3D assets and self-hosted typography.",
-      "Reduced-motion support and dependable route recovery.",
+      "A procedural light scene, locally hosted film assets and self-hosted typography.",
+      "Dedicated marketing sections and dependable route recovery.",
     ],
     seo: {
       title: "DevOps Services Website Case Study",
       metaDescription:
-        "A Japanese-inspired digital studio: expressive typography, original 3D artwork, and a straightforward path from discovery to project brief.",
+        "An independent digital studio, presented through editorial typography, interactive light and project-led storytelling.",
       ogTitle: "DevOps Services — Digital Studio",
       ogDescription:
-        "A Japanese-inspired digital studio: expressive typography, original 3D artwork, and a straightforward path from discovery to project brief.",
+        "An independent digital studio, presented through editorial typography, interactive light and project-led storytelling.",
     },
   },
   {

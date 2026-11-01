@@ -11,3 +11,7 @@ coverage/
 artifacts/
 
 .taste-skill/
+
+# The embedded Storm serves this pinned browser module directly.
+!public/vendor/three-r143/build/
+!public/vendor/three-r143/build/three.module.js

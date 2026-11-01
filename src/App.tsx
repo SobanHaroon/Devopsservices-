@@ -9,24 +9,29 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { LazyMotion, domAnimation, MotionConfig } from "motion/react";
 import { LanguageProvider } from "./context/LanguageContext";
 import StudioHeader from "./components/studio/StudioHeader";
 import StudioHome from "./components/studio/StudioHome";
 import StudioFooter from "./components/studio/StudioFooter";
 import { updateCaseStudyMetaTags } from "./lib/seo";
-import "./studio.css";
-import "./cinematic.css";
+import "./editorial.css";
+import EditorialMotion from "./components/editorial/Motion";
 const CaseStudiesList = lazy(() => import("./components/CaseStudiesList"));
 const CaseStudyDetail = lazy(() => import("./components/CaseStudyDetail"));
-const TeamPage = lazy(() => import("./components/studio/TeamPage"));
+const DigitalMarketing = lazy(
+  () => import("./components/editorial/DigitalMarketing"),
+);
 type Route = { path: string; hash: string; key: string; restore: boolean };
-const readRoute = (restore = false): Route => ({
-  path: window.location.pathname.replace(/\/$/, "") || "/",
-  hash: window.location.hash,
-  key: window.history.state?.devopsKey || "initial",
-  restore,
-});
+const readRoute = (restore = false): Route => {
+  if (window.location.pathname.replace(/\/$/, "") === "/team")
+    history.replaceState(history.state, "", "/#about");
+  return {
+    path: window.location.pathname.replace(/\/$/, "") || "/",
+    hash: window.location.hash,
+    key: window.history.state?.devopsKey || "initial",
+    restore,
+  };
+};
 class RouteBoundary extends Component<
   { children: ReactNode },
   { error: boolean }
@@ -63,7 +68,7 @@ function RouteContent({
   useLayoutEffect(() => {
     if (route.path === "/")
       updateCaseStudyMetaTags(
-        "DevOps Services | Thoughtful Websites & White-label Development",
+        "DevOps Services | Web, Motion & Digital Marketing",
         "Web design, development, SEO, digital marketing and white-label partnerships. An independent studio in Pakistan working worldwide.",
         undefined,
         undefined,
@@ -105,7 +110,9 @@ function RouteContent({
       />
     );
   if (route.path === "/") return <StudioHome onNavigate={onNavigate} />;
-  if (route.path === "/team") return <TeamPage onNavigate={onNavigate} />;
+  if (route.path === "/digital-marketing")
+    return <DigitalMarketing onNavigate={onNavigate} />;
+
   return (
     <div className="route-loading">
       <h1>Page not found.</h1>
@@ -158,34 +165,28 @@ export default function App() {
   }, []);
   return (
     <LanguageProvider>
-      <LazyMotion features={domAnimation}>
-        <MotionConfig
-          reducedMotion="user"
-          transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
-        >
-          <div className="studio-site">
-            <StudioHeader path={route.path} onNavigate={navigate} />
-            <main id="main-content" tabIndex={-1}>
-              <RouteBoundary key={route.path}>
-                <Suspense
-                  fallback={
-                    <div className="route-loading" role="status">
-                      Loading page…
-                    </div>
-                  }
-                >
-                  <RouteContent
-                    route={route}
-                    positions={positions.current}
-                    onNavigate={navigate}
-                  />
-                </Suspense>
-              </RouteBoundary>
-            </main>
-            <StudioFooter onNavigate={navigate} />
-          </div>
-        </MotionConfig>
-      </LazyMotion>
+      <div className="studio-site">
+        <StudioHeader path={route.path} onNavigate={navigate} />
+        <main id="main-content" tabIndex={-1}>
+          <RouteBoundary key={route.path}>
+            <Suspense
+              fallback={
+                <div className="route-loading" role="status">
+                  Loading page…
+                </div>
+              }
+            >
+              <RouteContent
+                route={route}
+                positions={positions.current}
+                onNavigate={navigate}
+              />
+            </Suspense>
+          </RouteBoundary>
+        </main>
+        <StudioFooter onNavigate={navigate} />
+        <EditorialMotion routeKey={route.path} />
+      </div>
     </LanguageProvider>
   );
 }

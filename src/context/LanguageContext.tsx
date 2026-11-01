@@ -23,9 +23,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem("devops_services_language", language);
     } catch {}
-    document.documentElement.lang = { EN: "en", JP: "ja", FR: "fr", DE: "de" }[
-      language
-    ];
+    document.documentElement.lang = "en";
   }, [language]);
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>

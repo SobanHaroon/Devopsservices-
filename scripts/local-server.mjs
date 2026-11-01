@@ -37,8 +37,32 @@ export async function serve(root = "dist", port = 4173) {
         file = resolve(base, "index.html");
       }
       const body = await readFile(file);
+      const range = /^bytes=(\d+)-(\d*)$/.exec(req.headers.range || "");
+      if (range) {
+        const start = Number(range[1]);
+        const end = Math.min(
+          Number(range[2] || body.length - 1),
+          body.length - 1,
+        );
+        if (start > end || start >= body.length) {
+          res
+            .writeHead(416, { "Content-Range": `bytes */${body.length}` })
+            .end();
+          return;
+        }
+        res.writeHead(206, {
+          "Content-Type": types[extname(file)] || "application/octet-stream",
+          "Content-Length": end - start + 1,
+          "Accept-Ranges": "bytes",
+          "Content-Range": `bytes ${start}-${end}/${body.length}`,
+        });
+        res.end(body.subarray(start, end + 1));
+        return;
+      }
       res.writeHead(200, {
         "Content-Type": types[extname(file)] || "application/octet-stream",
+        "Content-Length": body.length,
+        "Accept-Ranges": "bytes",
       });
       res.end(body);
     } catch {

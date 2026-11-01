@@ -1,0 +1,50 @@
+[
+  {
+    "source": "single-grain (2).mp4",
+    "video": "/media/reels/babay-dee-product-story.mp4",
+    "poster": "/media/reels/babay-dee-product-story.webp",
+    "bytes": 2819902
+  },
+  {
+    "source": "Babay_Dee_Launch_Portrait(1).mp4",
+    "video": "/media/reels/babay-dee-launch.mp4",
+    "poster": "/media/reels/babay-dee-launch.webp",
+    "bytes": 1054997
+  },
+  {
+    "source": "Cielo_Noir_Launch_Portrait(1).mp4",
+    "video": "/media/reels/cielo-noir-bomber.mp4",
+    "poster": "/media/reels/cielo-noir-bomber.webp",
+    "bytes": 1163433
+  },
+  {
+    "source": "Cielo_Noir_Launch_Portrait-2.mp4",
+    "video": "/media/reels/cielo-noir-launch.mp4",
+    "poster": "/media/reels/cielo-noir-launch.webp",
+    "bytes": 1263737
+  },
+  {
+    "source": "Cielo_Noir_Launch_Portrait-3.mp4",
+    "video": "/media/reels/cielo-noir-motion.mp4",
+    "poster": "/media/reels/cielo-noir-motion.webp",
+    "bytes": 1403339
+  },
+  {
+    "source": "Soban_Launch_Portrait(1).mp4",
+    "video": "/media/reels/soban-launch.mp4",
+    "poster": "/media/reels/soban-launch.webp",
+    "bytes": 1056945
+  },
+  {
+    "source": "devops-websites-teaser.mp4",
+    "video": "/media/reels/devops-websites-teaser.mp4",
+    "poster": "/media/reels/devops-websites-teaser.webp",
+    "bytes": 800384
+  },
+  {
+    "source": "DevOps_Launch_Portrait(1).mp4",
+    "video": "/media/reels/devops-launch.mp4",
+    "poster": "/media/reels/devops-launch.webp",
+    "bytes": 542013
+  }
+]

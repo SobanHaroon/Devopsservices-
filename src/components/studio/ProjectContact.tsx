@@ -33,7 +33,7 @@ export default function ProjectContact({
   basis: ContractBasis;
   setBasis: (value: ContractBasis) => void;
 }) {
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const c = STUDIO_COPY[language],
     t = ContactTranslations[language],
     r = REDESIGN_COPY[language];
@@ -113,7 +113,11 @@ export default function ProjectContact({
     }
   };
   return (
-    <section id="contact" className="contact-section section-space inverse">
+    <section
+      id="contact"
+      className="contact-section section-space inverse"
+      lang={{ EN: "en", JP: "ja", FR: "fr", DE: "de" }[language]}
+    >
       <div className="container contact-grid">
         <div className="contact-intro">
           <h2>{r.contactTitle}</h2>
@@ -129,6 +133,19 @@ export default function ProjectContact({
             </span>
           </div>
           <p className="contact-location">{r.note}</p>
+          <label className="contact-language">
+            Form language
+            <select
+              aria-label="Form language"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value as typeof language)}
+            >
+              <option value="EN">English</option>
+              <option value="JP">日本語</option>
+              <option value="FR">Français</option>
+              <option value="DE">Deutsch</option>
+            </select>
+          </label>
         </div>
         {status === "success" ? (
           <div

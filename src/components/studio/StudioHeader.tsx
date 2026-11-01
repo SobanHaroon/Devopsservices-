@@ -1,165 +1,141 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useLanguage, type LanguageType } from "../../context/LanguageContext";
-import { REDESIGN_COPY } from "../../data/redesignCopy";
-import { STUDIO_COPY } from "../../data/studioCopy";
+import { Link, type Navigate } from "../editorial/Primitives";
+const navigation = [
+  ["Selected work", "/case-studies"],
+  ["Digital marketing", "/digital-marketing"],
+  ["The studio", "/#about"],
+  ["Our process", "/#process"],
+  ["Start a project", "/#contact"],
+];
 export default function StudioHeader({
-  onNavigate,
   path,
+  onNavigate,
 }: {
-  onNavigate: (to: string) => void;
   path: string;
+  onNavigate: Navigate;
 }) {
-  const { language, setLanguage } = useLanguage(),
-    c = REDESIGN_COPY[language],
-    t = STUDIO_COPY[language];
+  const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
-  const toggle = useRef<HTMLButtonElement>(null),
-    menu = useRef<HTMLElement>(null);
-  const links = [
-    ["/#case-studies", c.projects],
-    ["/#services", c.services],
-    ["/#partnerships", c.partnership],
-    [
-      "/team",
-      language === "JP" ? "チーム" : language === "FR" ? "Équipe" : "Team",
-    ],
-  ];
-  const go = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-    e.preventDefault();
-    setOpen(false);
-    onNavigate(url);
-  };
   useEffect(() => {
-    setOpen(false);
-  }, [path]);
-  useEffect(() => {
-    if (!open) return;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    menu.current?.querySelector("a")?.focus();
-    const handle = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        toggle.current?.focus();
-      }
-      if (e.key === "Tab") {
-        const nodes = [
-          toggle.current,
-          ...Array.from(
-            menu.current?.querySelectorAll<HTMLAnchorElement>("a") || [],
-          ),
-        ].filter(Boolean) as HTMLElement[];
-        const index = nodes.indexOf(document.activeElement as HTMLElement);
-        if (e.shiftKey && index <= 0) {
-          e.preventDefault();
-          nodes.at(-1)?.focus();
-        } else if (!e.shiftKey && index === nodes.length - 1) {
-          e.preventDefault();
-          nodes[0]?.focus();
-        }
-      }
-    };
-    const resize = () => {
-      if (window.innerWidth > 980) setOpen(false);
-    };
-    window.addEventListener("keydown", handle);
-    window.addEventListener("resize", resize);
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    window.dispatchEvent(new CustomEvent("studio:menu", { detail: open }));
     return () => {
-      document.body.style.overflow = previous;
-      window.removeEventListener("keydown", handle);
-      window.removeEventListener("resize", resize);
+      document.documentElement.style.overflow = "";
+      window.dispatchEvent(new CustomEvent("studio:menu", { detail: false }));
     };
   }, [open]);
+  const close = () => {
+    dialog.current?.close();
+    setOpen(false);
+  };
+  const go = (to: string) => {
+    close();
+    onNavigate(to);
+  };
   return (
     <>
-      <a href="#main-content" className="skip-link">
-        {t.skip}
+      <a className="skip-link" href="#main-content">
+        Skip to content
       </a>
       <header className="studio-header">
-        <div className="header-inner container">
-          <a
-            className="wordmark"
-            href="/"
-            onClick={(e) => go(e, "/")}
-            aria-label="DevOps Services — home"
+        <div className="header-inner">
+          <div className="header-caption">
+            <p>Independent digital studio</p>
+            <span>Web · Motion · Growth</span>
+          </div>
+          <Link
+            to="/"
+            onNavigate={onNavigate}
+            className="brand"
+            aria-label="DevOps Services home"
           >
-            <span className="brand-emblem" aria-hidden="true">
-              <img
-                src="/media/devops-logo.svg"
-                alt=""
-                width="154"
-                height="84"
-              />
-            </span>
-            <span className="brand-name">
-              DevOps <small>Services</small>
-            </span>
-          </a>
-          <nav className="desktop-nav" aria-label="Main navigation">
-            {links.map(([url, label]) => (
-              <a
-                href={url}
-                key={url}
-                onClick={(e) => go(e, url)}
-                aria-current={path === url ? "page" : undefined}
+            <span className="brand-mark" aria-hidden="true" />
+            <span>devops services</span>
+          </Link>
+          <div className="header-right">
+            <nav aria-label="Primary">
+              <Link
+                to="/case-studies"
+                onNavigate={onNavigate}
+                aria-current={
+                  path.startsWith("/case-studies") ? "page" : undefined
+                }
               >
-                {label}
-              </a>
-            ))}
-          </nav>
-          <div className="header-actions">
-            <label className="language-select">
-              <span className="sr-only">{t.language}</span>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value as LanguageType)}
-                aria-label="Language"
+                Work
+              </Link>
+              <Link
+                to="/digital-marketing"
+                onNavigate={onNavigate}
+                aria-current={
+                  path === "/digital-marketing" ? "page" : undefined
+                }
               >
-                <option value="EN">EN</option>
-                <option value="JP">日本語</option>
-                <option value="FR">FR</option>
-                <option value="DE">DE</option>
-              </select>
-            </label>
-            <a
-              href="/#contact"
-              onClick={(e) => go(e, "/#contact")}
-              className="header-cta"
-            >
-              {c.start}
-              <ArrowUpRight size={17} />
-            </a>
+                Growth
+              </Link>
+            </nav>
             <button
               className="menu-button"
-              ref={toggle}
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? t.close : t.menu}
+              aria-label="Menu"
               aria-expanded={open}
-              aria-controls="mobile-navigation"
+              aria-controls="studio-menu"
+              onClick={() => {
+                dialog.current?.showModal();
+                setOpen(true);
+              }}
             >
-              {open ? <X /> : <Menu />}
+              <span>Menu</span>
+              <i aria-hidden="true">
+                <b />
+                <b />
+              </i>
             </button>
           </div>
         </div>
       </header>
-      {open && (
-        <nav
-          id="mobile-navigation"
-          ref={menu}
-          className="mobile-nav"
-          aria-label="Mobile navigation"
-        >
-          {[...links, ["/#contact", c.start]].map(([url, label]) => (
-            <a href={url} key={url} onClick={(e) => go(e, url)}>
-              {label}
-              <ArrowUpRight />
-            </a>
+      <dialog
+        ref={dialog}
+        id="studio-menu"
+        className="menu-dialog"
+        aria-label="Site navigation"
+        onClose={() => setOpen(false)}
+        onCancel={() => setOpen(false)}
+      >
+        <div className="menu-top">
+          <span>Explore the studio</span>
+          <button onClick={close} aria-label="Close menu">
+            Close <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <nav aria-label="All pages">
+          {navigation.map(([label, to], i) => (
+            <Link
+              key={to}
+              to={to}
+              onNavigate={go}
+              style={{ "--delay": `${180 + i * 70}ms` }}
+            >
+              <span>0{i + 1}</span>
+              <strong>{label}</strong>
+              <em aria-hidden="true">↗</em>
+            </Link>
           ))}
-          <p>{c.note}</p>
         </nav>
-      )}
+        <div className="menu-bottom">
+          <div>
+            <a href="mailto:devopsservicesltd@gmail.com">
+              devopsservicesltd@gmail.com
+            </a>
+            <p>Rawalpindi, Pakistan · Working worldwide</p>
+          </div>
+          <a
+            href="https://www.instagram.com/devopsservicesltd/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram ↗
+          </a>
+        </div>
+      </dialog>
     </>
   );
 }
